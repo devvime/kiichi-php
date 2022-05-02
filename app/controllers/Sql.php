@@ -4,11 +4,13 @@ class Sql
 {
     public $table;
 
-    public function __construct($table) {
+    public function __construct($table) 
+    {
         $this->table = $table;
     }
 
-    public function select($fields, $params = '') { 
+    public function select($fields, $params = '') 
+    { 
         $query = "SELECT {$fields} FROM {$this->table} {$params}";
         $this->pdo = DataBase::connect();
         $stmt = $this->pdo->prepare($query);
@@ -18,19 +20,23 @@ class Sql
 		return $result; 
     }
 
-    public function create() {
+    public function create() 
+    {
         
     }
 
-    public function read($id) {
+    public function read($id) 
+    {
 
     }
 
-    public function update($data) {
+    public function update($data) 
+    {
 
     }
 
-    public function delete($id) {
+    public function delete($id) 
+    {
 
     }
 }
