@@ -2,10 +2,10 @@
 
 class Database extends PDO {
 
-    private static $host = 'localhost';
-    private static $dbname = 'users';
-    private static $username = 'root';
-    private static $password = '';
+    private static $host = DBHOST;
+    private static $dbname = DBNAME;
+    private static $username = DBUSER;
+    private static $password = DBPASS;
     private static $conn = null;
 
     public function __construct()
@@ -13,7 +13,8 @@ class Database extends PDO {
         die('A função Init nao é permitido!');
     }
 
-    static function connect() {
+    static function connect() 
+    {
         try {
             self::$conn = new PDO('mysql:host='. self::$host . ';dbname=' . self::$dbname, self::$username, self::$password);
             self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);            

@@ -4,12 +4,12 @@ class Sql
 {
     public $table;
 
-    public function __construct($table) 
+    public function __construct($table)
     {
         $this->table = $table;
     }
 
-    public function select($fields, $params = '') 
+    public function select($fields, $params = '')
     { 
         $query = "SELECT {$fields} FROM {$this->table} {$params}";
         $this->pdo = DataBase::connect();
@@ -17,7 +17,7 @@ class Sql
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
         DataBase::disconnect();
-		return $result; 
+		return $result;
     }
 
     public function create() 
