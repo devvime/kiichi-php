@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Core;
+
+use PDO;
+
 class Database extends PDO {
 
     private static $host = DBHOST;
@@ -18,7 +22,7 @@ class Database extends PDO {
         try {
             self::$conn = new PDO('mysql:host='. self::$host . ';dbname=' . self::$dbname, self::$username, self::$password);
             self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);            
-        } catch (PDOException $error) {
+        } catch (\PDOException $error) {
             echo $error->getMessage();
         }
         return self::$conn;

@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Config\DataBase;
+use PDO;
+
 class Sql 
 {
     public $table;
