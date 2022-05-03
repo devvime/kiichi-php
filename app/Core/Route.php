@@ -22,44 +22,34 @@ class Route {
         }
     }
 
-    public function get($route, $controller)
+    public function verify($route, $controller, $method)
     {
-        if ($route === $this->path && $this->http === 'GET') {
+        if ($route === $this->path && $this->http === $method) {
             $controller = explode('@', $controller);
             $class = $this->getController($controller[0]);
             $func = $controller[1];
             $class->$func();
         }
+    }
+
+    public function get($route, $controller)
+    {
+        $this->verify($route, $controller, 'GET');
     }
 
     public function post($route, $controller)
     {
-        if ($route === $this->path && $this->http === 'POST') {
-            $controller = explode('@', $controller);
-            $class = $this->getController($controller[0]);
-            $func = $controller[1];
-            $class->$func();
-        }
+        $this->verify($route, $controller, 'POST');
     }
 
     public function put($route, $controller)
     {
-        if ($route === $this->path && $this->http === 'PUT') {
-            $controller = explode('@', $controller);
-            $class = $this->getController($controller[0]);
-            $func = $controller[1];
-            $class->$func();
-        }
+        $this->verify($route, $controller, 'PUT');
     }
 
     public function delete($route, $controller)
     {
-        if ($route === $this->path && $this->http === 'DELETE') {
-            $controller = explode('@', $controller);
-            $class = $this->getController($controller[0]);
-            $func = $controller[1];
-            $class->$func();
-        }
+        $this->verify($route, $controller, 'DELETE');
     }
 
 }
