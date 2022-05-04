@@ -33,10 +33,10 @@ class TestController extends ControllerService {
 
     public function update() {
         $request = HttpService::request();
-        $this->json([
-            "status"=>200,
-            "data"=>$request
-        ]);
+        $result = self::$usersModel->update($request, "WHERE id = {$request['id']}");
+        if ($result) {
+            $this->index();
+        }
     }
 
     public function destroy() {

@@ -37,10 +37,14 @@ class Sql
 		return $result;
 	}
 
-    public function update($data, $condition = '') 
-    {
-        $fields = implode(',', array_keys($data));
-        $fields = str_replace(',',' = ?,', $fields);
+    public function update($data, $condition) 
+    {        
+        unset($data['id']);  
+        $fields = [];
+        foreach (array_keys($data) as $value) {
+            array_push($fields, $value . ' = ?');
+        }
+        $fields = implode(',', $fields);
         $query = "UPDATE {$this->table} SET {$fields} {$condition}";
 		$this->pdo = DataBase::connect();
 		$stmt = $this->pdo->prepare($query);		
