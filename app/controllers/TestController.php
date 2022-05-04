@@ -2,22 +2,40 @@
 
 namespace App\Controllers;
 
-class TestController {
+use App\Core\ControllerService;
+use App\Core\HttpService;
+
+class TestController extends ControllerService {
 
     public function index() {
-        echo 'Get..';
+        $this->json([
+            "status"=>200,
+            "data"=>"GET..."
+        ]);
     }
 
     public function store() {
-        echo 'Post...';
+        $request = HttpService::request();
+        $this->json([
+            "status"=>200,
+            "data"=>$request
+        ]);
     }
 
     public function update() {
-        echo 'Update...';
+        $request = HttpService::request();
+        $this->json([
+            "status"=>200,
+            "data"=>$request
+        ]);
     }
 
     public function destroy() {
-        echo 'Delete...';
+        $request = HttpService::request();
+        $this->json([
+            "status"=>200,
+            "data"=>$request
+        ]);
     }
 
 }
