@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Config\DataBase;
+use App\Core\DataBase;
 use PDO;
 
 class Sql 
@@ -14,9 +14,9 @@ class Sql
         $this->table = $table;
     }
 
-    public function select($fields, $params = '')
+    public function select($fields, $condition = '')
     { 
-        $query = "SELECT {$fields} FROM {$this->table} {$params}";
+        $query = "SELECT {$fields} FROM {$this->table} {$condition}";
         $this->pdo = DataBase::connect();
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
@@ -25,19 +25,28 @@ class Sql
 		return $result;
     }
 
-    public function create() 
+    public function create($data)
+	{
+        $fields = implode(',', array_keys($data));
+        $params = str_replace(array_keys($data), '?', $fields);
+		$query = "INSERT INTO {$this->table} ({$fields}) VALUES ({$params})";
+		$this->pdo = DataBase::connect();
+		$stmt = $this->pdo->prepare($query);
+		$result = $stmt->execute(array_values($data));
+		DataBase::disconnect();
+		return $result;
+	}
+
+    public function update($data, $condition = '') 
     {
-        
-    }
-
-    public function read($id) 
-    {
-
-    }
-
-    public function update($data) 
-    {
-
+        $fields = implode(',', array_keys($data));
+        $fields = str_replace(',',' = ?,', $fields);
+        $query = "UPDATE {$this->table} SET {$fields} {$condition}";
+		$this->pdo = DataBase::connect();
+		$stmt = $this->pdo->prepare($query);		
+		$result = $stmt->execute(array_values($data));
+		DataBase::disconnect();
+		return $result;
     }
 
     public function delete($id) 
