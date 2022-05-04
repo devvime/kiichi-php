@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Core\ControllerService;
 use App\Core\HttpService;
-use App\Controllers\Sql;
+use App\Core\SqlService;
 
 class TestController extends ControllerService {
 
@@ -12,7 +12,7 @@ class TestController extends ControllerService {
 
     public function __construct()
     {
-        self::$usersModel = new Sql('user');
+        self::$usersModel = new SqlService('user');
     }
 
     public function index() {

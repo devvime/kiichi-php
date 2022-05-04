@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Core;
 
 use App\Core\DataBase;
 use PDO;
 
-class Sql 
+class SqlService 
 {
     public $table;
 
