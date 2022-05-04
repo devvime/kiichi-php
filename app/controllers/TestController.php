@@ -41,10 +41,10 @@ class TestController extends ControllerService {
 
     public function destroy() {
         $request = HttpService::request();
-        $this->json([
-            "status"=>200,
-            "data"=>$request
-        ]);
+        $result = self::$usersModel->destroy($request['id']);
+        if ($result) {
+            $this->index();
+        }
     }
 
 }

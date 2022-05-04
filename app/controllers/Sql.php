@@ -53,8 +53,14 @@ class Sql
 		return $result;
     }
 
-    public function delete($id) 
+    public function destroy($id) 
     {
-
+        $query = "DELETE FROM {$this->table} WHERE id = :id";
+		$this->pdo = DataBase::connect();
+		$stmt = $this->pdo->prepare($query);
+		$stmt->bindValue(":id", $id);
+		$result = $stmt->execute();
+		DataBase::disconnect();
+		return $result;
     }
 }
