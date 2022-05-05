@@ -25,9 +25,12 @@ class UserController extends ControllerService {
 
     public function store() {
         $request = HttpService::request();
-        $this->validate($request, 'name', 'required');
-        $this->validate($request, 'name', 'minValue', 5);
-        $this->validate($request, 'name', 'maxValue', 20);
+        HttpService::validate($request, 'name', 'required');
+        HttpService::validate($request, 'name', 'minValue', 4);
+        HttpService::validate($request, 'name', 'maxValue', 100);
+        HttpService::validate($request, 'email', 'required');
+        HttpService::validate($request, 'email', 'isEmail');
+        HttpService::validate($request, 'password', 'required');
         $result = self::$usersModel->create($request);
         if ($result) {
             $this->index();
@@ -36,6 +39,7 @@ class UserController extends ControllerService {
 
     public function update() {
         $request = HttpService::request();
+        HttpService::validate($request, 'id', 'required');
         $result = self::$usersModel->update($request, "WHERE id = {$request['id']}");
         if ($result) {
             $this->index();

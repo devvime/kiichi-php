@@ -2,9 +2,12 @@
 
 use App\Core\Route;
 
-$route = new Route();
+$app = new Route();
 
-$route->get('/', 'UserController@index');
-$route->post('/','UserController@store');
-$route->put('/','UserController@update');
-$route->delete('/','UserController@destroy');
+$app->get('/', function() {
+    Route::json(['title'=>'Simple CRUD PHP']);
+});
+$app->get('/user', 'UserController@index');
+$app->post('/user','UserController@store');
+$app->put('/user','UserController@update');
+$app->delete('/user','UserController@destroy');

@@ -24,11 +24,14 @@ class Route {
 
     public function verify($route, $controller, $method)
     {
-        if ($route === $this->path && $this->http === $method) {
+        if ($route === $this->path && $this->http === $method && is_string($controller)) {
             $controller = explode('@', $controller);
             $class = $this->getController($controller[0]);
             $func = $controller[1];
             $class->$func();
+        } else if($route === $this->path && $this->http === $method && !is_string($controller)) {
+            $func = $controller;
+            $func();
         }
     }
 
@@ -50,6 +53,11 @@ class Route {
     public function delete($route, $controller)
     {
         $this->verify($route, $controller, 'DELETE');
+    }
+
+    public static function json($data)
+    {
+        echo json_encode($data);
     }
 
 }
