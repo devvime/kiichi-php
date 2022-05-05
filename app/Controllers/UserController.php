@@ -48,6 +48,7 @@ class UserController extends ControllerService {
 
     public function destroy() {
         $request = HttpService::request();
+        HttpService::validate($request, 'id', 'required');
         $result = self::$usersModel->destroy($request['id']);
         if ($result) {
             $this->index();
