@@ -1,5 +1,26 @@
 {
+    "name": "devvime/viimee-php",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Victor Alves Mendes",
+            "email": "victor@estilodev.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Core\\": "app/Core",
+            "Controllers\\": "app/Controllers"
+        }
+    },
     "require": {
+        "PHP":">=7.0.0",
         "firebase/php-jwt": "^6.1"
+    },
+    "scripts":{
+        "server":"php -S localhost:8080",
+        "create-controller": "php -f app/Services/CreateController.php"
     }
 }
