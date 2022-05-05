@@ -4,7 +4,7 @@ use App\Core\Route;
 
 $route = new Route();
 
-$route->get('/', 'TestController@index');
-$route->post('/','TestController@store');
-$route->put('/','TestController@update');
-$route->delete('/','TestController@destroy');
+$route->get('/', 'UserController@index');
+$route->post('/','UserController@store');
+$route->put('/','UserController@update');
+$route->delete('/','UserController@destroy');

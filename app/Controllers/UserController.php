@@ -6,7 +6,7 @@ use App\Core\ControllerService;
 use App\Core\HttpService;
 use App\Core\SqlService;
 
-class TestController extends ControllerService {
+class UserController extends ControllerService {
 
     private static $usersModel;
 
@@ -25,6 +25,9 @@ class TestController extends ControllerService {
 
     public function store() {
         $request = HttpService::request();
+        $this->validate($request, 'name', 'required');
+        $this->validate($request, 'name', 'minValue', 5);
+        $this->validate($request, 'name', 'maxValue', 20);
         $result = self::$usersModel->create($request);
         if ($result) {
             $this->index();

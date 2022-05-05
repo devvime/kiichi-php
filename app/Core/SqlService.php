@@ -37,9 +37,15 @@ class SqlService
 		return $result;
 	}
 
-    public function update($data, $condition) 
+    public function update($data, $condition = '') 
     {        
-        unset($data['id']);  
+        if ($data['id']) {
+            unset($data['id']);
+        }
+        if ($condition === '') {
+            echo json_encode(['error'=>'Condition is required! Ex: WHERE id = $id']);
+            exit;
+        }
         $fields = [];
         foreach (array_keys($data) as $value) {
             array_push($fields, $value . ' = ?');
