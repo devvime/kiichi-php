@@ -25,21 +25,37 @@ class '.$argv[1].' extends ControllerService {
     }
 
     public function index() {
-        //
+        $result = self::$'.$argv[2].'Model->select("*");
+        $this->json([
+            "status"=>200,
+            "data"=>$result
+        ]);
     }
 
     public function store() {
         $request = HttpService::request();
-        //
+        $result = self::$'.$argv[2].'Model->create($request);
+        if ($result) {
+            $this->index();
+        }
     }
 
     public function update() {
         $request = HttpService::request();
-        //
+        HttpService::validate($request, "id", "required");
+        $result = self::$'.$argv[2].'Model->update($request, "WHERE id = {$request["id"]}");
+        if ($result) {
+            $this->index();
+        }
     }
 
     public function destroy() {
-        //
+        $request = HttpService::request();
+        HttpService::validate($request, "id", "required");
+        $result = self::$'.$argv[2].'Model->destroy($request["id"]);
+        if ($result) {
+            $this->index();
+        }
     }
 }
 ');

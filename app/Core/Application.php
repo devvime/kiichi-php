@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-class Route {
+class Application {
 
     public $path;
     public $http;
@@ -27,11 +27,11 @@ class Route {
         if ($route === $this->path && $this->http === $method && is_string($controller)) {
             $controller = explode('@', $controller);
             $class = $this->getController($controller[0]);
-            $func = $controller[1];
-            $class->$func();
+            $callback = $controller[1];
+            $class->$callback();
         } else if($route === $this->path && $this->http === $method && !is_string($controller)) {
-            $func = $controller;
-            $func();
+            $callback = $controller;
+            $callback();
         }
     }
 

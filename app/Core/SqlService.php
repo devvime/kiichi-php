@@ -27,6 +27,9 @@ class SqlService
 
     public function create($data)
 	{
+        if ($data['id']) {
+            unset($data['id']);
+        }
         $fields = implode(',', array_keys($data));
         $params = str_replace(array_keys($data), '?', $fields);
 		$query = "INSERT INTO {$this->table} ({$fields}) VALUES ({$params})";

@@ -20,7 +20,7 @@
         "firebase/php-jwt": "^6.1"
     },
     "scripts":{
-        "server":"php -S localhost:8080",
-        "create-controller": "php -f app/Services/CreateController.php"
+        "start":"php -S localhost:8080",
+        "new-controller": "php -f app/Services/CreateController.php"
     }
 }

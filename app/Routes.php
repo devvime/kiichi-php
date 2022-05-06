@@ -1,12 +1,13 @@
 <?php
 
-use App\Core\Route;
+use App\Core\Application;
 
-$app = new Route();
+$app = new Application();
 
 $app->get('/', function() {
-    Route::json(['title'=>'Simple CRUD PHP']);
+    echo json_encode(['title'=>'Simple CRUD PHP']);
 });
+
 $app->get('/user', 'UserController@index');
 $app->post('/user','UserController@store');
 $app->put('/user','UserController@update');
