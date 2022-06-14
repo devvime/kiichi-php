@@ -2,10 +2,13 @@
 
 namespace App\Core;
 
+use App\Core\HttpService;
+
 class Application {
 
     public $path;
     public $http;
+    public $params = [];
 
     public function __construct()
     {
@@ -22,21 +25,49 @@ class Application {
         }
     }
 
-    public function verify($route, $controller, $method)
+    public function getParams($route)
     {
-        if ($route === $this->path && $this->http === $method && is_string($controller)) {
+        $pathArray = explode('/', $this->path);
+        $routeArray = explode('/', $route);
+        for ($i=0; $i < count($routeArray); $i++) {
+            if (strpos($routeArray[$i], ":") !== false) {                
+                $this->params[str_replace(":", '', $routeArray[$i])] = $pathArray[$i];
+                $routeArray[$i] = $pathArray[$i];
+            }
+        }
+        return implode('/', $routeArray);
+    }
+
+    public function verify($route, $controller, $method)
+    {        
+        if ($this->getParams($route) === $this->path && $this->http === $method && is_string($controller)) {
             $controller = explode('@', $controller);
             $class = $this->getController($controller[0]);
             $callback = $controller[1];
-            $class->$callback();
+            $request = new \stdClass;
+            foreach ($this->params as $key => $value) {
+                @$request->params->$key = $value;
+            }
+            foreach (HttpService::request() as $key => $value) {
+                @$request->body->$key = $value;
+            }
+            foreach ($_GET as $key => $value) {
+                @$request->query->$key = $value;
+            }
+            // $request = [
+            //     "params"=>$this->params,
+            //     "body"=>HttpService::request(),
+            //     "query"=>$_GET
+            // ];
+            $class->$callback($request);
         } else if($route === $this->path && $this->http === $method && !is_string($controller)) {
             $callback = $controller;
             $callback();
         }
     }
 
-    public function get($route, $controller)
-    {
+    public function get($route, $controller)    
+    {        
         $this->verify($route, $controller, 'GET');
     }
 

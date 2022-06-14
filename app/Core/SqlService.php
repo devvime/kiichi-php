@@ -27,7 +27,7 @@ class SqlService
 
     public function create($data)
 	{
-        if ($data['id']) {
+        if (isset($data['id'])) {
             unset($data['id']);
         }
         $fields = implode(',', array_keys($data));

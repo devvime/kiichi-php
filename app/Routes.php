@@ -12,3 +12,6 @@ $app->get('/user', 'UserController@index');
 $app->post('/user','UserController@store');
 $app->put('/user','UserController@update');
 $app->delete('/user','UserController@destroy');
+
+$app->get('/user/:id/:name', 'UserController@find');
+$app->post('/user/:id/:name', 'UserController@find');

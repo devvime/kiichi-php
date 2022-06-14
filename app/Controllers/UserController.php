@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Core\ControllerService;
-use App\Core\HttpService;
 use App\Core\SqlService;
 
 class UserController extends ControllerService {
@@ -23,32 +22,34 @@ class UserController extends ControllerService {
         ]);
     }
 
-    public function store() {
-        $request = HttpService::request();
-        HttpService::validate($request, 'name', 'required');
-        HttpService::validate($request, 'name', 'minValue', 4);
-        HttpService::validate($request, 'name', 'maxValue', 100);
-        HttpService::validate($request, 'email', 'required');
-        HttpService::validate($request, 'email', 'isEmail');
-        HttpService::validate($request, 'password', 'required');
+    public function find($request)
+    {
+        echo json_encode($request);
+    }
+
+    public function store($request) {
+        $this->validate($request, 'name', 'required');
+        $this->validate($request, 'name', 'minValue', 4);
+        $this->validate($request, 'name', 'maxValue', 100);
+        $this->validate($request, 'email', 'required');
+        $this->validate($request, 'email', 'isEmail');
+        $this->validate($request, 'password', 'required');
         $result = self::$usersModel->create($request);
         if ($result) {
             $this->index();
         }
     }
 
-    public function update() {
-        $request = HttpService::request();
-        HttpService::validate($request, 'id', 'required');
+    public function update($request) {
+        $this->validate($request, 'id', 'required');
         $result = self::$usersModel->update($request, "WHERE id = {$request['id']}");
         if ($result) {
             $this->index();
         }
     }
 
-    public function destroy() {
-        $request = HttpService::request();
-        HttpService::validate($request, 'id', 'required');
+    public function destroy($request) {
+        $this->validate($request, 'id', 'required');
         $result = self::$usersModel->destroy($request['id']);
         if ($result) {
             $this->index();
