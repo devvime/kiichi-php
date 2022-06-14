@@ -22,35 +22,35 @@ class UserController extends ControllerService {
         ]);
     }
 
-    public function find($request)
+    public function find($req, $res)
     {
-        echo json_encode($request);
+        $res->json($req);
     }
 
-    public function store($request) {
-        $this->validate($request, 'name', 'required');
-        $this->validate($request, 'name', 'minValue', 4);
-        $this->validate($request, 'name', 'maxValue', 100);
-        $this->validate($request, 'email', 'required');
-        $this->validate($request, 'email', 'isEmail');
-        $this->validate($request, 'password', 'required');
-        $result = self::$usersModel->create($request);
+    public function store($req) {
+        $this->validate($req->body->name, 'required');
+        $this->validate($req->body->name, 'minValue', 4);
+        $this->validate($req->body->name, 'maxValue', 100);
+        $this->validate($req->body->email, 'required');
+        $this->validate($req->body->email, 'isEmail');
+        $this->validate($req->body->password, 'required');
+        $result = self::$usersModel->create($req->body);
         if ($result) {
             $this->index();
         }
     }
 
-    public function update($request) {
-        $this->validate($request, 'id', 'required');
-        $result = self::$usersModel->update($request, "WHERE id = {$request['id']}");
+    public function update($req) {
+        $this->validate($req->body->id, 'required');
+        $result = self::$usersModel->update($req->body, "WHERE id = {$req->body->id}");
         if ($result) {
             $this->index();
         }
     }
 
-    public function destroy($request) {
-        $this->validate($request, 'id', 'required');
-        $result = self::$usersModel->destroy($request['id']);
+    public function destroy($req) {
+        $this->validate($req->body->id, 'required');
+        $result = self::$usersModel->destroy($req->body->id);
         if ($result) {
             $this->index();
         }

@@ -27,6 +27,7 @@ class SqlService
 
     public function create($data)
 	{
+        $data = get_object_vars($data);
         if (isset($data['id'])) {
             unset($data['id']);
         }
@@ -40,8 +41,9 @@ class SqlService
 		return $result;
 	}
 
-    public function update($data, $condition = '') 
-    {        
+    public function update($data, $condition = '')
+    {
+        $data = get_object_vars($data);
         if ($data['id']) {
             unset($data['id']);
         }
@@ -62,7 +64,7 @@ class SqlService
 		return $result;
     }
 
-    public function destroy($id) 
+    public function destroy($id)
     {
         $query = "DELETE FROM {$this->table} WHERE id = :id";
 		$this->pdo = DataBase::connect();

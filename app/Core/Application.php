@@ -3,12 +3,15 @@
 namespace App\Core;
 
 use App\Core\HttpService;
+use App\Core\ControllerService;
 
 class Application {
 
     public $path;
     public $http;
     public $params = [];
+    public $req;
+    public $res;
 
     public function __construct()
     {
@@ -25,44 +28,46 @@ class Application {
         }
     }
 
-    public function getParams($route)
+    public function getParams($route, $method)
     {
-        $pathArray = explode('/', $this->path);
-        $routeArray = explode('/', $route);
-        for ($i=0; $i < count($routeArray); $i++) {
-            if (strpos($routeArray[$i], ":") !== false) {                
-                $this->params[str_replace(":", '', $routeArray[$i])] = $pathArray[$i];
-                $routeArray[$i] = $pathArray[$i];
-            }
+        $this->req = new \stdClass;
+        foreach (HttpService::request() as $key => $value) {
+            @$this->req->body->$key = $value;
         }
-        return implode('/', $routeArray);
+        foreach ($_GET as $key => $value) {
+            @$this->req->query->$key = $value;
+        }
+        $this->res = new ControllerService();
+        if (strpos($route, ":") && $this->http === $method) {
+            $pathArray = explode('/', $this->path);
+            $routeArray = explode('/', $route);
+            for ($i=0; $i < count($routeArray); $i++) {
+                if (strpos($routeArray[$i], ":") !== false) {  
+                    if (isset($routeArray[$i]) && isset($pathArray[$i])) {                        
+                        $this->params[str_replace(":", '', $routeArray[$i])] = $pathArray[$i];
+                        $routeArray[$i] = $pathArray[$i];
+                    }                                  
+                }
+            }
+            foreach ($this->params as $key => $value) {
+                @$this->req->params->$key = $value;
+            }
+            return implode('/', $routeArray);
+        } else {
+            return $route;
+        }
     }
 
     public function verify($route, $controller, $method)
     {        
-        if ($this->getParams($route) === $this->path && $this->http === $method && is_string($controller)) {
+        if ($this->getParams($route, $method) === $this->path && $this->http === $method && is_string($controller)) {
             $controller = explode('@', $controller);
             $class = $this->getController($controller[0]);
-            $callback = $controller[1];
-            $request = new \stdClass;
-            foreach ($this->params as $key => $value) {
-                @$request->params->$key = $value;
-            }
-            foreach (HttpService::request() as $key => $value) {
-                @$request->body->$key = $value;
-            }
-            foreach ($_GET as $key => $value) {
-                @$request->query->$key = $value;
-            }
-            // $request = [
-            //     "params"=>$this->params,
-            //     "body"=>HttpService::request(),
-            //     "query"=>$_GET
-            // ];
-            $class->$callback($request);
+            $callback = $controller[1];           
+            $class->$callback($this->req, $this->res);
         } else if($route === $this->path && $this->http === $method && !is_string($controller)) {
-            $callback = $controller;
-            $callback();
+            $callback = $controller;     
+            $callback($this->req, $this->res);
         }
     }
 
