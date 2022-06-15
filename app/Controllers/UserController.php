@@ -14,9 +14,9 @@ class UserController extends ControllerService {
         self::$usersModel = new SqlService('user');
     }
 
-    public function index() {
+    public function index($req, $res) {
         $result = self::$usersModel->select('id, name, email');
-        $this->json([
+        $res->json([
             "status"=>200,
             "data"=>$result
         ]);
@@ -24,10 +24,14 @@ class UserController extends ControllerService {
 
     public function find($req, $res)
     {
-        $res->json($req);
+        $result = self::$usersModel->select('id, name, email', "WHERE id = {$req->params->id}");
+        $res->json([
+            "staus"=>200,
+            "data"=>$result
+        ]);
     }
 
-    public function store($req) {
+    public function store($req, $res) {
         $this->validate($req->body->name, 'required');
         $this->validate($req->body->name, 'minValue', 4);
         $this->validate($req->body->name, 'maxValue', 100);
@@ -36,23 +40,23 @@ class UserController extends ControllerService {
         $this->validate($req->body->password, 'required');
         $result = self::$usersModel->create($req->body);
         if ($result) {
-            $this->index();
+            $this->index($req, $res);
         }
     }
 
-    public function update($req) {
+    public function update($req, $res) {
         $this->validate($req->body->id, 'required');
         $result = self::$usersModel->update($req->body, "WHERE id = {$req->body->id}");
         if ($result) {
-            $this->index();
+            $this->index($req, $res);
         }
     }
 
-    public function destroy($req) {
+    public function destroy($req, $res) {
         $this->validate($req->body->id, 'required');
         $result = self::$usersModel->destroy($req->body->id);
         if ($result) {
-            $this->index();
+            $this->index($req, $res);
         }
     }
 

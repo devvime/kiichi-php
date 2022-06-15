@@ -65,10 +65,14 @@ class Application {
             $class = $this->getController($controller[0]);
             $callback = $controller[1];           
             $class->$callback($this->req, $this->res);
+            exit;
         } else if($route === $this->path && $this->http === $method && !is_string($controller)) {
             $callback = $controller;     
             $callback($this->req, $this->res);
+            exit;
         }
+        // echo "404";
+        // exit;
     }
 
     public function get($route, $controller)    
