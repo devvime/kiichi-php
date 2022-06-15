@@ -59,20 +59,18 @@ class Application {
     }
 
     public function verify($route, $controller, $method)
-    {        
-        if ($this->getParams($route, $method) === $this->path && $this->http === $method && is_string($controller)) {
+    {
+        if ($this->getParams($route, $method) === $this->path && $this->http === $method && is_string($controller)) {            
             $controller = explode('@', $controller);
             $class = $this->getController($controller[0]);
             $callback = $controller[1];           
-            $class->$callback($this->req, $this->res);
+            $class->$callback($this->req, $this->res);            
             exit;
-        } else if($route === $this->path && $this->http === $method && !is_string($controller)) {
+        } else if ($this->getParams($route, $method) === $this->path && $this->http === $method && !is_string($controller)) {
             $callback = $controller;     
             $callback($this->req, $this->res);
             exit;
-        }
-        // echo "404";
-        // exit;
+        } 
     }
 
     public function get($route, $controller)    
