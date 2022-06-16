@@ -12,6 +12,7 @@ class Application {
     public $params = [];
     public $req;
     public $res;
+    public $routes = [];
 
     public function __construct()
     {
@@ -60,7 +61,7 @@ class Application {
 
     public function verify($route, $controller, $method)
     {
-        if ($this->getParams($route, $method) === $this->path && $this->http === $method && is_string($controller)) {            
+        if ($this->getParams($route, $method) === $this->path && $this->http === $method && is_string($controller)) {
             $controller = explode('@', $controller);
             $class = $this->getController($controller[0]);
             $callback = $controller[1];           
@@ -70,11 +71,12 @@ class Application {
             $callback = $controller;     
             $callback($this->req, $this->res);
             exit;
-        } 
+        }
+        array_push($this->routes, $route);
     }
 
     public function get($route, $controller)    
-    {        
+    {
         $this->verify($route, $controller, 'GET');
     }
 
@@ -93,9 +95,17 @@ class Application {
         $this->verify($route, $controller, 'DELETE');
     }
 
-    public static function json($data)
+    public function run()
     {
-        echo json_encode($data);
+        foreach ($this->routes as $route) {
+            if ($this->getParams($route, $this->http) !== $this->path) {
+                echo json_encode([
+                    "status"=>404,
+                    "message"=>"endPoint is not found!"
+                ]);
+                exit;
+            }
+        }
     }
 
 }
