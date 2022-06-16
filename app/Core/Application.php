@@ -13,11 +13,13 @@ class Application {
     public $req;
     public $res;
     public $routes = [];
+    public $group;
 
-    public function __construct()
+    public function __construct($group = "")
     {
         $this->path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $this->http = $_SERVER['REQUEST_METHOD'];
+        $this->group = $group;
     }
 
     public function getController($controller) 
@@ -77,31 +79,36 @@ class Application {
 
     public function get($route, $controller)    
     {
-        $this->verify($route, $controller, 'GET');
+        $this->verify($this->group . $route, $controller, 'GET');
     }
 
     public function post($route, $controller)
     {
-        $this->verify($route, $controller, 'POST');
+        $this->verify($this->group . $route, $controller, 'POST');
     }
 
     public function put($route, $controller)
     {
-        $this->verify($route, $controller, 'PUT');
+        $this->verify($this->group . $route, $controller, 'PUT');
     }
 
     public function delete($route, $controller)
     {
-        $this->verify($route, $controller, 'DELETE');
+        $this->verify($this->group . $route, $controller, 'DELETE');
+    }
+
+    public function group($name)
+    {
+        $this->group = $name;
     }
 
     public function run()
-    {
+    {        
         foreach ($this->routes as $route) {
             if ($this->getParams($route, $this->http) !== $this->path) {
                 echo json_encode([
                     "status"=>404,
-                    "message"=>"endPoint is not found!"
+                    "message"=>"Endpoint is not found!"
                 ]);
                 exit;
             }
