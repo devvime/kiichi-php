@@ -9,3 +9,5 @@ const DBUSER = 'root';
 const DBPASS = '';
 const SECRET = '5471segsjmj**¨dh4hj___SGj105541';
 const UPLOAD_DIR = 'files/uploads';
+const VIEWS_DIR = 'App/Views/';
+const VIEWS_CACHE_DIR = 'App/Views/cache/';

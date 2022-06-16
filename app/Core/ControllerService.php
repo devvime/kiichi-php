@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Core\ViewService;
+
 class ControllerService {
 
     public function json($data)
@@ -36,6 +38,13 @@ class ControllerService {
                 }
             break;
         }
+    }
+
+    public function render($file, $data = [])
+    {
+        header('Content-type: text/html; charset=utf-8');
+        $viewService = new ViewService($data);
+        $viewService->render($file, $data);
     }
 
 }

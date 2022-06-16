@@ -8,17 +8,17 @@ $app->get('/', function($req, $res) {
     $res->json(['title'=>'Simple CRUD PHP']);
 });
 
-$app->group('/api');
-    $app->get('/user', 'UserController@index');
-    $app->get('/user/:id', 'UserController@find');
-    $app->post('/user','UserController@store');
-    $app->put('/user','UserController@update');
-    $app->delete('/user','UserController@destroy');
+$app->group('/user');
+    $app->get('', 'UserController@index');
+    $app->get('/:id', 'UserController@find');
+    $app->post('', 'UserController@store');
+    $app->put('', 'UserController@update');
+    $app->delete('', 'UserController@destroy');
 
 $app->group('/hello');
     $app->get('/:name', function($req, $res) {
-        $res->json([
-            "Hello"=>$req->params->name
+        $res->render('index', [
+            "name"=>$req->params->name
         ]);
     });
 

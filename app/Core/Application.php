@@ -108,7 +108,9 @@ class Application {
             if ($this->getParams($route, $this->http) !== $this->path) {
                 echo json_encode([
                     "status"=>404,
-                    "message"=>"Endpoint is not found!"
+                    "message"=>"Error: Endpoint is not found!",
+                    "path"=>$this->path,
+                    "method"=>$this->http
                 ]);
                 exit;
             }
