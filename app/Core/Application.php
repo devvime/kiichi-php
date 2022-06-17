@@ -14,6 +14,8 @@ class Application {
     public $res;
     public $routes = [];
     public $group;
+    public $middleware;
+    public $next = false;
 
     public function __construct($group = "")
     {
@@ -27,6 +29,15 @@ class Application {
         if (file_exists("App\\Controllers\\{$controller}.php")) {
             require_once("App\\Controllers\\{$controller}.php");
             $class = "App\\Controllers\\". $controller;
+            return new $class();
+        }
+    }
+
+    public function getMiddleware($middleware) 
+    {
+        if (file_exists("App\\Middlewares\\{$middleware}.php")) {
+            require_once("App\\Middlewares\\{$middleware}.php");
+            $class = "App\\Middlewares\\". $middleware;
             return new $class();
         }
     }
@@ -100,6 +111,25 @@ class Application {
     public function group($name)
     {
         $this->group = $name;
+    }
+
+    public function middleware($callback)
+    {
+        if (!$this->next) {
+            if (strpos($this->path, $this->group) !== false && !is_string($callback)) {
+                $this->middleware = $callback($this->req, $this->res);
+            } else if (strpos($this->path, $this->group) !== false && is_string($callback)) {
+                $middleware = explode('@', $callback);
+                $class = $this->getMiddleware($middleware[0]);
+                $callback = $middleware[1];           
+                $this->middleware = $class->$callback($this->req, $this->res);
+            }            
+        }        
+    }
+
+    public function next()
+    {
+        $this->next = true;
     }
 
     public function run()
