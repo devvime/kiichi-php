@@ -15,7 +15,6 @@ class Application {
     public $routes = [];
     public $group;
     public $middleware;
-    public $next = false;
 
     public function __construct($group = "")
     {
@@ -30,6 +29,12 @@ class Application {
             require_once("App\\Controllers\\{$controller}.php");
             $class = "App\\Controllers\\". $controller;
             return new $class();
+        } else {
+            echo json_encode([
+                "error"=>404,
+                "meaage"=>"App/Controllers/" . $controller . ".php is not found!"
+            ]);
+            exit;
         }
     }
 
@@ -39,6 +44,12 @@ class Application {
             require_once("App\\Middlewares\\{$middleware}.php");
             $class = "App\\Middlewares\\". $middleware;
             return new $class();
+        } else {
+            echo json_encode([
+                "error"=>404,
+                "meaage"=>"App/Middlewares/" . $middleware . ".php is not found!"
+            ]);
+            exit;
         }
     }
 
@@ -72,8 +83,11 @@ class Application {
         }
     }
 
-    public function verify($route, $controller, $method)
+    public function verify($route, $controller, $method, $middleware)
     {
+        if ($middleware !== null) {
+            $this->middleware($middleware);
+        }
         if ($this->getParams($route, $method) === $this->path && $this->http === $method && is_string($controller)) {
             $controller = explode('@', $controller);
             $class = $this->getController($controller[0]);
@@ -88,52 +102,56 @@ class Application {
         array_push($this->routes, $route);
     }
 
-    public function get($route, $controller)    
+    public function get($route, $controller, $middleware = null)    
     {
-        $this->verify($this->group . $route, $controller, 'GET');
+        $this->verify($this->group . $route, $controller, 'GET', $middleware);
     }
 
-    public function post($route, $controller)
+    public function post($route, $controller, $middleware = null)
     {
-        $this->verify($this->group . $route, $controller, 'POST');
+        $this->verify($this->group . $route, $controller, 'POST', $middleware);
     }
 
-    public function put($route, $controller)
+    public function put($route, $controller, $middleware = null)
     {
-        $this->verify($this->group . $route, $controller, 'PUT');
+        $this->verify($this->group . $route, $controller, 'PUT', $middleware);
     }
 
-    public function delete($route, $controller)
+    public function delete($route, $controller, $middleware = null)
     {
-        $this->verify($this->group . $route, $controller, 'DELETE');
+        $this->verify($this->group . $route, $controller, 'DELETE', $middleware);
     }
 
-    public function group($name)
+    public function group($name, $middleware = null)
     {
         $this->group = $name;
+        if (strpos($this->path, $this->group) !== false && $middleware !== null) {
+            $this->middleware($middleware);
+        }        
     }
 
     public function middleware($callback)
     {
-        if (!$this->next) {
-            if (strpos($this->path, $this->group) !== false && !is_string($callback)) {
-                $this->middleware = $callback($this->req, $this->res);
-            } else if (strpos($this->path, $this->group) !== false && is_string($callback)) {
-                $middleware = explode('@', $callback);
-                $class = $this->getMiddleware($middleware[0]);
-                $callback = $middleware[1];           
-                $this->middleware = $class->$callback($this->req, $this->res);
-            }            
-        }        
+        $this->middleware = new \stdClass;
+        $this->middleware->callback = $callback;
+        if (!is_string($this->middleware->callback)) {
+            $callback = $this->middleware->callback;
+            $middleware = $callback($this->req, $this->res);
+        } else if (is_string($this->middleware->callback)) {
+            $middleware = explode('@', $this->middleware->callback);
+            $class = $this->getMiddleware($middleware[0]);
+            $callback = $middleware[1];           
+            $middleware = $class->$callback($this->req, $this->res);
+        }
     }
 
     public function next()
     {
-        $this->next = true;
+        $this->middleware->callback = null;
     }
 
     public function run()
-    {        
+    {
         foreach ($this->routes as $route) {
             if ($this->getParams($route, $this->http) !== $this->path) {
                 echo json_encode([
@@ -144,7 +162,7 @@ class Application {
                 ]);
                 exit;
             }
-        }
+        }        
     }
 
 }

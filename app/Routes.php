@@ -15,12 +15,18 @@ $app->group('/hello');
         ]);
     });
 
-$app->group('/user');    
-    $app->middleware('UserMiddleware@logged');
-        $app->get('', 'UserController@index');
-        $app->get('/:id', 'UserController@find');
-        $app->post('', 'UserController@store');
-        $app->put('', 'UserController@update');
-        $app->delete('', 'UserController@destroy');
+$app->group('/user');
+    $app->get('', 'UserController@index');
+    $app->get('/:id', 'UserController@find');
+    $app->post('', 'UserController@store');
+    $app->put('', 'UserController@update');
+    $app->delete('', 'UserController@destroy');       
+
+$app->group('/test');
+    $app->get('', function($req, $res) {
+        $res->json([
+            "message"=>"Test"
+        ]);
+    });
 
 $app->run();
