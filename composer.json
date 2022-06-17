@@ -21,6 +21,8 @@
     },
     "scripts":{
         "start":"php -S localhost:8080",
-        "new-controller": "php -f app/Services/CreateController.php"
+        "new-controller": "php -f app/Services/CreateController.php",
+        "new-middleware": "php -f app/Services/CreateMiddleware.php"
+
     }
 }
