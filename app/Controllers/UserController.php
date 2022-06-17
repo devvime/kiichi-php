@@ -59,5 +59,4 @@ class UserController extends ControllerService {
             $this->index($req, $res);
         }
     }
-
 }
