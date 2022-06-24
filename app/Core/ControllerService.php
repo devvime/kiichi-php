@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\ViewService;
+use Firebase\JWT\JWT;
 
 class ControllerService {
 
@@ -45,6 +46,16 @@ class ControllerService {
         header('Content-type: text/html; charset=utf-8');
         $viewService = new ViewService($data);
         $viewService->render($file, $data);
+    }
+
+    public function jwtEncrypt($value)
+    {
+        return JWT::encode($value, SECRET, 'HS256');
+    }
+
+    public function jwtDecrypt($value)
+    {
+        return JWT::decode($value, SECRET, array('HS256'));
     }
 
 }
