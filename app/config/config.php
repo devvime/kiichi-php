@@ -1,13 +1,31 @@
 <?php
 
+#Dotenv
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();
+#
+#Timezone Settings
 date_default_timezone_set("America/Sao_Paulo");
 setlocale(LC_ALL, 'pt_BR');
-
-const DBHOST = 'localhost';
-const DBNAME = 'users';
-const DBUSER = 'root';
-const DBPASS = '';
-const SECRET = '5471segsjmj**¨dh4hj___SGj105541';
+#
+#Database Settings
+define('DBHOST', $_ENV['DBHOST']);
+define('DBUSER', $_ENV['DBUSER']);
+define('DBPASS', $_ENV['DBPASS']);
+define('DBNAME', $_ENV['DBNAME']);
+#
+#Email Settings
+define('EMAIL_HOST', $_ENV['EMAIL_HOST']);
+define('EMAIL_USER', $_ENV['EMAIL_USER']);
+define('EMAIL_PASSWORD', $_ENV['EMAIL_PASSWORD']);
+define('EMAIL_PORT', $_ENV['EMAIL_PORT']);
+#
+#JWT Settings
+const SECRET = '5471segsjmj**¨dh4hj__\|/_SGj105541=%*#$4002Z-(0)';
+#
+#Upload Settings
 const UPLOAD_DIR = 'files/uploads';
+#
+#Views Settings
 const VIEWS_DIR = 'App/Views/';
 const VIEWS_CACHE_DIR = 'App/Views/cache/';

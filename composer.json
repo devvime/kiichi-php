@@ -17,7 +17,8 @@
         "PHP":">=7.0.0",
         "firebase/php-jwt": "^6.1",
         "phpmailer/phpmailer": "^6.1",
-        "rain/raintpl": "3.0.0"
+        "rain/raintpl": "3.0.0",
+        "vlucas/phpdotenv": "^5.4"
     },
     "scripts":{
         "start":"php -S localhost:8080",

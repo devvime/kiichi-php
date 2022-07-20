@@ -11,7 +11,7 @@ $app->get('/', function($req, $res) {
 $app->group('/hello');
     $app->get('/:name', function($req, $res) {
         $res->render('index', [
-            "name"=>$req->params->name
+            "name"=>$req->params->name            
         ]);
     });
 
