@@ -2,7 +2,7 @@
 
 if ($argv[2] === '' || $argv[2] === null) {
     echo "\033[01;31m==========================================ERROR======================================================= \033[0m \n";
-    echo "\033[01;31mNeed to inform the name of the database table! EX: composer create-controller ControllerName TableName \033[0m \n";
+    echo "\033[01;31mNeed to inform the name of the database table! EX: composer new-controller ControllerName TableName \033[0m \n";
     echo "\033[01;31m====================================================================================================== \033[0m \n";
     exit;
 }

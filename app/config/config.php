@@ -21,7 +21,7 @@ define('EMAIL_PASSWORD', $_ENV['EMAIL_PASSWORD']);
 define('EMAIL_PORT', $_ENV['EMAIL_PORT']);
 #
 #JWT Settings
-const SECRET = '5471segsjmj**¨dh4hj__\|/_SGj105541=%*#$4002Z-(0)';
+define('SECRET', $_ENV['SECRET']);
 #
 #Upload Settings
 const UPLOAD_DIR = 'files/uploads';
