@@ -8,6 +8,7 @@ use PDO;
 class SqlService 
 {
     public $table;
+    public $paginatedQuery;
 
     public function __construct($table)
     {
@@ -16,7 +17,7 @@ class SqlService
 
     public function select($fields, $condition = '')
     { 
-        $query = "SELECT {$fields} FROM {$this->table} {$condition}";
+        $query = "SELECT {$fields} FROM {$this->table} {$condition} {$this->paginatedQuery}";
         $this->pdo = DataBase::connect();
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
@@ -73,5 +74,15 @@ class SqlService
 		$result = $stmt->execute();
 		DataBase::disconnect();
 		return $result;
+    }
+
+    public function paginate($params)
+    {
+        if ($params !== null) {
+            $perPage = isset($params->perPage) ? $params->perPage : 10;
+            $page = isset($params->page) ? $params->page : 1;
+            $start = ($perPage * $page) - $perPage;
+            $this->paginatedQuery = "LIMIT {$start}, {$perPage}";
+        }
     }
 }
