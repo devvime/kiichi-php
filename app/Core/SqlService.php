@@ -76,13 +76,11 @@ class SqlService
 		return $result;
     }
 
-    public function paginate($params)
+    public function paginate()
     {
-        if ($params !== null) {
-            $perPage = isset($params->perPage) ? $params->perPage : 10;
-            $page = isset($params->page) ? $params->page : 1;
-            $start = ($perPage * $page) - $perPage;
-            $this->paginatedQuery = "LIMIT {$start}, {$perPage}";
-        }
+        $perPage = isset($_GET['perPage']) ? $_GET['perPage'] : 10;
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $start = ($perPage * $page) - $perPage;
+        $this->paginatedQuery = "LIMIT {$start}, {$perPage}";
     }
 }

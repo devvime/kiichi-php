@@ -122,12 +122,17 @@ class Application {
         $this->verify($this->group . $route, $controller, 'DELETE', $middleware);
     }
 
-    public function group($name, $middleware = null)
+    public function group($name, $function, $middleware = null)
     {
         $this->group = $name;
-        if (strpos($this->path, $this->group) !== false && $middleware !== null) {
-            $this->middleware($middleware);
-        }        
+        if (strpos($this->path, $this->group) !== false) {            
+            if ($middleware !== null) {
+                $this->middleware($middleware);
+            }
+            $callback = $function;     
+            $callback($this->req, $this->res);
+            exit;
+        }     
     }
 
     public function middleware($callback)
