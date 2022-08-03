@@ -8,25 +8,28 @@ $app->get('/', function($req, $res) {
     $res->json(['title'=>'Simple CRUD PHP']);
 });
 
-$app->group('/hello');
+$app->group('/hello', function() use($app) {
     $app->get('/:name', function($req, $res) {
         $res->render('index', [
             "name"=>$req->params->name            
         ]);
     });
+});    
 
-$app->group('/user');
+$app->group('/user', function() use($app) {
     $app->get('', 'UserController@index');
     $app->get('/:id', 'UserController@find');
     $app->post('', 'UserController@store');
     $app->put('', 'UserController@update');
     $app->delete('', 'UserController@destroy');       
+});    
 
-$app->group('/test');
+$app->group('/test', function() use($app) {
     $app->get('', function($req, $res) {
         $res->json([
             "message"=>"Test"
         ]);
     });
+});    
 
 $app->run();
