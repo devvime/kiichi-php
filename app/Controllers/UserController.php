@@ -46,16 +46,16 @@ class UserController extends ControllerService {
     }
 
     public function update($req, $res) {
-        $this->validate($req->body->id, 'required');
-        $result = self::$usersModel->update($req->body, "WHERE id = {$req->body->id}");
+        $this->validate($req->params->id, 'required');
+        $result = self::$usersModel->update($req->body, "WHERE id = {$req->params->id}");
         if ($result) {
             $this->index($req, $res);
         }
     }
 
     public function destroy($req, $res) {
-        $this->validate($req->body->id, 'required');
-        $result = self::$usersModel->destroy($req->body->id);
+        $this->validate($req->params->id, 'required');
+        $result = self::$usersModel->destroy($req->params->id);
         if ($result) {
             $this->index($req, $res);
         }

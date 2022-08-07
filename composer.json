@@ -1,5 +1,5 @@
 {
-    "name": "devvime/viimee-php",
+    "name": "devvime/simplify-php",
     "description": "",
     "license": "MIT",
     "authors": [
@@ -15,7 +15,7 @@
     },
     "require": {
         "PHP":">=7.0.0",
-        "firebase/php-jwt": "^6.1",
+        "firebase/php-jwt": "^5.2",
         "phpmailer/phpmailer": "^6.1",
         "rain/raintpl": "3.0.0",
         "vlucas/phpdotenv": "^5.4"

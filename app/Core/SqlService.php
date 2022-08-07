@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-use App\Core\DataBase;
+use App\Core\Database;
 use PDO;
 
 class SqlService 

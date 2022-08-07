@@ -48,16 +48,16 @@ class '.$argv[1].' extends ControllerService {
     }
 
     public function update($req, $res) {
-        $this->validate($req->body->id, "required");
-        $result = self::$'.$argv[2].'Model->update($req->body, "WHERE id = {$req->body->id}");
+        $this->validate($req->params->id, "required");
+        $result = self::$'.$argv[2].'Model->update($req->body, "WHERE id = {$req->params->id}");
         if ($result) {
             $this->index($req, $res);
         }
     }
 
     public function destroy($req, $res) {
-        $this->validate($req->body->id, "required");
-        $result = self::$'.$argv[2].'Model->destroy($req->body->id);
+        $this->validate($req->params->id, "required");
+        $result = self::$'.$argv[2].'Model->destroy($req->params->id);
         if ($result) {
             $this->index($req, $res);
         }
@@ -65,17 +65,17 @@ class '.$argv[1].' extends ControllerService {
 }
 ');
 
-if (file_exists($_SERVER['DOCUMENT_ROOT'] . "app/Controllers/{$argv[1]}.php")) {
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . "App/Controllers/{$argv[1]}.php")) {
     echo "\033[03;33m======================================WARNING=============================================== \033[0m \n";
     echo "\033[03;33mThe controller '".$argv[1]."' already exists in 'app/Controllers/".$argv[1].".php' \033[0m \n";
     echo "\033[03;33m============================================================================================ \033[0m \n";
     exit;
 } else {
-    $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "app/Controllers/{$argv[1]}.php","wb");
+    $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "App/Controllers/{$argv[1]}.php","wb");
     fwrite($fp, $content);
     fclose($fp);
     echo "\033[02;32m===========================SUCCESS=========================== \033[0m \n";
-    echo "\033[02;32mController created in 'app/Controllers/".$argv[1].".php' \033[0m \n";
+    echo "\033[02;32mController created in 'App/Controllers/".$argv[1].".php' \033[0m \n";
     echo "\033[02;32m============================================================= \033[0m \n";
 }
 
