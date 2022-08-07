@@ -49,7 +49,7 @@ class '. $argv[1] .' extends EmailService {
 
 if (file_exists($_SERVER['DOCUMENT_ROOT'] . "App/Controllers/{$argv[1]}.php")) {
     echo "\033[03;33m======================================WARNING========================================= \033[0m \n";
-    echo "\033[03;33mThe controller '".$argv[1]."' already exists in 'app/Controllers/".$argv[1].".php' \033[0m \n";
+    echo "\033[03;33mThe controller '".$argv[1]."' already exists in 'App/Controllers/".$argv[1].".php' \033[0m \n";
     echo "\033[03;33m====================================================================================== \033[0m \n";
     exit;
 } else {

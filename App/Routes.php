@@ -20,9 +20,9 @@ $app->group('/user', function() use($app) {
     $app->get('', 'UserController@index');
     $app->get('/:id', 'UserController@find');
     $app->post('', 'UserController@store');
-    $app->put('', 'UserController@update');
-    $app->delete('', 'UserController@destroy');       
-});    
+    $app->put('/:id', 'UserController@update');
+    $app->delete('/:id', 'UserController@destroy');
+}, 'UserMiddleware@logged');    
 
 $app->group('/test', function() use($app) {
     $app->get('', function($req, $res) {
