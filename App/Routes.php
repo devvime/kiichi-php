@@ -22,7 +22,8 @@ $app->group('/user', function() use($app) {
     $app->post('', 'UserController@store');
     $app->put('/:id', 'UserController@update');
     $app->delete('/:id', 'UserController@destroy');
-}, 'UserMiddleware@logged');    
+});    
+// }, 'UserMiddleware@logged');    
 
 $app->group('/test', function() use($app) {
     $app->get('', function($req, $res) {

@@ -3,12 +3,13 @@
 namespace App\Core;
 
 use App\Core\Database;
-use PDO;
+use \PDO;
 
 class SqlService 
 {
     public $table;
     public $paginatedQuery;
+    public $pdo;
 
     public function __construct($table)
     {

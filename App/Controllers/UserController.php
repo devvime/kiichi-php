@@ -3,20 +3,19 @@
 namespace App\Controllers;
 
 use App\Core\ControllerService;
-use App\Core\SqlService;
+use App\Models\User;
 
 class UserController extends ControllerService {
 
-    private static $usersModel;
+    private static $userModel;
 
     public function __construct()
     {
-        self::$usersModel = new SqlService('users');
+        self::$userModel = new User();
     }
 
     public function index($req, $res) {
-        self::$usersModel->paginate();
-        $result = self::$usersModel->select('id, name, email'); 
+        $result = self::$userModel->all();
         $res->json([
             "status"=>200,
             "data"=>$result
@@ -25,7 +24,7 @@ class UserController extends ControllerService {
 
     public function find($req, $res)
     {
-        $result = self::$usersModel->select('id, name, email', "WHERE id = {$req->params->id}");
+        $result = User::find($req->params->id);
         $res->json([
             "staus"=>200,
             "data"=>$result
@@ -33,29 +32,29 @@ class UserController extends ControllerService {
     }
 
     public function store($req, $res) {
-        $this->validate($req->body->name, 'required');
-        $this->validate($req->body->name, 'minValue', 4);
-        $this->validate($req->body->name, 'maxValue', 100);
-        $this->validate($req->body->email, 'required');
-        $this->validate($req->body->email, 'isEmail');
-        $this->validate($req->body->password, 'required');
-        $result = self::$usersModel->create($req->body);
+        $data = $this->bindValues($req->body, self::$userModel);        
+        $result = $data->save();        
         if ($result) {
             $this->index($req, $res);
         }
     }
 
     public function update($req, $res) {
-        $this->validate($req->params->id, 'required');
-        $result = self::$usersModel->update($req->body, "WHERE id = {$req->params->id}");
+        $data = User::find($req->params->id);
+        if ($data == null) {
+            $res->json(['status'=>404,'message'=>'Register Not Found...']);
+            exit;
+        }
+        $data = $this->bindValues($req->body, $data);
+        $result = $data->save();
         if ($result) {
-            $this->index($req, $res);
+            $this->find($req, $res);
         }
     }
 
     public function destroy($req, $res) {
-        $this->validate($req->params->id, 'required');
-        $result = self::$usersModel->destroy($req->params->id);
+        $data = User::find($req->params->id);
+        $result = $data->delete();
         if ($result) {
             $this->index($req, $res);
         }
