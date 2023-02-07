@@ -14,9 +14,6 @@ Simple Framework PHP MVC for developing web API`s.
 - [php-jwt](https://github.com/firebase/php-jwt)
 - [phpdotenv](https://github.com/vlucas/phpdotenv)
 
-***
-### Specifications and Dependencies
-
 #### install packages
 
 in the root of the project run the composer command 
