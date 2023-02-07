@@ -17,7 +17,7 @@ Simple Framework PHP MVC for developing web API`s.
 ***
 ### Specifications and Dependencies
 
-- install packages
+#### install packages
 
 in the root of the project run the composer command 
 
