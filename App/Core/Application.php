@@ -32,7 +32,7 @@ class Application {
         } else {
             echo json_encode([
                 "error"=>404,
-                "meaage"=>"App/Controllers/" . $controller . ".php is not found!"
+                "message"=>"App/Controllers/{$controller}.php is not found!"
             ]);
             exit;
         }
@@ -56,12 +56,8 @@ class Application {
     public function getParams($route, $method)
     {
         $this->req = new \stdClass;
-        foreach (HttpService::request() as $key => $value) {
-            @$this->req->body->$key = $value;
-        }
-        foreach ($_GET as $key => $value) {
-            @$this->req->query->$key = $value;
-        }
+        @$this->req->body = HttpService::request();
+        @$this->req->query = json_decode(json_encode($_GET));
         $this->res = new ControllerService();
         if (strpos($route, ":") && $this->http === $method) {
             $pathArray = explode('/', $this->path);
@@ -74,9 +70,8 @@ class Application {
                     }                                  
                 }
             }
-            foreach ($this->params as $key => $value) {
-                @$this->req->params->$key = $value;
-            }
+            $objParams = json_encode($this->params);
+            @$this->req->params = json_decode($objParams);
             return implode('/', $routeArray);
         } else {
             return $route;

@@ -18,13 +18,14 @@
         "firebase/php-jwt": "^5.2",
         "phpmailer/phpmailer": "^6.1",
         "rain/raintpl": "3.0.0",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "illuminate/database": "^9.50"
     },
     "scripts":{
         "start":"php -S localhost:8080",
-        "new-controller": "php -f App/Services/CreateController.php",
-        "new-middleware": "php -f App/Services/CreateMiddleware.php",
-        "new-mail": "php -f App/Services/CreateEmailController.php"
+        "new": "php -f App/Core/Assistant/Assistant.php",
+        "new-middleware": "php -f App/Core/Assistant/CreateMiddleware.php",
+        "new-mail": "php -f App/Core/Assistant/CreateEmailController.php"
 
     }
 }
