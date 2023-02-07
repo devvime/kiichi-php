@@ -3,19 +3,19 @@
 namespace App\Controllers;
 
 use App\Core\ControllerService;
-use App\Models\UserModel;
+use App\Models\{{$value[1]}}Model;
 
-class UserController extends ControllerService {
+class {{$value[1]}}Controller extends ControllerService {
 
-    private static $userModel;
+    private static ${$value[1]}Model;
 
     public function __construct()
     {
-        self::$userModel = new UserModel();
+        self::${$value[1]}Model = new {{$value[1]}}Model();
     }
 
     public function index($req, $res) {
-        $result = self::$userModel->all();
+        $result = self::${$value[1]}Model->all();
         $res->json([
             "status"=>200,
             "data"=>$result
@@ -24,7 +24,7 @@ class UserController extends ControllerService {
 
     public function find($req, $res)
     {
-        $result = UserModel::find($req->params->id);
+        $result = {{$value[1]}}Model::find($req->params->id);
         if ($result == null) {
             $res->json(["status"=>404, "error"=>"Register Not Found..."]);
             exit;
@@ -36,7 +36,7 @@ class UserController extends ControllerService {
     }
 
     public function store($req, $res) {
-        $data = $this->bindValues($req->body, self::$userModel);        
+        $data = $this->bindValues($req->body, self::${$value[1]}Model);        
         $result = $data->save();        
         if ($result) {
             $this->index($req, $res);
@@ -44,7 +44,7 @@ class UserController extends ControllerService {
     }
 
     public function update($req, $res) {
-        $data = UserModel::find($req->params->id);
+        $data = {{$value[1]}}Model::find($req->params->id);
         if ($data == null) {
             $res->json(["status"=>404, "error"=>"Register Not Found..."]);
             exit;
@@ -57,7 +57,7 @@ class UserController extends ControllerService {
     }
 
     public function destroy($req, $res) {
-        $data = UserModel::find($req->params->id);
+        $data = {{$value[1]}}Model::find($req->params->id);
         if ($data == null) {
             $res->json(["status"=>404, "error"=>"Register not found!"]);
             exit;
