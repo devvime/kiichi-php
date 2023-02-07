@@ -25,6 +25,10 @@ class UserController extends ControllerService {
     public function find($req, $res)
     {
         $result = User::find($req->params->id);
+        if ($result == null) {
+            $res->json(['status'=>404, 'error'=>'Register Not Found...']);
+            exit;
+        }
         $res->json([
             "staus"=>200,
             "data"=>$result
@@ -42,7 +46,7 @@ class UserController extends ControllerService {
     public function update($req, $res) {
         $data = User::find($req->params->id);
         if ($data == null) {
-            $res->json(['status'=>404,'message'=>'Register Not Found...']);
+            $res->json(['status'=>404, 'error'=>'Register Not Found...']);
             exit;
         }
         $data = $this->bindValues($req->body, $data);
@@ -54,6 +58,10 @@ class UserController extends ControllerService {
 
     public function destroy($req, $res) {
         $data = User::find($req->params->id);
+        if ($data == null) {
+            $res->json(["status"=>404, "error"=>"Register not found!"]);
+            exit;
+        }
         $result = $data->delete();
         if ($result) {
             $this->index($req, $res);
