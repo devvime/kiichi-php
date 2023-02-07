@@ -23,9 +23,7 @@
     },
     "scripts":{
         "start":"php -S localhost:8080",
-        "new": "php -f App/Core/Assistant/Assistant.php",
-        "new-middleware": "php -f App/Core/Assistant/CreateMiddleware.php",
-        "new-mail": "php -f App/Core/Assistant/CreateEmailController.php"
+        "new": "php -f App/Core/Assistant/Assistant.php"
 
     }
 }
