@@ -29,3 +29,4 @@ const UPLOAD_DIR = 'files/uploads';
 #Views Settings
 const VIEWS_DIR = 'App/Views/';
 const VIEWS_CACHE_DIR = 'App/Views/cache/';
+#
