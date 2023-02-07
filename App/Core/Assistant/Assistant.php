@@ -7,6 +7,7 @@ function getTpl($file, $argv)
     $content = file_get_contents(__DIR__ . "/tpl/{$file}.txt");
     $content = str_replace('{{$value[1]}}', ucfirst($argv[2]), $content);
     $content = str_replace('{$value[1]}', $argv[2], $content);
+    $content = str_replace('{$tableName[1]}', $argv[3], $content);
     return $content;
 }
 
@@ -17,7 +18,7 @@ function message($type, $text)
     echo "\033[02;32m░░█░░░░█░░░█░█▄▄█░█░░█░░█░░█░█░█░█░▄▄░░█░██░██░██░██░██░██░██░██░██░░░░░░░░░░█ \033[0m \n";
     echo "\033[02;32m░░█▄▄█░█▄▄▄█░█░░█░█▄▄▀░▄█▄░█░░▀█░█▄▄█░░█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ \033[0m \n";
     echo " \n";
-    sleep(1);        
+    sleep(1);
     if ($type == 'error'):
         echo "\033[01;31m_/﹋\_\033[0m \n";
         echo "\033[01;31m(҂`_´)\033[0m \n";
@@ -62,6 +63,7 @@ if ($comand == 'controller'):
         fwrite($md, $modelContent);
         fclose($md);
         message('success', "Controller created in 'App/Controllers/".ucfirst($argv[2])."Controller.php'");
+        sleep(1);
         message('success', "Model created in 'App/Models/".ucfirst($argv[2])."Model.php'");
     }
 

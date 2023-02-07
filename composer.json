@@ -24,6 +24,5 @@
     "scripts":{
         "start":"php -S localhost:8080",
         "new": "php -f App/Core/Assistant/Assistant.php"
-
     }
 }
