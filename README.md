@@ -45,14 +45,32 @@ $app = new Application();
 
 #### Creating routes
 
+Route and Cunction
+
 ```php
-<?php
-
-use App\Core\Application;
-
-$app = new Application();
-
 $app->get('/', function($req, $res) {
     $res->json(['title'=>'Simple CRUD PHP']);
 });
 ```
+
+Route and Class
+
+```php
+$app->get('/', function($req, $res) {
+    $res->json(['title'=>'Simple CRUD PHP']);
+});
+```
+
+Group of routes and parameters in URL
+
+```php
+$app->group('/hello', function() use($app) {
+    $app->get('/:name', function($req, $res) {
+        $res->render('html-file-name', [
+            "name"=>$req->params->name            
+        ]);
+    });
+});
+```
+
+
