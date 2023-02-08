@@ -45,7 +45,7 @@ $app = new Application();
 
 #### Creating routes
 
-Route and Cunction
+Route and Function
 
 ```php
 $app->get('/', function($req, $res) {
