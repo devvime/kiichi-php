@@ -36,6 +36,6 @@ The project's routes are located inside the Routes.php file inside the App folde
 │  ├── Middlewares
 │  ├── Models
 │  ├── Views
-│  ├── **Routes.php**
+│  ├── Routes.php <-
 ```
 
