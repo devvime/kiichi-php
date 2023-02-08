@@ -79,4 +79,66 @@ $app->group('/user', function() use($app) {
 });
 ```
 
+Route and Middleware
+
+```php
+
+// Middleware in  Function
+$app->get('/:id', 'UserController@find', function() {
+    // Middleware code...
+});
+
+// Middleware in Class
+$app->get('/:id', 'UserController@find', 'UserMiddleware@verifyAuthToken');
+
+// Middleware Function in Route Group
+
+$app->group('/user', function() use($app) {
+    $app->get('', 'UserController@index');
+    $app->get('/:id', 'UserController@find');
+    $app->post('', 'UserController@store');
+    $app->put('/:id', 'UserController@update');
+    $app->delete('/:id', 'UserController@destroy');
+}, function() {
+    // Middleware code...
+});
+
+// Middleware Class in Route Group
+
+$app->group('/user', function() use($app) {
+    $app->get('', 'UserController@index');
+    $app->get('/:id', 'UserController@find');
+    $app->post('', 'UserController@store');
+    $app->put('/:id', 'UserController@update');
+    $app->delete('/:id', 'UserController@destroy');
+}, 'AuthMiddleware@verifyToken');
+```
+
+#### Request data
+
+Request data in URL Query ex: http://api.server.com/user?name=steve
+
+```php
+$app->post('/user', function($req, $res) {
+    $name = $req->query->name;
+});
+```
+
+Request post data JSON 
+
+```php
+$app->post('/user', function($req, $res) {
+    $name = $req->body->name;
+    $email = $req->body->email;
+});
+```
+
+Request params in URL
+
+```php
+$app->put('/:id', function($req, $res) {
+    $id = $req->params->id;
+});
+```
+
 
