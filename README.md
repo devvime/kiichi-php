@@ -16,9 +16,26 @@ Simple Framework PHP MVC for developing web API`s.
 
 #### install packages
 
-in the root of the project run the composer command 
+in the root of the project, run the composer command 
 
 ```
 composer update
+```
+
+***
+
+### Routes
+
+The project's routes are located inside the Routes.php file inside the App folder.
+
+```
+├── App
+│  ├── Config
+│  ├── Controllers
+│  ├── Core
+│  ├── Middlewares
+│  ├── Models
+│  ├── Views
+│  ├── **Routes.php**
 ```
 
