@@ -56,9 +56,7 @@ $app->get('/', function($req, $res) {
 Route and Class
 
 ```php
-$app->get('/', function($req, $res) {
-    $res->json(['title'=>'Simple CRUD PHP']);
-});
+$app->get('/:id', 'UserController@find');
 ```
 
 Group of routes and parameters in URL
@@ -70,6 +68,14 @@ $app->group('/hello', function() use($app) {
             "name"=>$req->params->name            
         ]);
     });
+});
+
+$app->group('/user', function() use($app) {
+    $app->get('', 'UserController@index');
+    $app->get('/:id', 'UserController@find');
+    $app->post('', 'UserController@store');
+    $app->put('/:id', 'UserController@update');
+    $app->delete('/:id', 'UserController@destroy');
 });
 ```
 
