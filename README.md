@@ -33,7 +33,7 @@ The project's routes are located inside the Routes.php file inside the App folde
 │  └── Routes.php
 ```
 
-#### Routes configuration
+#### Configuration
 
 ```php
 <?php
@@ -41,4 +41,18 @@ The project's routes are located inside the Routes.php file inside the App folde
 use App\Core\Application;
 
 $app = new Application();
+```
+
+#### Creating routes
+
+```php
+<?php
+
+use App\Core\Application;
+
+$app = new Application();
+
+$app->get('/', function($req, $res) {
+    $res->json(['title'=>'Simple CRUD PHP']);
+});
 ```
