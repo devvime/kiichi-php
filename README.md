@@ -141,4 +141,10 @@ $app->put('/:id', function($req, $res) {
 });
 ```
 
+Start routes
+
+```php
+$app->run();
+```
+
 
