@@ -158,10 +158,10 @@ composer new controller product products
 Result:
 
 ```
-├──App
-|  ├──Controllers
+├── App
+|  ├── Controllers
 │  |  └── ProductController.php
-|  |──Models
+|  |── Models
 |  |  └── Products.php
 ```
 
@@ -176,8 +176,8 @@ composer new middleware product
 Result:
 
 ```
-├──App
-|  ├──Middlewares
+├── App
+|  ├── Middlewares
 │  |  └── ProductMiddleware.php
 ```
 
@@ -192,8 +192,8 @@ composer new mail news
 Result:
 
 ```
-├──App
-|  ├──Controllers
+├── App
+|  ├── Controllers
 │  |  └── NewsController.php
 ```
 
