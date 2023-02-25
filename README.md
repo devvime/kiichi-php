@@ -193,7 +193,7 @@ Result:
 
 ```
 ├──App
-|  Controllers
+|  ├──Controllers
 │  |  └── NewsController.php
 ```
 
