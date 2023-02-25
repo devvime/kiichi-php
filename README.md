@@ -147,4 +147,46 @@ Start routes
 $app->run();
 ```
 
+### Create Controller
+
+To create a new controller with the assistant, just type the following command, informing the name of the controller and the name of the database table that will be used -> EX: composer new controller controllerName tableName.
+
+```
+composer new controller product products
+```
+
+Result:
+
+```
+├──App
+|  ├──Controllers
+│  |  └── ProductController.php
+|  |──Models
+|  |  └── Products.php
+```
+
+### Create Middleware
+
+To create a new middleware with the wizard, just type the following command informing the name of the middleware.
+
+```
+composer new middleware product
+```
+
+Result:
+
+```
+├──App
+|  ├──Middlewares
+│  |  └── ProductMiddleware.php
+```
+
+### Create new email controller
+
+Comand:
+
+```
+composer new middleware product
+```
+
 
