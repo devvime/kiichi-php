@@ -183,10 +183,18 @@ Result:
 
 ### Create new email controller
 
-Comand:
+Type the following command informing the name of the mail controller.
 
 ```
-composer new middleware product
+composer new mail news
+```
+
+Result:
+
+```
+├──App
+|  Controllers
+│  |  └── NewsController.php
 ```
 
 
