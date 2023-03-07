@@ -5,7 +5,14 @@ use App\Core\Application;
 $app = new Application();
 
 $app->get('/', function($req, $res) {
-    $res->json(['title'=>'Simple CRUD PHP']);
+    $res->json([
+        'title'=>'Kiichi PHP',
+        "description"=>"Simple Framework PHP MVC for developing web API`s.",
+        "author"=>[
+            "name"=>"Victor Alves Mendes",
+            "github"=>"https://github.com/devvime"
+        ]
+    ]);
 });
 
 $app->group('/hello', function() use($app) {
@@ -22,8 +29,7 @@ $app->group('/user', function() use($app) {
     $app->post('', 'UserController@store');
     $app->put('/:id', 'UserController@update');
     $app->delete('/:id', 'UserController@destroy');
-});    
-// }, 'UserMiddleware@logged');    
+}, 'UserMiddleware@logged');
 
 $app->group('/test', function() use($app) {
     $app->get('', function($req, $res) {
