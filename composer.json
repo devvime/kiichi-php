@@ -20,10 +20,10 @@
         "rain/raintpl": "3.0.0",
         "vlucas/phpdotenv": "^5.4",
         "illuminate/database": "^9.50",
-        "devvime/kiichi-generator": "^1.0"
+        "devvime/kiichi-php-generator": "^1.0"
     },
     "scripts":{
         "start":"php -S localhost:8080",
-        "new": "php -f vendor/devvime/Kiichi-generator/src/KiitchiGenerator.php"
+        "new": "php -f vendor/devvime/Kiichi-php-generator/src/KiitchiGenerator.php"
     }
 }
