@@ -1,4 +1,4 @@
-# Simple CRUD PHP
+# Kiichi PHP
 
 Simple Framework PHP MVC for developing web API`s.
 
