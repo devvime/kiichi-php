@@ -19,10 +19,11 @@
         "phpmailer/phpmailer": "^6.1",
         "rain/raintpl": "3.0.0",
         "vlucas/phpdotenv": "^5.4",
-        "illuminate/database": "^9.50"
+        "illuminate/database": "^9.50",
+        "devvime/kiichi-generator": "^1.0"
     },
     "scripts":{
         "start":"php -S localhost:8080",
-        "new": "php -f App/Core/Assistant/Assistant.php"
+        "new": "php -f vendor/devvime/Kiichi-generator/src/KiitchiGenerator.php"
     }
 }

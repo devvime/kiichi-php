@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8619ab7d0f63255d41a723891dc2a91e",
+    "content-hash": "e90d01524ab1a99f3cfe863d87e100b9",
     "packages": [
         {
             "name": "brick/math",
@@ -60,6 +60,46 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "devvime/kiichi-generator",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devvime/kiichi-generator.git",
+                "reference": "cd2948199efa2c49f82048000cf698449b7bf8f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devvime/kiichi-generator/zipball/cd2948199efa2c49f82048000cf698449b7bf8f2",
+                "reference": "cd2948199efa2c49f82048000cf698449b7bf8f2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "devvime\\kiichiGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Victor Alves Mendes",
+                    "email": "victor@susumo.com.br"
+                }
+            ],
+            "description": "Simple Package PHP for generate controllers, models and middlewares.",
+            "support": {
+                "issues": "https://github.com/devvime/kiichi-generator/issues",
+                "source": "https://github.com/devvime/kiichi-generator/tree/v1.0.0"
+            },
+            "time": "2023-03-07T05:18:56+00:00"
         },
         {
             "name": "doctrine/inflector",
