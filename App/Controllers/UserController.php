@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controllers;
+namespace Devvime\Kiichi\Controllers;
 
-use App\Core\ControllerService;
-use App\Models\UserModel;
+use Devvime\Kiichi\Engine\ControllerService;
+use Devvime\Kiichi\Models\UserModel;
 
 class UserController extends ControllerService {
 

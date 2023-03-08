@@ -1,6 +1,6 @@
 <?php
 
-use App\Core\Application;
+use Devvime\Kiichi\Engine\Application;
 
 $app = new Application();
 
@@ -15,13 +15,11 @@ $app->get('/', function($req, $res) {
     ]);
 });
 
-$app->group('/hello', function() use($app) {
-    $app->get('/:name', function($req, $res) {
-        $res->render('index', [
-            "name"=>$req->params->name            
-        ]);
-    });
-});    
+$app->get('/hello/:name', function($req, $res) {
+    $res->render('index', [
+        "name"=>$req->params->name
+    ]);
+});   
 
 $app->group('/user', function() use($app) {
     $app->get('', 'UserController@index');
@@ -29,14 +27,6 @@ $app->group('/user', function() use($app) {
     $app->post('', 'UserController@store');
     $app->put('/:id', 'UserController@update');
     $app->delete('/:id', 'UserController@destroy');
-}, 'UserMiddleware@logged');
-
-$app->group('/test', function() use($app) {
-    $app->get('', function($req, $res) {
-        $res->json([
-            "message"=>"Test"
-        ]);
-    });
-});    
+}, 'UserMiddleware@logged');    
 
 $app->run();

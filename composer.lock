@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b2432008c13af9734fe4123c4e07c6e5",
+    "content-hash": "7c8a29a2b2a01b0a9d9286ca29dc7196",
     "packages": [
         {
             "name": "brick/math",
@@ -62,17 +62,63 @@
             "time": "2023-01-15T23:15:59+00:00"
         },
         {
-            "name": "devvime/kiichi-php-generator",
-            "version": "v1.0.0",
+            "name": "devvime/kiichi-php-engine",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/devvime/kiichi-php-generator.git",
-                "reference": "cd2948199efa2c49f82048000cf698449b7bf8f2"
+                "url": "https://github.com/devvime/kiichi-php-engine.git",
+                "reference": "71b74a1d34f8582bda91e48b46b270ae6c8f6fb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/devvime/kiichi-php-generator/zipball/cd2948199efa2c49f82048000cf698449b7bf8f2",
-                "reference": "cd2948199efa2c49f82048000cf698449b7bf8f2",
+                "url": "https://api.github.com/repos/devvime/kiichi-php-engine/zipball/71b74a1d34f8582bda91e48b46b270ae6c8f6fb4",
+                "reference": "71b74a1d34f8582bda91e48b46b270ae6c8f6fb4",
+                "shasum": ""
+            },
+            "require": {
+                "firebase/php-jwt": "^5.2",
+                "illuminate/database": "^9.50",
+                "php": ">=8.1.0",
+                "phpmailer/phpmailer": "^6.1",
+                "rain/raintpl": "3.0.0",
+                "vlucas/phpdotenv": "^5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "App\\": "App/",
+                    "Devvime\\Kiichi\\Engine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Victor Alves Mendes",
+                    "email": "victor@estilodev.com.br"
+                }
+            ],
+            "description": "Simple Package PHP for developing web API`s with Kiichi PHP.",
+            "support": {
+                "issues": "https://github.com/devvime/kiichi-php-engine/issues",
+                "source": "https://github.com/devvime/kiichi-php-engine/tree/v1.0.3"
+            },
+            "time": "2023-03-07T22:23:11+00:00"
+        },
+        {
+            "name": "devvime/kiichi-php-generator",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devvime/kiichi-php-generator.git",
+                "reference": "134df32c9d07d9c57723408c1e3f9f58dc652e3f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devvime/kiichi-php-generator/zipball/134df32c9d07d9c57723408c1e3f9f58dc652e3f",
+                "reference": "134df32c9d07d9c57723408c1e3f9f58dc652e3f",
                 "shasum": ""
             },
             "require": {
@@ -81,7 +127,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "devvime\\kiichiGenerator\\": "src/"
+                    "Devvime\\kiichi\\Generator\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -97,9 +143,9 @@
             "description": "Simple Package PHP for generate controllers, models and middlewares.",
             "support": {
                 "issues": "https://github.com/devvime/kiichi-php-generator/issues",
-                "source": "https://github.com/devvime/kiichi-php-generator/tree/v1.0.0"
+                "source": "https://github.com/devvime/kiichi-php-generator/tree/v1.0.1"
             },
-            "time": "2023-03-07T05:18:56+00:00"
+            "time": "2023-03-08T01:48:22+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -2186,7 +2232,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0.0"
+        "php": ">=8.1.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

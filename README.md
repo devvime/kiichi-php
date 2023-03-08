@@ -224,12 +224,12 @@ To receive the data sent to the HTML file use {{ key }} or {{ key.object.name }}
 
 ```html
 <div class="card">
-    <h4>{{ name }}</h4>
-    <p>{{ email }}</p>
+    <h4>{$name }/h4>
+    <p>{$email}</p>
     <hr/>
-    <p>{{ product.title }}</p>
-    <p>{{ product.description }}</p>
-    <p>{{ product.price }}</p>
+    <p>{$product.title}</p>
+    <p>{$product.description}</p>
+    <p>{$product.price}</p>
 </div>
 ```
 
