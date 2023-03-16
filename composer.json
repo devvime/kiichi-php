@@ -1,6 +1,7 @@
 {
   "name": "devvime/kiichi-php",
   "description": "Simple Framework PHP MVC for developing web API`s.",
+  "version":"1.0.0",
   "license": "MIT",
   "authors": [
     {
