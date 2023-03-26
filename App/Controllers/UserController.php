@@ -30,7 +30,7 @@ class UserController extends ControllerService {
             exit;
         }
         $res->json([
-            "staus"=>200,
+            "status"=>200,
             "data"=>$result
         ]);
     }
@@ -39,7 +39,10 @@ class UserController extends ControllerService {
         $data = $this->bindValues($req->body, self::$userModel);        
         $result = $data->save();        
         if ($result) {
-            $this->index($req, $res);
+            $res->json([
+                "status"=>200,
+                "data"=>$data
+            ]);
         }
     }
 
