@@ -6,12 +6,6 @@ test('Get all users', function () {
     expect($users['status'])->toBe(200); 
 });
 
-test('Find user by id', function () {
-    $res = get('http://localhost:8080/user/56');
-    $user =  json_decode($res, true);
-    expect($user['status'])->toBe(200); 
-});
-
 test('Create new user', function () {
     $res = post('http://localhost:8080/user', [
         "name"=>"Test user",
@@ -30,6 +24,12 @@ test('Update user', function () {
         "email"=>"user.updated@test.com",
         "password"=>"test_password_updated"
     ]);
+    $user =  json_decode($res, true);
+    expect($user['status'])->toBe(200); 
+});
+
+test('Find user by id', function () {
+    $res = get("http://localhost:8080/user/{$_SESSION['globalId']}");
     $user =  json_decode($res, true);
     expect($user['status'])->toBe(200); 
 });
