@@ -1,7 +1,10 @@
 <?php
-
+#
+#Root Path
+define('__ROOT__', dirname(dirname(__DIR__)));
+#
 #Dotenv
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv = Dotenv\Dotenv::createImmutable(__ROOT__);
 $dotenv->load();
 #
 #Timezone Settings
@@ -27,6 +30,6 @@ define('SECRET', $_ENV['SECRET']);
 const UPLOAD_DIR = 'files/uploads';
 #
 #Views Settings
-const VIEWS_DIR = 'App/Views/';
-const VIEWS_CACHE_DIR = 'App/Views/cache/';
+const VIEWS_DIR = __ROOT__.'/public/components/';
+const VIEWS_CACHE_DIR = __ROOT__.'/public/components/cache/';
 #

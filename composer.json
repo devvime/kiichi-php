@@ -21,10 +21,11 @@
     "rain/raintpl": "3.0.0",
     "vlucas/phpdotenv": "^5.4",
     "illuminate/database": "^9.50",
-    "devvime/kiichi-php-engine": "^1.0"    
+    "devvime/kiichi-php-engine": "^1.0.7",
+    "doctrine/dbal": "^4.0"    
   },
   "scripts": {
-    "start": "php -S localhost:8080 -t public",
+    "start": "php -S localhost:8080 public/index.php",
     "new": "php -f vendor/devvime/Kiichi-php-generator/src/index.php",
     "test": "php vendor/bin/pest"
   },

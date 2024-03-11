@@ -3,15 +3,15 @@
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 $capsule = new Capsule();
-$config = [
+$capsule->addConnection([
     "driver"=>'mysql',
     "host"=>DBHOST,
     "database"=>DBNAME,
     "username"=>DBUSER,
     "password"=>DBPASS,
     "charset"=>"utf8",
-    "collation"=>"utf8_unicode_ci"
-];
-$capsule->addConnection($config);
+    "collation"=>"utf8_unicode_ci",
+    'prefix' => ''
+]);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
