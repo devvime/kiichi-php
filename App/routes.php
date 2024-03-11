@@ -27,6 +27,6 @@ $app->group('/user', function() use($app) {
     $app->post('', 'UserController@store');
     $app->put('/:id', 'UserController@update');
     $app->delete('/:id', 'UserController@destroy');
-}, 'UserMiddleware@logged');    
+}, 'UserMiddleware@logged');
 
 $app->run();
