@@ -26,12 +26,18 @@
   },
   "scripts": {
     "start": "php -S localhost:8080 public/index.php",
+    "test": "php vendor/bin/pest",
     "new": "php -f vendor/devvime/Kiichi-php-generator/src/index.php",
-    "test": "php vendor/bin/pest"
+    "new-migration": "vendor/bin/phinx create",
+    "new-seed": "vendor/bin/phinx seed:create",
+    "migrate": "vendor/bin/phinx migrate",
+    "rollback": "vendor/bin/phinx rollback",
+    "run-seed": "vendor/bin/phinx seed:run"
   },
   "require-dev": {
     "devvime/kiichi-php-generator": "^1.0",
-    "pestphp/pest": "^2.2"
+    "pestphp/pest": "^2.2",
+    "robmorgan/phinx": "^0.16.0"
   },
   "config": {
     "allow-plugins": {
