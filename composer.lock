@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9e1ed9782aaeea3e1ff278b2cdc6b47d",
+    "content-hash": "9fc4b5932446e6de4a0b3906dfd31ffe",
     "packages": [
         {
             "name": "brick/math",
@@ -132,16 +132,16 @@
         },
         {
             "name": "devvime/kiichi-php-engine",
-            "version": "1.0.6",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/devvime/kiichi-php-engine.git",
-                "reference": "04ba25c29465311d8a264b764afd0dcb9d0b8b05"
+                "reference": "70c21217def8a0c2c032c0db0ea79015f7d70dee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/devvime/kiichi-php-engine/zipball/04ba25c29465311d8a264b764afd0dcb9d0b8b05",
-                "reference": "04ba25c29465311d8a264b764afd0dcb9d0b8b05",
+                "url": "https://api.github.com/repos/devvime/kiichi-php-engine/zipball/70c21217def8a0c2c032c0db0ea79015f7d70dee",
+                "reference": "70c21217def8a0c2c032c0db0ea79015f7d70dee",
                 "shasum": ""
             },
             "require": {
@@ -172,9 +172,9 @@
             "description": "Simple Package PHP for developing web API`s with Kiichi PHP.",
             "support": {
                 "issues": "https://github.com/devvime/kiichi-php-engine/issues",
-                "source": "https://github.com/devvime/kiichi-php-engine/tree/v1.0.6"
+                "source": "https://github.com/devvime/kiichi-php-engine/tree/v1.0.7"
             },
-            "time": "2023-03-23T23:20:45+00:00"
+            "time": "2024-03-11T04:13:08+00:00"
         },
         {
             "name": "doctrine/dbal",
