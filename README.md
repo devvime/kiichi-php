@@ -13,6 +13,8 @@ Simple Framework PHP MVC for developing web API`s.
 - [RainTPL 3](https://github.com/feulf/raintpl3)
 - [php-jwt](https://github.com/firebase/php-jwt)
 - [phpdotenv](https://github.com/vlucas/phpdotenv)
+- [Pest](https://github.com/pestphp/pest)
+- [Phinx](https://github.com/cakephp/phinx)
 
 #### install packages
 
@@ -195,6 +197,154 @@ Result:
 ├── App
 |  ├── Controllers
 │  |  └── NewsController.php
+```
+
+### Migrations
+
+To create a new migration, simply type the following command in the project root (use CamelCase format):
+
+```
+composer new-migration MyMigration
+```
+
+Result:
+
+```
+├── db
+|  ├── Migrations
+│  |  └── 20240311052948_MyMigration.php
+```
+
+Migration code:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use Phinx\Migration\AbstractMigration;
+
+final class MyMigration extends AbstractMigration
+{
+    public function change(): void
+    {
+
+    }
+}
+```
+
+Example to create table:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use Phinx\Migration\AbstractMigration;
+
+final class MyMigration extends AbstractMigration
+{
+    public function change(): void
+    {
+        $table = $this->table('table-name');
+        $table->addColumn('name', 'string')
+            ->addColumn('description', 'text')
+            ->addColumn('files', 'json')
+            ->addColumn('amount', 'json')
+            ->create();
+    }
+}
+```
+
+More information on writing migrations is available here:
+[https://book.cakephp.org/phinx/0/en/migrations.html#the-change-method](https://book.cakephp.org/phinx/0/en/migrations.html#the-change-method)
+
+After configuring database access in the .ENV file and having a database created, simply enter this command to run the migrations and create the tables:
+
+```
+composer migrate
+```
+
+#### Rollback
+
+To undo the migration changes you made, simply run this command:
+
+```
+composer rollback
+```
+
+### Seeders
+
+To create a new seed, simply type the following command in the project root (use CamelCase format):
+
+```
+composer new-seed MySeed
+```
+
+Result:
+
+```
+├── db
+|  ├── Seeds
+│  |  └── MySeed.php
+```
+
+Seed code:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use Phinx\Seed\AbstractSeed;
+
+class MySeed extends AbstractSeed
+{
+    public function run(): void
+    {
+
+    }
+}
+```
+
+Seed example:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use Phinx\Seed\AbstractSeed;
+
+class MySeed extends AbstractSeed
+{
+    public function run(): void
+    {
+        $data = [
+            [
+                'name' => 'Notebook',
+                'description' => 'Lorem Ipsum is simply dummy, Lorem Ips incorrectly asserts that Lorem Ips correctly asserts.',
+                'price' => 1999
+            ],
+            [
+                'name' => 'Monitor',
+                'description' => 'Lorem Ips incorrectly asserts that Lorem Ips correctly asserts.',
+                'price' => 599
+            ]
+        ];
+        $products = $this->table('products');
+        $products->insert($data)->save();
+    }
+}
+```
+
+More information on writing seeders is available here:
+[https://book.cakephp.org/phinx/0/en/seeding.html](https://book.cakephp.org/phinx/0/en/seeding.html)
+
+After configuring database access in the .ENV file and having a database created, simply enter this command to run the seed and create data in table:
+
+```
+composer run-seed
 ```
 
 #### Render HTML file
