@@ -15,7 +15,7 @@ class RecoverPasswordController extends ControllerService {
     public function __construct()
     {
         self::$recoverPasswordModel = new RecoverPasswordModel();
-        $this->mailTemplate = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/public/components/recover-password.html');        
+        $this->mailTemplate = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/public/components/recover-password-email.html');        
     }
 
     public function index($req, $res) 
