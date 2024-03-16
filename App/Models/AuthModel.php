@@ -4,9 +4,9 @@ namespace Devvime\Kiichi\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserModel extends Model
+class AuthModel extends Model
 {
     protected $table = "users";
-    protected $fillable = ["name", "email", "password", 'createdAt', 'updatedAt'];
+    protected $fillable = [];
     public $timestamps = false;
 }
