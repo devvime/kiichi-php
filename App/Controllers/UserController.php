@@ -30,7 +30,7 @@ class UserController extends ControllerService {
             exit;
         }
         $res->json([
-            "staus"=>200,
+            "status"=>200,
             "data"=>$result
         ]);
     }
