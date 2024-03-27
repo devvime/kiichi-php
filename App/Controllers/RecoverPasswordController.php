@@ -10,10 +10,12 @@ use Devvime\Kiichi\Controllers\EmailServiceController;
 class RecoverPasswordController extends ControllerService {
 
     public $mailTemplate;
+    public $url;
     private static $recoverPasswordModel;
 
     public function __construct()
     {
+        $this->url = "https://app.susumo.com.br/recover-password/";
         self::$recoverPasswordModel = new RecoverPasswordModel();
         $this->mailTemplate = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/public/components/recover-password-email.html');        
     }
@@ -43,7 +45,7 @@ class RecoverPasswordController extends ControllerService {
                 $recover->isValid = true;
                 $recover->save();
             }
-            $this->mailTemplate = str_replace('${link}', "https://app.susumo.com.br/recover-password/".base64_encode($token), $this->mailTemplate);
+            $this->mailTemplate = str_replace('${link}', $this->url . base64_encode($token), $this->mailTemplate);
             $mailData = [
                 "subject"=>"Recover Password",
                 "altbody"=>"Password recovery instructions.",
