@@ -13,13 +13,16 @@ $app->get('/', function($req, $res) {
             "github"=>"https://github.com/devvime"
         ]
     ]);
-});
+});  
 
-$app->get('/hello/:name', function($req, $res) {
-    $res->render('index', [
-        "name"=>$req->params->name
-    ]);
-});   
+$app->post('/register', 'UserController@store');
+
+$app->group('/auth', function() use($app) {
+    $app->post('', 'AuthController@index');
+    $app->post('/recover-pass', 'RecoverPasswordController@index');
+    $app->post('/recover-password', 'RecoverPasswordController@store');
+    $app->get('/verify', function($req, $res) {}, 'AuthMiddleware@verify');    
+});
 
 $app->group('/user', function() use($app) {
     $app->get('', 'UserController@index');
@@ -27,6 +30,6 @@ $app->group('/user', function() use($app) {
     $app->post('', 'UserController@store');
     $app->put('/:id', 'UserController@update');
     $app->delete('/:id', 'UserController@destroy');
-}, 'UserMiddleware@logged');
+}, 'AuthMiddleware@index'); 
 
 $app->run();

@@ -15,7 +15,7 @@ class UserController extends ControllerService {
     }
 
     public function index($req, $res) {
-        $result = self::$userModel->all();
+        $result = self::$userModel->all('id', 'name', 'email');
         $res->json([
             "status"=>200,
             "data"=>$result
@@ -24,7 +24,7 @@ class UserController extends ControllerService {
 
     public function find($req, $res)
     {
-        $result = UserModel::find($req->params->id);
+        $result = UserModel::find($req->params->id, ['id', 'name', 'email']);
         if ($result == null) {
             $res->json(["status"=>404, "error"=>"Register Not Found..."]);
             exit;
@@ -36,21 +36,32 @@ class UserController extends ControllerService {
     }
 
     public function store($req, $res) {
-        $data = $this->bindValues($req->body, self::$userModel);        
-        $result = $data->save();        
-        if ($result) {
-            $res->json([
-                "status"=>200,
-                "data"=>$data
-            ]);
+        $this->validate($req->body, 'name', 'required');
+        $this->validate($req->body, 'email', 'required');
+        $this->validate($req->body, 'email', 'isEmail');
+        $this->validate($req->body, 'password', 'required');
+        $existData = UserModel::select('id')->where('email', $req->body->email)->first();
+        if ($existData === null) {
+            $req->body->password = $this->jwtEncrypt($req->body->password);
+            $data = $this->bindValues($req->body, self::$userModel);        
+            $result = $data->save();
+            if ($result) {
+                $this->index($req, $res);
+            }
+        } else {
+            $res->json(["status"=>400,"error"=>"This email already registered!"]);
         }
+        
     }
 
     public function update($req, $res) {
-        $data = UserModel::find($req->params->id);
+        $data = UserModel::find($req->params->id);        
         if ($data == null) {
             $res->json(["status"=>404, "error"=>"Register Not Found..."]);
             exit;
+        }
+        if (isset($req->body->password)) {
+            $data->password = $this->jwtEncrypt($req->body->password);
         }
         $data = $this->bindValues($req->body, $data);
         $result = $data->save();

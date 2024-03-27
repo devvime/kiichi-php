@@ -21,7 +21,7 @@
     "rain/raintpl": "3.0.0",
     "vlucas/phpdotenv": "^5.4",
     "illuminate/database": "^9.50",
-    "devvime/kiichi-php-engine": "^1.0.7",
+    "devvime/kiichi-php-engine": "^1.0.8",
     "doctrine/dbal": "^4.0"    
   },
   "scripts": {
@@ -35,7 +35,7 @@
     "run-seed": "vendor/bin/phinx seed:run"
   },
   "require-dev": {
-    "devvime/kiichi-php-generator": "^1.0",
+    "devvime/kiichi-php-generator": "^1.0.7",
     "pestphp/pest": "^2.2",
     "robmorgan/phinx": "^0.16.0"
   },

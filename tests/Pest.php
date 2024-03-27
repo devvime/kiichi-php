@@ -44,50 +44,52 @@ function something()
     // ..
 }
 
-function get($url)
+function get($url, $token = '')
 {
     $curl = curl_init();
     curl_setopt_array(
         $curl, [
         CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL => $url
+        CURLOPT_URL => $url,
+        CURLOPT_HTTPHEADER => array('Content-Type: application/json', 'Authorization: Bearer ' . $token)
     ]);
     $response = curl_exec($curl);
     curl_close($curl);
     return $response;
 }
 
-function post($url, $data = []) 
+function post($url, $data = [], $token = '') 
 {
     $postdata = json_encode($data);
     $ch = curl_init($url); 
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization: Bearer ' . $token));
     $result = curl_exec($ch);
     curl_close($ch);
     return $result;
 }
 
-function put($url, $data = []) 
+function put($url, $data = [], $token = '') 
 {
     $postdata = json_encode($data);
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
     curl_setopt($ch, CURLOPT_POSTFIELDS,$postdata);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));            
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization: Bearer ' . $token));
     $response  = curl_exec($ch);
     curl_close($ch);
     return $response;
 }
 
-function delete($url)
+function delete($url, $token = '')
 {
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization: Bearer ' . $token));
     $response  = curl_exec($ch);
     curl_close($ch);
     return $response;
