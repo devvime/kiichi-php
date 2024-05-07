@@ -1,10 +1,10 @@
 <?php
 
-use Devvime\Kiichi\Engine\Application;
+use Devvime\Kiichi\Engine\Router;
 
-$app = new Application();
+$router = new Router();
 
-$app->get('/', function($req, $res) {
+$router->get('/', function($req, $res) {
     $res->json([
         'title'=>'Kiichi PHP',
         "description"=>"Simple Framework PHP MVC for developing web API`s.",
@@ -15,21 +15,21 @@ $app->get('/', function($req, $res) {
     ]);
 });  
 
-$app->post('/register', 'UserController@store');
+$router->post('/register', 'UserController@store');
 
-$app->group('/auth', function() use($app) {
-    $app->post('', 'AuthController@index');
-    $app->post('/recover-pass', 'RecoverPasswordController@index');
-    $app->post('/recover-password', 'RecoverPasswordController@store');
-    $app->get('/verify', function($req, $res) {}, 'AuthMiddleware@verify');    
+$router->group('/auth', function() use($router) {
+    $router->post('', 'AuthController@index');
+    $router->post('/recover-pass', 'RecoverPasswordController@index');
+    $router->post('/recover-password', 'RecoverPasswordController@store');
+    $router->get('/verify', function($req, $res) {}, 'AuthMiddleware@verify');    
 });
 
-$app->group('/user', function() use($app) {
-    $app->get('', 'UserController@index');
-    $app->get('/:id', 'UserController@find');
-    $app->post('', 'UserController@store');
-    $app->put('/:id', 'UserController@update');
-    $app->delete('/:id', 'UserController@destroy');
+$router->group('/user', function() use($router) {
+    $router->get('', 'UserController@index');
+    $router->get('/:id', 'UserController@find');
+    $router->post('', 'UserController@store');
+    $router->put('/:id', 'UserController@update');
+    $router->delete('/:id', 'UserController@destroy');
 }, 'AuthMiddleware@index'); 
 
-$app->run();
+$router->run();
