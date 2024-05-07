@@ -5,13 +5,13 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Victor Alves Mendes",
-      "email": "victor@estilodev.com.br"
+      "name": "Victor Mendes",
+      "email": "victor@susumo.com.br"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Devvime\\Kiichi\\": "App/"
+      "Devvime\\Kiichi\\": "src/"
     }
   },
   "require": {
