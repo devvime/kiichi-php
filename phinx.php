@@ -1,12 +1,12 @@
 <?php
 
-require_once('App/Config/config.php');
+require_once('src/Config/config.php');
 
 return
 [
     'paths' => [
-        'migrations' => '%%PHINX_CONFIG_DIR%%/db/migrations',
-        'seeds' => '%%PHINX_CONFIG_DIR%%/db/seeds'
+        'migrations' => '%%PHINX_CONFIG_DIR%%/src/Database/migrations',
+        'seeds' => '%%PHINX_CONFIG_DIR%%/src/Database/seeds'
     ],
     'environments' => [
         'default_migration_table' => 'phinxlog',

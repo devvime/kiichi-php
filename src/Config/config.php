@@ -27,9 +27,9 @@ define('EMAIL_PORT', $_ENV['EMAIL_PORT']);
 define('SECRET', $_ENV['SECRET']);
 #
 #Upload Settings
-const UPLOAD_DIR = 'files/uploads';
+const UPLOAD_DIR = 'public/uploads';
 #
 #Views Settings
-const VIEWS_DIR = __ROOT__.'/public/components/';
-const VIEWS_CACHE_DIR = __ROOT__.'/public/components/cache/';
+const VIEWS_DIR = __ROOT__.'/src/Views/';
+const VIEWS_CACHE_DIR = __ROOT__.'/src/Views/cache/';
 #
