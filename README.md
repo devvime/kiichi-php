@@ -6,7 +6,7 @@ Simple Framework PHP MVC for developing web API`s.
 
 ### Specifications and Dependencies
 
-- **PHP Version** >= 8.1.0
+- **PHP Version** >= 8.2.0
 - [Composer](https://getcomposer.org/)
 - [PHPMailer](https://github.com/PHPMailer/PHPMailer)
 - [Eloquent ORM](https://laravel-docs-pt-br.readthedocs.io/en/latest/eloquent/)
@@ -28,10 +28,10 @@ composer update
 
 ### Routes
 
-The project's routes are located inside the Routes.php file inside the App folder.
+The project's routes are located inside the Routes.php file inside the src folder.
 
 ```
-├── App
+├── src
 │  └── routes.php
 ```
 
@@ -40,9 +40,9 @@ The project's routes are located inside the Routes.php file inside the App folde
 ```php
 <?php
 
-use App\Core\Application;
+use Devvime\Kiichi\Engine\Router;
 
-$app = new Application();
+$router = new Router();
 ```
 
 #### Creating routes
@@ -50,7 +50,7 @@ $app = new Application();
 Route and Function
 
 ```php
-$app->get('/', function($req, $res) {
+$router->get('/', function($req, $res) {
     $res->json(['title'=>'Simple CRUD PHP']);
 });
 ```
@@ -58,26 +58,26 @@ $app->get('/', function($req, $res) {
 Route and Class
 
 ```php
-$app->get('/:id', 'UserController@find');
+$router->get('/:id', 'UserController@find');
 ```
 
 Group of routes and parameters in URL
 
 ```php
-$app->group('/hello', function() use($app) {
-    $app->get('/:name', function($req, $res) {
+$router->group('/hello', function() use($router) {
+    $router->get('/:name', function($req, $res) {
         $res->render('html-file-name', [
             "name"=>$req->params->name            
         ]);
     });
 });
 
-$app->group('/user', function() use($app) {
-    $app->get('', 'UserController@index');
-    $app->get('/:id', 'UserController@find');
-    $app->post('', 'UserController@store');
-    $app->put('/:id', 'UserController@update');
-    $app->delete('/:id', 'UserController@destroy');
+$router->group('/user', function() use($router) {
+    $router->get('', 'UserController@index');
+    $router->get('/:id', 'UserController@find');
+    $router->post('', 'UserController@store');
+    $router->put('/:id', 'UserController@update');
+    $router->delete('/:id', 'UserController@destroy');
 });
 ```
 
@@ -86,33 +86,33 @@ Route and Middleware
 ```php
 
 // Middleware in  Function
-$app->get('/:id', 'UserController@find', function() {
+$router->get('/:id', 'UserController@find', function() {
     // Middleware code...
 });
 
 // Middleware in Class
-$app->get('/:id', 'UserController@find', 'UserMiddleware@verifyAuthToken');
+$router->get('/:id', 'UserController@find', 'UserMiddleware@verifyAuthToken');
 
 // Middleware Function in Route Group
 
-$app->group('/user', function() use($app) {
-    $app->get('', 'UserController@index');
-    $app->get('/:id', 'UserController@find');
-    $app->post('', 'UserController@store');
-    $app->put('/:id', 'UserController@update');
-    $app->delete('/:id', 'UserController@destroy');
+$router->group('/user', function() use($router) {
+    $router->get('', 'UserController@index');
+    $router->get('/:id', 'UserController@find');
+    $router->post('', 'UserController@store');
+    $router->put('/:id', 'UserController@update');
+    $router->delete('/:id', 'UserController@destroy');
 }, function() {
     // Middleware code...
 });
 
 // Middleware Class in Route Group
 
-$app->group('/user', function() use($app) {
-    $app->get('', 'UserController@index');
-    $app->get('/:id', 'UserController@find');
-    $app->post('', 'UserController@store');
-    $app->put('/:id', 'UserController@update');
-    $app->delete('/:id', 'UserController@destroy');
+$router->group('/user', function() use($router) {
+    $router->get('', 'UserController@index');
+    $router->get('/:id', 'UserController@find');
+    $router->post('', 'UserController@store');
+    $router->put('/:id', 'UserController@update');
+    $router->delete('/:id', 'UserController@destroy');
 }, 'AuthMiddleware@verifyToken');
 ```
 
@@ -121,7 +121,7 @@ $app->group('/user', function() use($app) {
 Request data in URL Query ex: http://api.server.com/user?name=steve
 
 ```php
-$app->post('/user', function($req, $res) {
+$router->post('/user', function($req, $res) {
     $name = $req->query->name;
 });
 ```
@@ -129,7 +129,7 @@ $app->post('/user', function($req, $res) {
 Request post data JSON 
 
 ```php
-$app->post('/user', function($req, $res) {
+$router->post('/user', function($req, $res) {
     $name = $req->body->name;
     $email = $req->body->email;
 });
@@ -138,7 +138,7 @@ $app->post('/user', function($req, $res) {
 Request params in URL
 
 ```php
-$app->put('/:id', function($req, $res) {
+$router->put('/:id', function($req, $res) {
     $id = $req->params->id;
 });
 ```
@@ -146,7 +146,7 @@ $app->put('/:id', function($req, $res) {
 Start routes
 
 ```php
-$app->run();
+$router->run();
 ```
 
 ### Create Controller
@@ -160,7 +160,7 @@ composer new controller product products
 Result:
 
 ```
-├── App
+├── src
 |  ├── Controllers
 │  |  └── ProductController.php
 |  |── Models
@@ -178,7 +178,7 @@ composer new middleware product
 Result:
 
 ```
-├── App
+├── src
 |  ├── Middlewares
 │  |  └── ProductMiddleware.php
 ```
@@ -194,7 +194,7 @@ composer new mail news
 Result:
 
 ```
-├── App
+├── src
 |  ├── Controllers
 │  |  └── NewsController.php
 ```
@@ -210,9 +210,10 @@ composer new-migration MyMigration
 Result:
 
 ```
-├── db
-|  ├── Migrations
-│  |  └── 20240311052948_MyMigration.php
+├── src
+|  ├── Database
+|  |   ├── Migrations
+│  |       └── 20240311052948_MyMigration.php
 ```
 
 Migration code:
@@ -284,9 +285,10 @@ composer new-seed MySeed
 Result:
 
 ```
-├── db
-|  ├── Seeds
-│  |  └── MySeed.php
+├── src
+|  ├── Database
+|  |   ├── Seeds
+│  |       └── MySeed.php
 ```
 
 Seed code:
@@ -353,7 +355,7 @@ To render an HTML file just use $res->render('file-name');
 no need to add .html in file name
 
 ```php
-$app->get('/user', function($req, $res) use($app) {
+$router->get('/user', function($req, $res) use($router) {
     $res->render('html-file-name');
 });
 ```
@@ -361,7 +363,7 @@ $app->get('/user', function($req, $res) use($app) {
 To render an HTML file by sending an array of data use $res->render('file-name');
 
 ```php
-$app->get('/user', function($req, $res) use($app) {
+$router->get('/user', function($req, $res) use($router) {
     $res->render('html-file-name', [
         "name"=>$user->name,
         "email"=>$user->email,

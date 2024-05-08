@@ -1,6 +1,6 @@
 <?php
 
-require_once('App/Config/config.php');
+require_once('src/Config/config.php');
 
 return
 [
