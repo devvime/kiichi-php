@@ -3,15 +3,28 @@
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 $capsule = new Capsule();
-$capsule->addConnection([
-    "driver"=>'mysql',
-    "host"=>DBHOST,
-    "database"=>DBNAME,
-    "username"=>DBUSER,
-    "password"=>DBPASS,
-    "charset"=>"utf8",
-    "collation"=>"utf8_unicode_ci",
-    'prefix' => ''
-]);
+
+switch (DBDRIVER) {
+  case 'mysql':
+    $capsule->addConnection([
+      "driver" => DBDRIVER,
+      "host" => DBHOST,
+      "database" => DBNAME,
+      "username" => DBUSER,
+      "password" => DBPASS,
+      "charset" => "utf8",
+      "collation" => "utf8_unicode_ci",
+      'prefix' => ''
+    ]);
+    break;
+  case 'sqlite':
+    $capsule->addConnection([
+      'driver'   => 'sqlite',
+      'database' => __DIR__ . '/db/database.sqlite',
+      'prefix'   => '',
+    ]);
+    break;
+}
+
 $capsule->setAsGlobal();
 $capsule->bootEloquent();

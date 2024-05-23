@@ -12,6 +12,7 @@ date_default_timezone_set("America/Sao_Paulo");
 setlocale(LC_ALL, 'pt_BR');
 #
 #Database Settings
+define('DBDRIVER', $_ENV['DBDRIVER']);
 define('DBHOST', $_ENV['DBHOST']);
 define('DBUSER', $_ENV['DBUSER']);
 define('DBPASS', $_ENV['DBPASS']);

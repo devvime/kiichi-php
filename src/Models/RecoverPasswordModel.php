@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RecoverPasswordModel extends Model
 {
-    protected $table = "recoverPasswords";
-    protected $fillable = ['userId', 'token', 'isValid', 'createAt', 'updatedAt'];
-    public $timestamps = false;
+  protected $table = "recoverPasswords";
+  protected $fillable = ['userId', 'token', 'isValid', 'createAt', 'updatedAt'];
+  public $timestamps = false;
 }
