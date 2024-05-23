@@ -27,7 +27,7 @@
   "scripts": {
     "start": "php -S localhost:8080 -t public",
     "test": "php vendor/bin/pest",
-    "new": "php -f vendor/devvime/Kiichi-php-generator/src/index.php",
+    "new": "php kiichi",
     "new-migration": "vendor/bin/phinx create",
     "new-seed": "vendor/bin/phinx seed:create",
     "migrate": "vendor/bin/phinx migrate",
