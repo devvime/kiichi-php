@@ -5,13 +5,16 @@ use Devvime\Kiichi\Engine\Router;
 $router = new Router();
 
 $router->get('/', function ($req, $res) {
-  $res->json([
-    'title' => 'Kiichi PHP',
-    "description" => "Simple Framework PHP MVC for developing web API`s.",
-    "author" => [
-      "name" => "Victor Alves Mendes",
-      "github" => "https://github.com/devvime"
-    ]
+  $version = round(microtime(true) * 1000);
+  $res->render('components/home/index', [
+    "version"=>$version
+  ]);
+});
+
+$router->get('/test', function ($req, $res) {
+  $version = round(microtime(true) * 1000);
+  $res->render('components/test/index', [
+    "version"=>$version
   ]);
 });
 
