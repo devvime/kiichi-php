@@ -1,23 +1,5 @@
 <?php
 
-use Devvime\Kiichi\Engine\Router;
-
-$router = new Router();
-
-$router->get('/', function ($req, $res) {
-  $version = round(microtime(true) * 1000);
-  $res->render('components/home/index', [
-    "version"=>$version
-  ]);
-});
-
-$router->get('/test', function ($req, $res) {
-  $version = round(microtime(true) * 1000);
-  $res->render('components/test/index', [
-    "version"=>$version
-  ]);
-});
-
 $router->post('/register', 'UserController@store');
 
 $router->group('/auth', function () use ($router) {
@@ -35,5 +17,3 @@ $router->group('/user', function () use ($router) {
   $router->put('/:id', 'UserController@update');
   $router->delete('/:id', 'UserController@destroy');
 }, 'AuthMiddleware@index');
-
-$router->run();
