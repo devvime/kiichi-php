@@ -4,8 +4,8 @@ blots.route('/', (ctx, next) => {
   console.log('Home page');
 })
 
-blots.route('/test', (ctx, next) => {
-  console.log('Test page');
+blots.route('/about', (ctx, next) => {
+  console.log('About page');
 })
 
-blots.start()
+blots.start({ click: false })

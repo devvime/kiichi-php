@@ -1,15 +1,13 @@
 <?php
 
 $router->get('/', function ($req, $res) {
-  $version = round(microtime(true) * 1000);
   $res->render('components/home/index', [
-    "version"=>$version
+    "version"=>$res->version()
   ]);
 });
 
-$router->get('/test', function ($req, $res) {
-  $version = round(microtime(true) * 1000);
-  $res->render('components/test/index', [
-    "version"=>$version
+$router->get('/about', function ($req, $res) {
+  $res->render('components/about/index', [
+    "version"=>$res->version()
   ]);
 });

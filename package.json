@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/devvime/kiichi-php#readme",
   "dependencies": {
-    "blots": "^1.1.3"
+    "blots": "^1.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
