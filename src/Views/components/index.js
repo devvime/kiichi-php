@@ -1,11 +1,10 @@
+import '../theme.scss'
 import { blots } from 'blots'
 
-blots.route('/', (ctx, next) => {
-  console.log('Home page');
-})
+import { home } from './home/home.js';
+import { about } from './about/about.js';
 
-blots.route('/about', (ctx, next) => {
-  console.log('About page');
-})
+blots.route('/', () => home())
+blots.route('/about', () => about())
 
 blots.start({ click: false })
