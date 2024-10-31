@@ -23,5 +23,19 @@
 .login .card {
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
 }
+/*!*************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/Views/default/doc/doc.scss ***!
+  \*************************************************************************************************************************/
+.doc {
+  background-color: #ebebeb;
+}
+.doc .box-page {
+  padding: 2em;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.doc pre {
+  border-radius: 5px;
+}
 
 /*# sourceMappingURL=main.css.map*/

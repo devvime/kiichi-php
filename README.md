@@ -21,7 +21,7 @@ Simple Framework PHP MVC for developing web API`s.
 in the root of the project, run the composer command 
 
 ```
-composer update
+composer install
 ```
 
 ***

@@ -67,6 +67,22 @@ const api={url:"http://localhost:8080",async get(a,b={}){return fetch(`${this.ur
 
 /***/ }),
 
+/***/ "./src/Views/default/doc/doc.js":
+/*!**************************************!*\
+  !*** ./src/Views/default/doc/doc.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   doc: () => (/* binding */ doc)
+/* harmony export */ });
+/* harmony import */ var _doc_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./doc.scss */ "./src/Views/default/doc/doc.scss");
+const doc=()=>{document.addEventListener("DOMContentLoaded",()=>{(async function(){try{const a=await fetch("/doc-data"),b=await a.text();document.getElementById("content").innerHTML=marked.parse(b),document.querySelectorAll("pre code").forEach(a=>{hljs.highlightElement(a)})}catch(a){console.error("Erro ao carregar o arquivo Markdown:",a)}})()})};
+
+/***/ }),
+
 /***/ "./node_modules/blots/blots.js":
 /*!*************************************!*\
   !*** ./node_modules/blots/blots.js ***!
@@ -10927,6 +10943,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/Views/default/doc/doc.scss":
+/*!****************************************!*\
+  !*** ./src/Views/default/doc/doc.scss ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./src/Views/default/theme.scss":
 /*!**************************************!*\
   !*** ./src/Views/default/theme.scss ***!
@@ -13033,7 +13062,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layout_nav_nav_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layout/nav/nav.js */ "./src/Views/components/layout/nav/nav.js");
 /* harmony import */ var _home_home_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home/home.js */ "./src/Views/components/home/home.js");
 /* harmony import */ var _login_login_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.js */ "./src/Views/components/login/login.js");
-blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/",()=>(0,_home_home_js__WEBPACK_IMPORTED_MODULE_3__.home)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/login",()=>(0,_login_login_js__WEBPACK_IMPORTED_MODULE_4__.login)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.start({click:!1});
+/* harmony import */ var _default_doc_doc_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../default/doc/doc.js */ "./src/Views/default/doc/doc.js");
+blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/",()=>(0,_home_home_js__WEBPACK_IMPORTED_MODULE_3__.home)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/login",()=>(0,_login_login_js__WEBPACK_IMPORTED_MODULE_4__.login)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/doc",()=>(0,_default_doc_doc_js__WEBPACK_IMPORTED_MODULE_5__.doc)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.start({click:!1});
 })();
 
 /******/ })()
