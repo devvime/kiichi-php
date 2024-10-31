@@ -1,11 +1,10 @@
 import '../default/theme.scss'
-import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
 import { blots } from 'blots'
 
 import { home } from './home/home.js';
-import { about } from './about/about.js';
+import { login } from './login/login.js';
 
 blots.route('/', () => home())
-blots.route('/about', () => about())
+blots.route('/login', () => login())
 
 blots.start({ click: false })
