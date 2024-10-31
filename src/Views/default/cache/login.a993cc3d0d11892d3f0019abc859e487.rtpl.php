@@ -1,7 +1,7 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><?php require $this->checkTemplate("components/layout/nav/nav");?>
 
 
-<section class="about">
+<section class="login">
   <div class="container">
     <div class="row">
       <div class="col-md-4 offset-md-4 text-center mt-5">
