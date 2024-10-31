@@ -25,7 +25,6 @@
     "doctrine/dbal": "^4.0"
   },
   "scripts": {
-    "start": "exec php -S localhost:8080 -t public",
     "test": "php vendor/bin/pest",
     "new": "php kiichi",
     "new-migration": "vendor/bin/phinx create",
