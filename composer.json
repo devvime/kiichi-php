@@ -35,7 +35,7 @@
     "run-seed": "vendor/bin/phinx seed:run"
   },
   "require-dev": {
-    "devvime/kiichi-php-generator": "^1.0.8",
+    "devvime/kiichi-php-generator": "^1.0.9",
     "pestphp/pest": "^2.2",
     "robmorgan/phinx": "^0.16.0"
   },

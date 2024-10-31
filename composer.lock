@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "513296a6462125a7a7f746740c58e7a4",
+    "content-hash": "3e54690dfd8f5597b1d99ae0de5efebe",
     "packages": [
         {
             "name": "brick/math",
@@ -2937,16 +2937,16 @@
         },
         {
             "name": "devvime/kiichi-php-generator",
-            "version": "1.0.8",
+            "version": "1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/devvime/kiichi-php-generator.git",
-                "reference": "a53b197cef51ce652484da5cc64c26582a3f0021"
+                "reference": "5ba72aa3e48697c141b167c05ccb1424e4ba8f18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/devvime/kiichi-php-generator/zipball/a53b197cef51ce652484da5cc64c26582a3f0021",
-                "reference": "a53b197cef51ce652484da5cc64c26582a3f0021",
+                "url": "https://api.github.com/repos/devvime/kiichi-php-generator/zipball/5ba72aa3e48697c141b167c05ccb1424e4ba8f18",
+                "reference": "5ba72aa3e48697c141b167c05ccb1424e4ba8f18",
                 "shasum": ""
             },
             "require": {
@@ -2971,9 +2971,9 @@
             "description": "Simple Package PHP for generate controllers, models and middlewares.",
             "support": {
                 "issues": "https://github.com/devvime/kiichi-php-generator/issues",
-                "source": "https://github.com/devvime/kiichi-php-generator/tree/v1.0.8"
+                "source": "https://github.com/devvime/kiichi-php-generator/tree/v1.0.9"
             },
-            "time": "2024-05-07T04:21:30+00:00"
+            "time": "2024-10-31T14:02:52+00:00"
         },
         {
             "name": "fidry/cpu-core-counter",
