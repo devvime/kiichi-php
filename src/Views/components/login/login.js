@@ -6,7 +6,12 @@ export const login = (ctx, next) => {
   const form = $('#login-form')
   form.on('submit', (e) => {
     e.preventDefault()
-    sendLogin(form.serialize())
+    const formData = new FormData(e.target)
+    const data = {
+      email: formData.get('email'),
+      password: formData.get('password')
+    }
+    sendLogin(data)
   })
 }
 

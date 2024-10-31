@@ -17,22 +17,6 @@ const home=()=>{console.log("Home page!")};
 
 /***/ }),
 
-/***/ "./src/Views/components/layout/nav/nav.js":
-/*!************************************************!*\
-  !*** ./src/Views/components/layout/nav/nav.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   nav: () => (/* binding */ nav)
-/* harmony export */ });
-/* harmony import */ var _nav_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nav.scss */ "./src/Views/components/layout/nav/nav.scss");
-const nav=()=>{};
-
-/***/ }),
-
 /***/ "./src/Views/components/login/login.js":
 /*!*********************************************!*\
   !*** ./src/Views/components/login/login.js ***!
@@ -48,7 +32,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
-const login=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#login-form");a.on("submit",b=>{b.preventDefault(),sendLogin(a.serialize())})};async function sendLogin(a){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_2__.api.post("/login",a).then(a=>{console.log(a)}).catch(a=>{console.log(a)})}
+const login=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#login-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={email:b.get("email"),password:b.get("password")};sendLogin(c)})};async function sendLogin(a){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_2__.api.post("/login",a).then(a=>{console.log(a)}).catch(a=>{console.log(a)})}
 
 /***/ }),
 
@@ -10917,19 +10901,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/Views/components/layout/nav/nav.scss":
-/*!**************************************************!*\
-  !*** ./src/Views/components/layout/nav/nav.scss ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ "./src/Views/components/login/login.scss":
 /*!***********************************************!*\
   !*** ./src/Views/components/login/login.scss ***!
@@ -13059,11 +13030,10 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _default_theme_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../default/theme.scss */ "./src/Views/default/theme.scss");
 /* harmony import */ var blots__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! blots */ "./node_modules/blots/blots.js");
-/* harmony import */ var _layout_nav_nav_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layout/nav/nav.js */ "./src/Views/components/layout/nav/nav.js");
-/* harmony import */ var _home_home_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home/home.js */ "./src/Views/components/home/home.js");
-/* harmony import */ var _login_login_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.js */ "./src/Views/components/login/login.js");
-/* harmony import */ var _default_doc_doc_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../default/doc/doc.js */ "./src/Views/default/doc/doc.js");
-blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/",()=>(0,_home_home_js__WEBPACK_IMPORTED_MODULE_3__.home)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/login",()=>(0,_login_login_js__WEBPACK_IMPORTED_MODULE_4__.login)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/doc",()=>(0,_default_doc_doc_js__WEBPACK_IMPORTED_MODULE_5__.doc)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.start({click:!1});
+/* harmony import */ var _home_home_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home/home.js */ "./src/Views/components/home/home.js");
+/* harmony import */ var _login_login_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./login/login.js */ "./src/Views/components/login/login.js");
+/* harmony import */ var _default_doc_doc_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../default/doc/doc.js */ "./src/Views/default/doc/doc.js");
+blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/",()=>(0,_home_home_js__WEBPACK_IMPORTED_MODULE_2__.home)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/login",()=>(0,_login_login_js__WEBPACK_IMPORTED_MODULE_3__.login)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/doc",()=>(0,_default_doc_doc_js__WEBPACK_IMPORTED_MODULE_4__.doc)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.start({click:!1});
 })();
 
 /******/ })()

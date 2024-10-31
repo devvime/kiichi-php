@@ -10,8 +10,8 @@
           <form id="login-form">
             <div class="card-body">
               <p>Default component</p>
-                <input type="email" name="email" placeholder="Email..." class="form-control mb-3" required>
-                <input type="password" name="password" placeholder="Password..." class="form-control mb-3" required>            
+              <input type="email" name="email" placeholder="Email..." class="form-control mb-3" required>
+              <input type="password" name="password" placeholder="Password..." class="form-control mb-3" required>            
             </div>
             <div class="card-footer">
               <div class="d-flex">
