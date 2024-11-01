@@ -1,5 +1,5 @@
 export const api = {
-  url: 'http://localhost:8080',
+  url: location.origin,
   
   async get(endpoint, headers = {}) {
     return fetch(`${this.url}${endpoint}`, {

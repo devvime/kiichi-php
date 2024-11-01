@@ -8,6 +8,7 @@
       <div class="navbar-nav">
         <a class="nav-link" aria-current="page" href="/">Home</a>
         <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/doc">Documentation</a>
       </div>
     </div>
   </div>

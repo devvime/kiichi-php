@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reatividade com Proxy e Atributos Personalizados</title>
+</head>
+<body>
+
+    <!-- Exemplo de Condicionais -->
+    <p data-if="state.displayTitle">{{ state.title }}</p>
+    <p data-if="!state.displayTitle">{{ state.name }}</p>
+    <p data-if="state.name === 'Jon Doe'">Hello Jon Doe</p>
+
+    <!-- Exemplo de Eventos -->
+    <button data-click="clickFunction()">click here</button>
+    <input type="text" data-change="changeFunction" placeholder="Digite algo..."/>
+
+    <!-- Exemplo de Loop usando Template -->
+    <template data-for="product of state.productsArray">
+        <div>{{ product.id }} - {{ product.title }} - {{ product.price }}</div>
+    </template>
+
+    <h2>Lorem Ipsum</h2>
+
+    <script>
+        const state = new Proxy({
+            title: 'Bem-vindo!',
+            name: 'Jon Doe',
+            displayTitle: true,
+            productsArray: [
+                { id: 1, title: 'Produto 1', price: '$10' },
+                { id: 2, title: 'Produto 2', price: '$20' },
+                { id: 3, title: 'Produto 3', price: '$30' }
+            ]
+        }, 
+        {
+            set(target, property, value) {
+                target[property] = value;
+                render(); // Atualiza o DOM ao mudar o estado
+                return true;
+            }
+        });
+
+        function clickFunction() {
+            this.title = 'Título Atualizado!';
+        }
+
+        function changeFunction(value) {
+            console.log("Input changed:", value);
+        }
+
+        function render() {
+            document.querySelectorAll('[data-if]').forEach(element => {
+                try {
+                    const condition = new Function('state', `return ${element.getAttribute('data-if')}`);
+                    element.style.display = condition(state) ? '' : 'none';
+                } catch (error) {
+                    console.error("Erro em data-if:", error);
+                }
+            });
+
+            document.querySelectorAll('template[data-for]').forEach(template => {
+                const [itemName, arrayName] = template.getAttribute('data-for').split(' of ');
+                const array = new Function('state', `return ${arrayName.trim()}`)(state);
+                
+                const parentElement = template.parentNode;
+                
+                // Limpa os elementos anteriores renderizados
+                parentElement.querySelectorAll('div').forEach(el => el.remove());
+                
+                // Renderiza cada item substituindo as expressões
+                array.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.innerHTML = template.innerHTML.replace(/{{\s*(.*?)\s*}}/g, (_, expression) => {
+                        try {
+                            return new Function(itemName, `return ${expression.trim()}`)(item);
+                        } catch (error) {
+                            console.error("Erro ao avaliar expressão de item:", error);
+                            return '';
+                        }
+                    });
+                    parentElement.appendChild(itemElement);
+                });
+            });
+
+            document.querySelectorAll('*').forEach(element => {
+                element.childNodes.forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        node.textContent = node.textContent.replace(/{{\s*(.*?)\s*}}/g, (_, expression) => {
+                            const cleanExpression = expression.trim();
+                            
+                            if (!cleanExpression) {
+                                return '';
+                            }
+                
+                            if (/[^a-zA-Z0-9_.$\s]/.test(cleanExpression)) {
+                                return '';
+                            }
+                
+                            try {
+                                console.log(new Function('state', `return ${cleanExpression}`)(state))
+                                return new Function('state', `return ${cleanExpression}`)(state);
+                            } catch (error) {
+                                console.error("Erro ao avaliar expressão:", error);
+                                return '';
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        document.querySelectorAll('[data-click]').forEach(element => {
+            element.addEventListener('click', () => {
+                try {
+                    const functionName = element.getAttribute('data-click');
+                    const fn = new Function('state', `return ${functionName}`)(state);
+                    if (typeof fn === 'function') fn();
+                } catch (error) {
+                    console.error("Erro em data-click:", error);
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-change]').forEach(element => {
+            element.addEventListener('input', event => {
+                try {
+                    const functionName = element.getAttribute('data-change');
+                    const fn = new Function('state', `return ${functionName}`)(state);
+                    if (typeof fn === 'function') fn(event.target.value);
+                } catch (error) {
+                    console.error("Erro em data-change:", error);
+                }
+            });
+        });
+
+        render();
+    </script>
+</body>
+</html>

@@ -7,7 +7,7 @@
       <div class="col-md-8 offset-md-2 text-center mt-5">
         <div class="jumbotron">
           <h1 class="display-4">Kiichi PHP</h1>
-          <p class="lead">Micro Framework</p>
+          <p class="lead">Simple Framework PHP MVC</p>
           <hr class="my-2">
           <p>More info</p>
           <a class="btn" href="https://github.com/devvime/kiichi-php" target="_blank" role="button">

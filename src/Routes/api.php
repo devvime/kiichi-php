@@ -1,16 +1,25 @@
 <?php
 
-$router->post('/register', 'UserController@store');
+$router->post('/api/register', 'UserController@store');
 
-$router->group('/auth', function () use ($router) {
+$router->group('/api/auth', function () use ($router) {
   $router->post('', 'AuthController@index');
   $router->post('/recover-pass', 'RecoverPasswordController@index');
   $router->post('/recover-password', 'RecoverPasswordController@store');
-  $router->get('/verify', function ($req, $res) {
-  }, 'AuthMiddleware@verify');
+  $router->get('/logout', function ($req, $res) {
+    session_start();
+    session_unset();
+    session_destroy();
+    $res->json([
+      "status" => 200,
+      "success" => true,
+      "message" => "Successfully logged out!"
+    ]);
+    exit;
+  });
 });
 
-$router->group('/user', function () use ($router) {
+$router->group('/api/user', function () use ($router) {
   $router->get('', 'UserController@index');
   $router->get('/:id', 'UserController@find');
   $router->post('', 'UserController@store');
