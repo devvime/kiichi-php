@@ -8,8 +8,8 @@
 <body>
 
     <!-- Exemplo de Condicionais -->
-    <p data-if="state.displayTitle">{{ state.title }}</p>
-    <p data-if="!state.displayTitle">{{ state.name }}</p>
+    <p data-if="state.displayTitle" data-title>{{ state.title }}</p>
+    <p data-if="!state.displayTitle" data-name>{{ state.name }}</p>
     <p data-if="state.name === 'Jon Doe'">Hello Jon Doe</p>
 
     <!-- Exemplo de Eventos -->
@@ -43,14 +43,25 @@
         });
 
         function clickFunction() {
-            this.title = 'Título Atualizado!';
+            state.title = 'Título Atualizado!';
+            state.name = 'Victor';
+            state.productsArray.push({ id: 4, title: 'Produto 4', price: '$40' });
+            render()
         }
 
         function changeFunction(value) {
             console.log("Input changed:", value);
+            state.title = value;
         }
 
         function render() {
+            /*
+            let items = Object.keys(state);
+            items.forEach((item) => {
+                document.querySelector('[data-' + item + ']').textContent = state[item];
+            });
+            */
+
             document.querySelectorAll('[data-if]').forEach(element => {
                 try {
                     const condition = new Function('state', `return ${element.getAttribute('data-if')}`);
@@ -84,6 +95,7 @@
                 });
             });
 
+            
             document.querySelectorAll('*').forEach(element => {
                 element.childNodes.forEach(node => {
                     if (node.nodeType === Node.TEXT_NODE) {
@@ -99,11 +111,17 @@
                             }
                 
                             try {
-                                console.log(new Function('state', `return ${cleanExpression}`)(state))
                                 return new Function('state', `return ${cleanExpression}`)(state);
                             } catch (error) {
                                 console.error("Erro ao avaliar expressão:", error);
                                 return '';
+                            }
+                        });
+                        let items = Object.keys(state);
+                        items.forEach((item) => {
+                            let el = document.querySelector('[data-' + item + ']')
+                            if (el) {
+                                el.textContent = state[item];
                             }
                         });
                     }
