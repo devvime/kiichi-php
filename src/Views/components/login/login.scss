@@ -2,7 +2,10 @@
   h1 {
     color: darkblue;
   }
-  .card {
+  .card-login {
+    width: 100%;
+    max-width: 355px;
+    margin: auto;
     box-shadow: 2px 5px 10px rgba($color: #000, $alpha: 0.2);
   }
 }

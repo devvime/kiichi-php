@@ -34,7 +34,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
-const state=new Proxy({title:"T\xEDtulo Inicial",description:"Descri\xE7\xE3o Inicial"},{set(a,b,c){return a[b]=c,updateDOM(),!0}});function updateDOM(){document.getElementById("title").innerText=state.title,document.getElementById("description").innerText=state.description}const login=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#login-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={email:b.get("email"),password:b.get("password")};sendLogin(c)})};async function sendLogin(a){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/auth",a).then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"success",confirmButtonText:"OK"}).then(()=>{window.location.href="/dashboard"}):sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"})})}
+/* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
+const state=new reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.ReactivityProxy;state.set({title:"Login Page",register:!1,goToRegister(){state.change("title","Register Page"),state.change("register",!0)},goToLogin(){state.change("title","Login Page"),state.change("register",!1)}}),state.resolve();const login=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#login-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={email:b.get("email"),password:b.get("password")};sendLogin(c)})};async function sendLogin(a){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/auth",a).then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"success",confirmButtonText:"OK"}).then(()=>{window.location.href="/dashboard"}):sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"})})}
 
 /***/ }),
 
@@ -12172,6 +12173,175 @@ return page_js;
 
 })));
 
+
+/***/ }),
+
+/***/ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/reactivity-proxy/lib/ReactivityProxy.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ReactivityProxy: () => (/* binding */ ReactivityProxy)
+/* harmony export */ });
+class ReactivityProxy {
+
+  constructor() {
+    this.state = new Proxy(
+      {},
+      {
+        set:(target, property, value) => {
+          target[property] = value;
+          this.resolve()
+          return true;
+        }
+      }
+    );
+    this.handleClick()
+    this.handleChange()
+  }
+
+  handleText() {
+    const setElementTextOrSrc = (itemPath, value) => {
+      let elements = document.querySelectorAll(`[data-${itemPath.join('-')}]`);
+      elements.forEach(el => {
+        if (el.hasAttribute('src')) {
+          el.setAttribute('src', value);
+        } else {
+          el.innerText = value;
+        }
+      });
+    };
+  
+    const processObject = (obj, path = []) => {
+      Object.keys(obj).forEach(key => {
+        const newPath = [...path, key];
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
+          processObject(obj[key], newPath); // chamada recursiva para objetos aninhados
+        } else {
+          setElementTextOrSrc(newPath, obj[key]);
+        }
+      });
+    };
+  
+    processObject(this.state);
+  }
+  
+
+  handleClick() {
+    document.querySelectorAll('[data-click]').forEach(element => {
+      element.addEventListener('click', () => {
+        try {
+          const functionName = element.getAttribute('data-click');
+          const fn = new Function('state', `return ${functionName}`)(this.state);
+          if (typeof fn === 'function') fn();
+        } catch (error) {
+          console.error("Erro em data-click:", error);
+        }
+      });
+    });
+  }
+
+  handleChange() {
+    document.querySelectorAll('[data-change]').forEach(element => {
+      element.addEventListener('input', event => {
+        try {
+          const functionName = element.getAttribute('data-change');
+          const fn = new Function('state', `return ${functionName}`)(this.state);
+          if (typeof fn === 'function') fn(event.target.value);
+        } catch (error) {
+          console.error("Erro em data-change:", error);
+        }
+      });
+    });
+  }
+
+  handleConditional() {
+    document.querySelectorAll('[data-if]').forEach(element => {
+      try {
+        const condition = new Function('state', `return ${element.getAttribute('data-if')}`);
+        element.style.display = condition(this.state) ? '' : 'none';
+      } catch (error) {
+        console.error("Erro em data-if:", error);
+      }
+    });
+  }
+
+  handleEach() {
+    document.querySelectorAll('[data-for]').forEach(item => {
+      const output = [];
+      const tpl = item.innerHTML;
+      const expression = item.getAttribute('data-for').split(' of ');
+      const data = eval('this.' + expression[1]);
+  
+      if (!data) return;
+  
+      data.map(itemData => {
+        const itemTpl = this.createElement(tpl);
+        itemTpl.removeAttribute('data-for');
+  
+        const processObject = (obj, path = []) => {
+          Object.keys(obj).forEach(key => {
+            const newPath = [...path, key];
+            if (typeof obj[key] === 'object' && obj[key] !== null) {
+              processObject(obj[key], newPath);
+            } else {
+              const selector = `[data-${expression[0]}-${newPath.join('-')}]`;
+              itemTpl.querySelectorAll(selector).forEach(e => {
+                if (e.hasAttribute('src')) {
+                  e.setAttribute('src', obj[key]);
+                } else {
+                  e.innerText = obj[key];
+                }
+              });
+            }
+          });
+        };
+  
+        processObject(itemData);
+        output.push(itemTpl);
+      });
+  
+      item.innerHTML = '';
+      output.forEach(el => item.appendChild(el));
+    });
+  }  
+
+  createElement(html) {
+    const template = document.createElement("template")
+    template.innerHTML = html.trim()
+    return template.content.firstElementChild
+  }
+
+  set(value) {
+    this.state = value
+    this.resolve()
+  }
+
+  change(name, value) {
+    this.state[name] = value
+    this.resolve()
+  }
+
+  push(name, value) {
+    this.state[name].push(value)
+    this.resolve()
+  }
+
+  get() {
+    return this.state
+  }
+
+  resolve() {
+    this.handleText()
+    this.handleConditional()
+    this.handleEach()
+  }
+
+}
 
 /***/ }),
 

@@ -2,22 +2,24 @@ import './login.scss'
 import $ from 'jquery'
 import Swal from 'sweetalert2'
 import { api } from '../services/baseApi.js'
+import { ReactivityProxy } from 'reactivity-proxy';
 
-const state = new Proxy({
-  title: 'Título Inicial',
-  description: 'Descrição Inicial'
-}, {
-  set(target, property, value) {
-      target[property] = value
-      updateDOM()
-      return true
+const state = new ReactivityProxy()
+
+state.set({
+  title: 'Login Page',
+  register: false,
+  goToRegister() {
+    state.change('title', 'Register Page')
+    state.change('register', true)
+  },
+  goToLogin() {
+    state.change('title', 'Login Page')
+    state.change('register', false)
   }
-});
+})
 
-function updateDOM() {
-  document.getElementById('title').innerText = state.title
-  document.getElementById('description').innerText = state.description
-}
+state.resolve()
 
 export const login = (ctx, next) => {
   const form = $('#login-form')
