@@ -17,8 +17,8 @@ export function dashboard(props) {
   sideBarMenu()
 }
 
-function logOut() {
-  api.get('/api/auth/logout').then(res => {
+async function logOut() {
+  await api.get('/api/auth/logout').then(res => {
     if (res.success) {
       Swal.fire({
         title: res.message,
