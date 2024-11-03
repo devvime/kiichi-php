@@ -6,6 +6,7 @@
   <meta name="author" content="">
   <meta name="description" content="">
   <title>Kiichi PHP</title>
+  <base href="/">
   <link rel="shortcut icon" href="images/ico.png" type="image/x-icon">
   <link rel="stylesheet" href="css/main.css?version=<?php echo htmlspecialchars( $version, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
   <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">

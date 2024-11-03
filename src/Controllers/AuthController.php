@@ -29,7 +29,6 @@ class AuthController extends ControllerService
         'httponly' => true,
         'samesite' => 'Strict'
       ]);
-      session_start();
       session_regenerate_id(true);
 
       $_SESSION['token'] = $token;

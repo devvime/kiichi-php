@@ -10,6 +10,20 @@
     max-width: none !important;
   }
 }
+/*!*************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/Views/default/doc/doc.scss ***!
+  \*************************************************************************************************************************/
+.doc {
+  background-color: #ebebeb;
+}
+.doc .box-page {
+  padding: 2em;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.doc pre {
+  border-radius: 5px;
+}
 /*!******************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/Views/components/home/home.scss ***!
   \******************************************************************************************************************************/
@@ -36,19 +50,47 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/Views/components/login/recover-password/recover.scss ***!
   \***************************************************************************************************************************************************/
 
-/*!*************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/Views/default/doc/doc.scss ***!
-  \*************************************************************************************************************************/
-.doc {
-  background-color: #ebebeb;
+/*!****************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/Views/components/dashboard/dashboard.scss ***!
+  \****************************************************************************************************************************************/
+body {
+  background-color: #ebebeb !important;
 }
-.doc .box-page {
-  padding: 2em;
+
+.dashboard h1 {
+  color: darkblue;
+}
+.dashboard .page {
+  padding: 0.5em;
+}
+.dashboard .content-page {
+  padding: 1em;
   background-color: #fff;
-  border-radius: 5px;
 }
-.doc pre {
-  border-radius: 5px;
+/*!************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/Views/components/dashboard/sidebar-menu/menu.scss ***!
+  \************************************************************************************************************************************************/
+body, html {
+  height: auto;
+  min-height: 100vh;
+}
+
+.box-sidebar-menu {
+  background-color: #fff;
+  height: auto;
+  min-height: 100vh;
+  padding: 1em;
+}
+.box-sidebar-menu ul {
+  margin: 0;
+  padding: 0;
+}
+.box-sidebar-menu ul li {
+  list-style: none;
+  color: darkblue;
+}
+.box-sidebar-menu ul li a {
+  color: darkblue;
 }
 
 /*# sourceMappingURL=main.css.map*/

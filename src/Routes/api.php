@@ -7,7 +7,6 @@ $router->group('/api/auth', function () use ($router) {
   $router->post('/recover-pass', 'RecoverPasswordController@index');
   $router->post('/recover-password', 'RecoverPasswordController@store');
   $router->get('/logout', function ($req, $res) {
-    session_start();
     session_unset();
     session_destroy();
     $res->json([
@@ -15,7 +14,6 @@ $router->group('/api/auth', function () use ($router) {
       "success" => true,
       "message" => "Successfully logged out!"
     ]);
-    exit;
   });
 });
 

@@ -24,6 +24,12 @@ class AuthMiddleware
       $token = JWT::decode($_SESSION['token'], SECRET, array('HS256'));
       if ($token) {
         return true;
+      } else {
+        $res->json([
+          "status" => 401,
+          "error" => true,
+          "message" => "Token is invalid"
+        ]);
       }
     } else {
       $res->json([
