@@ -13,8 +13,8 @@ final class RecoverPasswords extends AbstractMigration
       ->addColumn('token', 'string')
       ->addIndex(['token'], ['unique' => true])
       ->addColumn('isValid', 'integer')
-      ->addColumn('createAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
-      ->addColumn('updateAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+      ->addColumn('createdAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+      ->addColumn('updatedAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
       ->create();
   }
 }

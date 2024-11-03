@@ -23,7 +23,7 @@ class EmailServiceController extends ControllerService
     $this->mail->setFrom(EMAIL_USER, 'SUSUMO Recover Password');
   }
 
-  public function index($data = [])
+  public function send($data = [])
   {
     $this->mail->Subject = $data['subject'];
     $this->mail->AltBody = $data['altbody'];
@@ -31,11 +31,15 @@ class EmailServiceController extends ControllerService
       $this->mail->addAddress($recipient['email'], $recipient['name']);
     }
     $this->mail->msgHTML($data['msgHTML']);
-    if (!$this->mail->send()) {
-      echo json_encode(['status' => 400, 'error' => $this->mail->ErrorInfo]);
+    try {
+      return $this->mail->send();
+    } catch (\Throwable $th) {
+      echo json_encode([
+        'status' => 400, 
+        'error' => true,
+        'message' => $th->getMessage()
+      ]);
       exit;
-    } else {
-      return true;
     }
   }
 }

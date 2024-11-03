@@ -2,24 +2,29 @@ import './login.scss'
 import $ from 'jquery'
 import Swal from 'sweetalert2'
 import { api } from '../services/baseApi.js'
-import { ReactivityProxy } from 'reactivity-proxy';
+import { state } from '../state.js'
 
-const state = new ReactivityProxy()
+import { register } from './register/register.js';
+import { recoverPassword } from './recover-password/recover.js';
 
 state.set({
   title: 'Login Page',
   register: false,
+  recoverPass: false,
   goToRegister() {
     state.change('title', 'Register Page')
     state.change('register', true)
   },
+  goToRecover() {
+    state.change('title', 'Recover Password')
+    state.change('recoverPass', true)
+  },
   goToLogin() {
     state.change('title', 'Login Page')
     state.change('register', false)
+    state.change('recoverPass', false)
   }
 })
-
-state.resolve()
 
 export const login = (ctx, next) => {
   const form = $('#login-form')
@@ -32,6 +37,8 @@ export const login = (ctx, next) => {
     }
     sendLogin(data)
   })
+  register()
+  recoverPassword()
 }
 
 async function sendLogin(data) {

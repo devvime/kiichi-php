@@ -13,66 +13,78 @@ class RecoverPasswordController extends ControllerService
   public $mailTemplate;
   public $url;
   private static $recoverPasswordModel;
+  private static $userModel;
 
   public function __construct()
   {
-    $this->url = "https://app.susumo.com.br/recover-password/";
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $current_url = $protocol . $_SERVER['HTTP_HOST'];
+    $this->url = "{$current_url}/recover-password/";
     self::$recoverPasswordModel = new RecoverPasswordModel();
-    $this->mailTemplate = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/public/components/recover-password-email.html');
+    self::$userModel = new UserModel();
+    $this->mailTemplate = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/views/recover-password-email.html");
   }
 
   public function index($req, $res)
   {
-    $user = UserModel::select('id', 'name', 'email')
-      ->where('email', $req->body->email)->first();
-    if ($user !== null) {
-      $token = $this->jwtEncrypt([
-        "user" => [
-          "id" => $user->id,
-          "email" => $user->email
-        ],
-        "date" => date("Y-m-d h:i:s")
-      ]);
-      $recover = self::$recoverPasswordModel::where('userId', $user->id)->first();
-      if ($recover !== null) {
-        $recover->token = $token;
-        $recover->isValid = true;
-        $recover->updatedAt = date("Y-m-d h:i:s");
-        $recover->save();
-      } else if ($recover === null) {
-        $recover = self::$recoverPasswordModel;
-        $recover->userId = $user->id;
-        $recover->token = $token;
-        $recover->isValid = true;
-        $recover->save();
-      }
-      $this->mailTemplate = str_replace('${link}', $this->url . base64_encode($token), $this->mailTemplate);
-      $mailData = [
-        "subject" => "Recover Password",
-        "altbody" => "Password recovery instructions.",
-        "msgHTML" => $this->mailTemplate,
-        "recipients" => [
-          ["name" => $user->name, "email" => $user->email]
-        ]
-      ];
-      try {
+    try {
+      $user = self::$userModel::select('id', 'name', 'email')->where('email', $req->body->email)->first();
+      if ($user !== null) {
+        $token = $this->jwtEncrypt([
+          "user" => [
+            "id" => $user->id,
+            "email" => $user->email
+          ],
+          "date" => date("Y-m-d h:i:s")
+        ]);
+        $recover = self::$recoverPasswordModel::select('*')->where('userId', $user->id)->first();
+        if ($recover !== null) {
+          $recover->token = $token;
+          $recover->isValid = true;
+          $recover->updatedAt = date("Y-m-d h:i:s");
+          $recover->save();
+        } else if ($recover === null) {
+          $recover = self::$recoverPasswordModel;
+          $recover->userId = $user->id;
+          $recover->token = $token;
+          $recover->isValid = true;
+          $recover->save();
+        }
+        $this->mailTemplate = str_replace('${link}', $this->url . base64_encode($token), $this->mailTemplate);
+        $mailData = [
+          "subject" => "Recover Password",
+          "altbody" => "Password recovery instructions.",
+          "msgHTML" => $this->mailTemplate,
+          "recipients" => [
+            ["name" => $user->name, "email" => $user->email]
+          ]
+        ];
         $mail = new EmailServiceController();
-        if ($mail->index($mailData)) {
+        if ($mail->send($mailData)) {
           $res->json([
             "status" => 200,
-            "success" => "Password recovery instructions sent to {$user->email}"
+            "success" => true,
+            "message" => "Password recovery instructions sent to {$user->email}"
+          ]);
+        } else {
+          $res->json([
+            "status" => 400,
+            "error" => true,
+            "message" => "Error sending email."
           ]);
         }
-      } catch (\Exception $err) {
+      } else {
         $res->json([
-          "status" => 400,
-          "error" => $err
+          "status" => 404,
+          "error" => true,
+          "message" => "Unregistered email."
         ]);
       }
-    } else {
+    } catch (\Throwable $th) {
       $res->json([
         "status" => 404,
-        "error" => "Unregistered email."
+        "error" => true,
+        "message" => $th
       ]);
     }
   }
@@ -89,7 +101,8 @@ class RecoverPasswordController extends ControllerService
         if ($req->body->data->newPassword !== $req->body->data->confirmNewPassword) {
           $res->json([
             "status" => 401,
-            "error" => "Passwords not Match."
+            "error" => true,
+            "message" => "Passwords not Match."
           ]);
           exit;
         }
@@ -99,13 +112,15 @@ class RecoverPasswordController extends ControllerService
         $user->save();
         $res->json([
           "status" => 200,
-          "success" => "Password changed successfully!"
+          "success" => true,
+          "message" => "Password changed successfully!"
         ]);
       }
     } else {
       $res->json([
         "status" => 401,
-        "error" => "This token is invalid!"
+        "error" => true,
+        "message" => "This token is invalid!"
       ]);
       exit;
     }

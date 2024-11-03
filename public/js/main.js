@@ -34,8 +34,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
-/* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
-const state=new reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.ReactivityProxy;state.set({title:"Login Page",register:!1,goToRegister(){state.change("title","Register Page"),state.change("register",!0)},goToLogin(){state.change("title","Login Page"),state.change("register",!1)}}),state.resolve();const login=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#login-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={email:b.get("email"),password:b.get("password")};sendLogin(c)})};async function sendLogin(a){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/auth",a).then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"success",confirmButtonText:"OK"}).then(()=>{window.location.href="/dashboard"}):sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"})})}
+/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../state.js */ "./src/Views/components/state.js");
+/* harmony import */ var _register_register_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./register/register.js */ "./src/Views/components/login/register/register.js");
+/* harmony import */ var _recover_password_recover_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./recover-password/recover.js */ "./src/Views/components/login/recover-password/recover.js");
+_state_js__WEBPACK_IMPORTED_MODULE_4__.state.set({title:"Login Page",register:!1,recoverPass:!1,goToRegister(){_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Register Page"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!0)},goToRecover(){_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Recover Password"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("recoverPass",!0)},goToLogin(){_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Login Page"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!1),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("recoverPass",!1)}});const login=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#login-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={email:b.get("email"),password:b.get("password")};sendLogin(c)}),(0,_register_register_js__WEBPACK_IMPORTED_MODULE_5__.register)(),(0,_recover_password_recover_js__WEBPACK_IMPORTED_MODULE_6__.recoverPassword)()};async function sendLogin(a){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/auth",a).then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"success",confirmButtonText:"OK"}).then(()=>{window.location.href="/dashboard"}):sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"})})}
+
+/***/ }),
+
+/***/ "./src/Views/components/login/recover-password/recover.js":
+/*!****************************************************************!*\
+  !*** ./src/Views/components/login/recover-password/recover.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   recoverPassword: () => (/* binding */ recoverPassword)
+/* harmony export */ });
+/* harmony import */ var _recover_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./recover.scss */ "./src/Views/components/login/recover-password/recover.scss");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
+/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../state.js */ "./src/Views/components/state.js");
+const recoverPassword=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#recover-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={email:b.get("email")};sendRecover(c)})};async function sendRecover(a){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/auth/recover-pass",a).then(b=>{b.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:`Password recovery email has been sent to ${a.email}`,icon:"success",confirmButtonText:"OK"}).then(()=>{_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Login Page"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!1)}):sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:b.message,icon:"error",confirmButtonText:"OK"})})}
+
+/***/ }),
+
+/***/ "./src/Views/components/login/register/register.js":
+/*!*********************************************************!*\
+  !*** ./src/Views/components/login/register/register.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   register: () => (/* binding */ register)
+/* harmony export */ });
+/* harmony import */ var _register_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./register.scss */ "./src/Views/components/login/register/register.scss");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
+/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../state.js */ "./src/Views/components/state.js");
+const register=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#register-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={name:b.get("name"),email:b.get("email"),password:b.get("password")};sendRegister(c)})};async function sendRegister(a){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/register",a).then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:"User registered successfully!",icon:"success",confirmButtonText:"OK"}).then(()=>{_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Login Page"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!1)}):sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"})})}
 
 /***/ }),
 
@@ -51,6 +97,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   api: () => (/* binding */ api)
 /* harmony export */ });
 const api={url:location.origin,async get(a,b={}){return fetch(`${this.url}${a}`,{method:"GET",headers:{"Content-Type":"application/json",...b}}).then(this.handleResponse)},async post(a,b={},c={}){return fetch(`${this.url}${a}`,{method:"POST",headers:{"Content-Type":"application/json",...c},body:JSON.stringify(b)}).then(this.handleResponse)},async put(a,b={},c={}){return fetch(`${this.url}${a}`,{method:"PUT",headers:{"Content-Type":"application/json",...c},body:JSON.stringify(b)}).then(this.handleResponse)},async delete(a,b={}){return fetch(`${this.url}${a}`,{method:"DELETE",headers:{"Content-Type":"application/json",...b}}).then(this.handleResponse)},async handleResponse(a){if(!a.ok){const b=await a.json().catch(()=>({message:"Erro desconhecido"}));throw new Error(b.message||"Erro desconhecido")}return a.json()}};
+
+/***/ }),
+
+/***/ "./src/Views/components/state.js":
+/*!***************************************!*\
+  !*** ./src/Views/components/state.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   state: () => (/* binding */ state)
+/* harmony export */ });
+/* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
+const state=new reactivity_proxy__WEBPACK_IMPORTED_MODULE_0__.ReactivityProxy;
 
 /***/ }),
 
@@ -10908,6 +10970,32 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./src/Views/components/login/login.scss ***!
   \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/Views/components/login/recover-password/recover.scss":
+/*!******************************************************************!*\
+  !*** ./src/Views/components/login/recover-password/recover.scss ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/Views/components/login/register/register.scss":
+/*!***********************************************************!*\
+  !*** ./src/Views/components/login/register/register.scss ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";

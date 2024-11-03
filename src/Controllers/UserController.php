@@ -20,8 +20,10 @@ class UserController extends ControllerService
     $result = self::$userModel->all('id', 'name', 'email');
     $res->json([
       "status" => 200,
+      "success" => true,
       "data" => $result
     ]);
+    
   }
 
   public function find($req, $res)
@@ -33,6 +35,7 @@ class UserController extends ControllerService
     }
     $res->json([
       "status" => 200,
+      "success" => true,
       "data" => $result
     ]);
   }
@@ -52,7 +55,11 @@ class UserController extends ControllerService
         $this->index($req, $res);
       }
     } else {
-      $res->json(["status" => 400, "error" => "This email already registered!"]);
+      $res->json([
+        "status" => 400,
+        "error" => true,
+        "message" => "This email already registered!",
+      ]);
     }
   }
 
@@ -60,7 +67,7 @@ class UserController extends ControllerService
   {
     $data = UserModel::find($req->params->id);
     if ($data == null) {
-      $res->json(["status" => 404, "error" => "Register Not Found..."]);
+      $res->json(["status" => 404, "error" => true, "message" => "Register Not Found..."]);
       exit;
     }
     if (isset($req->body->password)) {
@@ -77,7 +84,7 @@ class UserController extends ControllerService
   {
     $data = UserModel::find($req->params->id);
     if ($data == null) {
-      $res->json(["status" => 404, "error" => "Register not found!"]);
+      $res->json(["status" => 404, "error" => true, "message" => "Register not found!"]);
       exit;
     }
     $result = $data->delete();

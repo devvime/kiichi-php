@@ -7,40 +7,33 @@
       <div class="col-lg-4 offset-lg-4 text-center mt-5">
         <h1 class="display-6" data-title></h1>
         <div class="card card-login">
-          <form id="login-form" data-if="!state.register">
+          <form id="login-form" data-if="!state.register && !state.recoverPass">
             <div class="card-body">
               <p>Default component</p>
-              <input type="email" name="email" placeholder="Email..." class="form-control mb-3" required>
-              <input type="password" name="password" placeholder="Password..." class="form-control mb-3" required>            
+              <input type="email" name="email" placeholder="Email..."
+                class="form-control mb-3" required>
+              <input type="password" name="password" placeholder="Password..."
+                class="form-control mb-3" required>
             </div>
             <div class="card-footer">
               <div class="d-flex">
                 <div class="col">
-                  <a href="#">Recover password</a>
+                  <button class="btn" type="button" data-click="state.goToRecover()">Recover password</button>
                 </div>
                 <div class="col">
                   <button type="submit" class="btn btn-primary">Login</button>
-                  <button type="button" class="btn btn-outline-primary" data-click="state.goToRegister()">Register</button>
+                  <button type="button" class="btn btn-outline-primary"
+                    data-click="state.goToRegister()">Register</button>
                 </div>
               </div>
             </div>
           </form>
-          <form id="register-form" data-if="state.register">
-            <div class="card-body">
-              <p>Default component</p>
-              <input type="text" name="name" placeholder="Name..." class="form-control mb-3" required>
-              <input type="email" name="email" placeholder="Email..." class="form-control mb-3" required>
-              <input type="password" name="password" placeholder="Password..." class="form-control mb-3" required>            
-            </div>
-            <div class="card-footer">
-              <div class="d-flex">
-                <div class="col">
-                  <button type="button" class="btn btn-outline-primary" data-click="state.goToLogin()">Back</button>
-                  <button type="submit" class="btn btn-primary" data-click="state.goToRegister()">Register</button>
-                </div>
-              </div>
-            </div>
-          </form>
+          <?php require $this->checkTemplate("components/login/register/register");?>
+
+          <?php require $this->checkTemplate("components/login/recover-password/recover");?>
+
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
