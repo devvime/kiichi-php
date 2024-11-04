@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
 /* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../state.js */ "./src/Views/components/state.js");
 /* harmony import */ var _sidebar_menu_menu_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./sidebar-menu/menu.js */ "./src/Views/components/dashboard/sidebar-menu/menu.js");
-_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Dashboard Page"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("logout",()=>logOut());function dashboard(a){a.data&&(jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dashboard-page").html(a.data.tpl),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title",a.data.title)),(0,_sidebar_menu_menu_js__WEBPACK_IMPORTED_MODULE_5__.sideBarMenu)()}async function logOut(){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.get("/api/auth/logout").then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"success",confirmButtonText:"OK"}).then(()=>{window.location.href="/login"}):sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"})})}
+_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Dashboard Page"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("logout",()=>logOut());function dashboard(a){if(a.data){const b=a.data.component;b.init(),jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dashboard-page").html(b.render()),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title",a.data.title)}(0,_sidebar_menu_menu_js__WEBPACK_IMPORTED_MODULE_5__.sideBarMenu)()}async function logOut(){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.get("/api/auth/logout").then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"success",confirmButtonText:"OK"}).then(()=>{window.location.href="/login"}):sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"})})}
 
 /***/ }),
 
@@ -43,6 +43,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
 /* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../state.js */ "./src/Views/components/state.js");
 function sideBarMenu(){}
+
+/***/ }),
+
+/***/ "./src/Views/components/dashboard/users/list/list.js":
+/*!***********************************************************!*\
+  !*** ./src/Views/components/dashboard/users/list/list.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   listUsers: () => (/* binding */ listUsers)
+/* harmony export */ });
+/* harmony import */ var _list_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./list.scss */ "./src/Views/components/dashboard/users/list/list.scss");
+/* harmony import */ var _list_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./list.html */ "./src/Views/components/dashboard/users/list/list.html");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
+/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../state.js */ "./src/Views/components/state.js");
+_state_js__WEBPACK_IMPORTED_MODULE_5__.state.change("users",[]);const listUsers={async init(){await getUsers()},render(){return _list_html__WEBPACK_IMPORTED_MODULE_1__["default"]}};async function getUsers(){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_4__.api.get("/api/user").then(a=>{_state_js__WEBPACK_IMPORTED_MODULE_5__.state.change("users",a.data),console.log(a.data)})}
 
 /***/ }),
 
@@ -283,7 +306,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<div>\n  <p data-title></p>\n</div>";
+var code = "<section class=\"users-list\">\n  <div class=\"row mb-3\">\n    <div class=\"col-md-12\">\n      <button class=\"btn btn-primary\">Create new user</button>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div data-for=\"user of state.users\">\n        <p>aaaaaaaaa</p>\n      </div>\n      <!-- <table class=\"table table-hover\">\n        <thead>\n          <tr>\n            <th>ID</th>\n            <th>Name</th>\n            <th>Email</th>\n            <th>Created at</th>\n            <th>Actions</th>\n          </tr>\n        </thead>\n        <tbody data-for=\"user of state.users\">\n          <tr>\n            <td data-user-id></td>\n            <td data-user-name></td>\n            <td data-user-email></td>\n            <td data-user-createdAt></td>\n            <td>Actions here</td>\n          </tr>\n        </tbody>\n      </table> -->\n    </div>\n  </div>\n</section>";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -11042,6 +11065,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/Views/components/dashboard/users/list/list.scss":
+/*!*************************************************************!*\
+  !*** ./src/Views/components/dashboard/users/list/list.scss ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./src/Views/components/home/home.scss":
 /*!*********************************************!*\
   !*** ./src/Views/components/home/home.scss ***!
@@ -17890,8 +17926,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_home_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home/home.js */ "./src/Views/components/home/home.js");
 /* harmony import */ var _login_login_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.js */ "./src/Views/components/login/login.js");
 /* harmony import */ var _dashboard_dashboard_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dashboard/dashboard.js */ "./src/Views/components/dashboard/dashboard.js");
-/* harmony import */ var _dashboard_users_list_list_html__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dashboard/users/list/list.html */ "./src/Views/components/dashboard/users/list/list.html");
-blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/",()=>(0,_home_home_js__WEBPACK_IMPORTED_MODULE_3__.home)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/doc",()=>(0,_default_doc_doc_js__WEBPACK_IMPORTED_MODULE_2__.doc)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/login",()=>(0,_login_login_js__WEBPACK_IMPORTED_MODULE_4__.login)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/dashboard",(a,b)=>(0,_dashboard_dashboard_js__WEBPACK_IMPORTED_MODULE_5__.dashboard)({ctx:a,next:b,data:!1})),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/dashboard/users",(a,b)=>(0,_dashboard_dashboard_js__WEBPACK_IMPORTED_MODULE_5__.dashboard)({ctx:a,next:b,data:{tpl:_dashboard_users_list_list_html__WEBPACK_IMPORTED_MODULE_6__["default"],title:"Users List"}})),blots__WEBPACK_IMPORTED_MODULE_1__.blots.start({click:!1});
+/* harmony import */ var _dashboard_users_list_list_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dashboard/users/list/list.js */ "./src/Views/components/dashboard/users/list/list.js");
+blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/",()=>(0,_home_home_js__WEBPACK_IMPORTED_MODULE_3__.home)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/doc",()=>(0,_default_doc_doc_js__WEBPACK_IMPORTED_MODULE_2__.doc)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/login",()=>(0,_login_login_js__WEBPACK_IMPORTED_MODULE_4__.login)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/dashboard",(a,b)=>(0,_dashboard_dashboard_js__WEBPACK_IMPORTED_MODULE_5__.dashboard)({ctx:a,next:b,data:!1})),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/dashboard/users",(a,b)=>(0,_dashboard_dashboard_js__WEBPACK_IMPORTED_MODULE_5__.dashboard)({ctx:a,next:b,data:{component:_dashboard_users_list_list_js__WEBPACK_IMPORTED_MODULE_6__.listUsers,title:"Users List"}})),blots__WEBPACK_IMPORTED_MODULE_1__.blots.start({click:!1});
 })();
 
 /******/ })()

@@ -11,7 +11,9 @@ state.change('logout', () => logOut())
 
 export function dashboard(props) {
   if (props.data) {
-    $('#dashboard-page').html(props.data.tpl)
+    const component = props.data.component
+    component.init()
+    $('#dashboard-page').html(component.render())
     state.change('title', props.data.title) 
   }
   sideBarMenu()

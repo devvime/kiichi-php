@@ -17,7 +17,7 @@ class UserController extends ControllerService
 
   public function index($req, $res)
   {
-    $result = self::$userModel->all('id', 'name', 'email');
+    $result = self::$userModel->all('id', 'name', 'email', 'createdAt');
     $res->json([
       "status" => 200,
       "success" => true,

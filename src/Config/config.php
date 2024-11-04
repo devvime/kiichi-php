@@ -33,4 +33,9 @@ const UPLOAD_DIR = 'public/uploads';
 #Views Settings
 const VIEWS_DIR = __ROOT__.'/src/Views/';
 const VIEWS_CACHE_DIR = __ROOT__.'/src/Views/default/cache/';
+const HEADER_DATA = [
+  "author" => "Authro here...", 
+  "description" => "Description here..."
+];
+const VERSION = '1.0.0';
 #
