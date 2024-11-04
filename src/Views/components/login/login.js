@@ -42,6 +42,7 @@ export const login = (ctx, next) => {
 }
 
 async function sendLogin(data) {
+  state.change('loading', true)
   await api.post('/api/auth', data).then(res => {
     if (res.success) {
       Swal.fire({
@@ -49,6 +50,7 @@ async function sendLogin(data) {
         icon:'success',
         confirmButtonText: 'OK'
       }).then(() => {
+        state.change('loading', false)
         window.location.href = '/dashboard'
       })
     } else {
@@ -57,6 +59,7 @@ async function sendLogin(data) {
         icon: 'error',
         confirmButtonText: 'OK'
       })
+      state.change('loading', false)
     }
   })
 }

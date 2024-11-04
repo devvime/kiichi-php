@@ -8,7 +8,11 @@
         <h1 class="display-6" data-title></h1>
         <hr>
         <div id="dashboard-page"></div>
+        <div data-if="state.loading">
+          {include="../loading/loading"}
+        </div>
       </div>
     </div>
   </div>
+  {include="users/create/create"}
 </section>

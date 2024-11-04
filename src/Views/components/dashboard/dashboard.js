@@ -7,6 +7,7 @@ import { state } from '../state.js'
 import { sideBarMenu } from './sidebar-menu/menu.js'
 
 state.change('title', 'Dashboard Page')
+state.change('loading', false)
 state.change('logout', () => logOut())
 
 export function dashboard(props) {

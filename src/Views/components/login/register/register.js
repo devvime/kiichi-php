@@ -19,6 +19,7 @@ export const register = (ctx, next) => {
 }
 
 async function sendRegister(data) {
+  state.change('loading', true)
   await api.post('/api/register', data).then(res => {
     if (res.success) {
       Swal.fire({
@@ -29,12 +30,14 @@ async function sendRegister(data) {
         state.change('title', 'Login Page')
         state.change('register', false)
       })
+      state.change('loading', false)
     } else {
       Swal.fire({
         title: res.message,
         icon: 'error',
         confirmButtonText: 'OK'
       })
+      state.change('loading', false)
     }
   })
 }

@@ -17,6 +17,7 @@ export const recoverPassword = (ctx, next) => {
 }
 
 async function sendRecover(data) {
+  state.change('loading', true)
   await api.post('/api/auth/recover-pass', data).then(res => {
     if (res.success) {
       Swal.fire({
@@ -27,12 +28,14 @@ async function sendRecover(data) {
         state.change('title', 'Login Page')
         state.change('register', false)
       })
+      state.change('loading', false)
     } else {
       Swal.fire({
         title: res.message,
         icon: 'error',
         confirmButtonText: 'OK'
       })
+      state.change('loading', false)
     }
   })
 }

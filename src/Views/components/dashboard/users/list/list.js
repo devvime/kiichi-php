@@ -5,10 +5,9 @@ import Swal from 'sweetalert2'
 import { api } from '../../../services/baseApi.js'
 import { state } from '../../../state.js'
 
-state.change('users', [])
-
 export const listUsers = {
   async init() {
+    state.change('loading', true)
     await getUsers()
   },
   render() {
@@ -18,7 +17,11 @@ export const listUsers = {
 
 async function getUsers() {
   await api.get('/api/user').then(res => {
-    state.change('users', res.data)
-    console.log(res.data)
+    if (res.data.length > 0) {
+      state.change('users', res.data)
+      state.change('loading', false)
+    } else {
+      state.change('noData', true)
+    }
   })
 }

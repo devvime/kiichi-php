@@ -1,15 +1,12 @@
 <section class="users-list">
   <div class="row mb-3">
     <div class="col-md-12">
-      <button class="btn btn-primary">Create new user</button>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUserModal">Create new user</button>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div data-for="user of state.users">
-        <p>aaaaaaaaa</p>
-      </div>
-      <!-- <table class="table table-hover">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th>ID</th>
@@ -19,16 +16,17 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody data-for="user of state.users">
+        <tbody data-for="user of state.users" data-if="!state.noData">
           <tr>
             <td data-user-id></td>
             <td data-user-name></td>
             <td data-user-email></td>
             <td data-user-createdAt></td>
-            <td>Actions here</td>
+            <td><button class="btn">Actions</button></td>
           </tr>
         </tbody>
-      </table> -->
+      </table>
+      <p data-if="state.noData" style="display: none;" class="text-center">No registers found</p>
     </div>
   </div>
 </section>
