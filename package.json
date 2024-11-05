@@ -25,7 +25,7 @@
     "blots": "^1.1.4",
     "css-loader": "^7.1.2",
     "jquery": "^3.7.1",
-    "reactivity-proxy": "^1.0.0",
+    "reactivity-proxy": "^1.0.2",
     "sass": "^1.79.4",
     "sass-loader": "^16.0.2",
     "style-loader": "^4.0.0",

@@ -32,6 +32,10 @@
 
           <?php require $this->checkTemplate("components/login/recover-password/recover");?>
 
+          <div data-if="state.loading">
+            <?php require $this->checkTemplate("components/loading/loading");?>
+
+          </div>
         </div>
       </div>
     </div>

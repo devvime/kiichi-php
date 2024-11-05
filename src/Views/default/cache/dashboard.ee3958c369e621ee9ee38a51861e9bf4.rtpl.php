@@ -9,7 +9,13 @@
         <h1 class="display-6" data-title></h1>
         <hr>
         <div id="dashboard-page"></div>
+        <div data-if="state.loading">
+          <?php require $this->checkTemplate("components/loading/loading");?>
+
+        </div>
       </div>
     </div>
   </div>
+  <?php require $this->checkTemplate("components/dashboard/users/create/create");?>
+
 </section>

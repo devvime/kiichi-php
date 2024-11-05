@@ -1,4 +1,4 @@
-<div class="modal fade" id="createUserModal" tabindex="-1" aria-hidden="true">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="modal fade" id="createUserModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,7 +15,8 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Save changes</button>
           <div data-if="state.loading">
-            {include="../../../loading/loading"}
+            <?php require $this->checkTemplate("components/dashboard/users/../../loading/loading");?>
+
           </div>
         </div>
     </form>

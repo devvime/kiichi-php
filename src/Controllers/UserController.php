@@ -17,13 +17,8 @@ class UserController extends ControllerService
 
   public function index($req, $res)
   {
-    $result = self::$userModel->all('id', 'name', 'email', 'createdAt');
-    $res->json([
-      "status" => 200,
-      "success" => true,
-      "data" => $result
-    ]);
-    
+    $result = $this->paginate($req, self::$userModel->select('id', 'name', 'email', 'createdAt'));
+    $res->json($result);
   }
 
   public function find($req, $res)
