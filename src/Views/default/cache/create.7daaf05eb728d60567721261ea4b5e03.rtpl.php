@@ -15,7 +15,7 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Save changes</button>
           <div data-if="state.loading">
-            <?php require $this->checkTemplate("components/dashboard/users/../../loading/loading");?>
+            <?php require $this->checkTemplate("components/dashboard/users/../../layout/loading/loading");?>
 
           </div>
         </div>

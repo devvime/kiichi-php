@@ -10,7 +10,7 @@
         <hr>
         <div id="dashboard-page"></div>
         <div data-if="state.loading">
-          <?php require $this->checkTemplate("components/loading/loading");?>
+          <?php require $this->checkTemplate("components/layout/loading/loading");?>
 
         </div>
       </div>
