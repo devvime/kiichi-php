@@ -139,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagination_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pagination.scss */ "./src/Views/components/layout/pagination/pagination.scss");
 /* harmony import */ var _pagination_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pagination.html */ "./src/Views/components/layout/pagination/pagination.html");
 /* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
-const Pagination={title:"pagination-element",init(){reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__.state.handleText(),reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__.state.handleConditional(),reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__.state.handleEach()},render(){return _pagination_html__WEBPACK_IMPORTED_MODULE_1__["default"]},setPaginationData(a){const b=[];a.buttons.forEach(a=>{b.push({index:a,url:`${location.pathname}?page=${a}`})}),reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__.state.change("paginationButtons",b)}};
+const Pagination={title:"pagination-element",init(){},render(){return _pagination_html__WEBPACK_IMPORTED_MODULE_1__["default"]},setPaginationData(a){const b=[];a.buttons.forEach(a=>{b.push({index:a,url:`${location.pathname}?page=${a}`})}),reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__.state.change("paginationButtons",b)}};
 
 /***/ }),
 
@@ -12680,6 +12680,9 @@ class ReactivityProxy {
         if (el) {
           el.innerHTML = component.render()
           component.init()
+          this.handleText()
+          this.handleConditional()
+          this.handleEach()
         }
       })
     })

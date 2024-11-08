@@ -4,11 +4,7 @@ import { state } from 'reactivity-proxy'
 
 export const Pagination = {
   title: 'pagination-element',
-  init() {
-    state.handleText()
-    state.handleConditional()
-    state.handleEach()
-  },
+  init() {},
   render() {
     return element
   },
