@@ -2,7 +2,7 @@ import './create.scss'
 import $ from 'jquery'
 import Swal from 'sweetalert2'
 import { api } from '../../../services/baseApi.js'
-import { state } from '../../../state.js'
+import { state } from 'reactivity-proxy';
 
 export const createUser = {
   init() {

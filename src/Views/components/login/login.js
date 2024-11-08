@@ -2,7 +2,7 @@ import './login.scss'
 import $ from 'jquery'
 import Swal from 'sweetalert2'
 import { api } from '../services/baseApi.js'
-import { state } from '../state.js'
+import { state } from 'reactivity-proxy';
 
 import { register } from './register/register.js';
 import { recoverPassword } from './recover-password/recover.js';

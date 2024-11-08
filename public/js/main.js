@@ -18,9 +18,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
-/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../state.js */ "./src/Views/components/state.js");
+/* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
 /* harmony import */ var _sidebar_menu_menu_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./sidebar-menu/menu.js */ "./src/Views/components/dashboard/sidebar-menu/menu.js");
-_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Dashboard Page"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("logout",()=>logOut());function dashboard(a){if(a.data){const b=a.data.component;b.init(),jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dashboard-page").html(b.render()),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title",a.data.title)}(0,_sidebar_menu_menu_js__WEBPACK_IMPORTED_MODULE_5__.sideBarMenu)()}async function logOut(){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.get("/api/auth/logout").then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"success",confirmButtonText:"OK"}).then(()=>{window.location.href="/login"}):sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"})})}
+reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Dashboard Page"),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("logout",()=>logOut());function dashboard(a){if(a.data){const b=a.data.component;b.init(),jquery__WEBPACK_IMPORTED_MODULE_1___default()("#dashboard-page").html(b.render()),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("title",a.data.title)}(0,_sidebar_menu_menu_js__WEBPACK_IMPORTED_MODULE_5__.sideBarMenu)()}async function logOut(){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.get("/api/auth/logout").then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"success",confirmButtonText:"OK"}).then(()=>{window.location.href="/login"}):sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"})})}
 
 /***/ }),
 
@@ -63,8 +63,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
-/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../state.js */ "./src/Views/components/state.js");
-const createUser={init(){createForm()},component(){}};function createForm(){const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#create-user-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={name:b.get("name"),email:b.get("email"),password:b.get("password")};sendCreateUser(c)})}async function sendCreateUser(a){_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!0),await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/user",a).then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:"User created successfully!",icon:"success",confirmButtonText:"OK"}).then(()=>{_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1),location.href="/dashboard/users"}):(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:"User created errorAn error occurred while creating the user!",icon:"error",confirmButtonText:"OK"}),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1))})}
+/* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
+const createUser={init(){createForm()},component(){}};function createForm(){const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#create-user-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={name:b.get("name"),email:b.get("email"),password:b.get("password")};sendCreateUser(c)})}async function sendCreateUser(a){reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!0),await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/user",a).then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:"User created successfully!",icon:"success",confirmButtonText:"OK"}).then(()=>{reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1),location.href="/dashboard/users"}):(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:"User created errorAn error occurred while creating the user!",icon:"error",confirmButtonText:"OK"}),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1))})}
 
 /***/ }),
 
@@ -86,9 +86,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
-/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../state.js */ "./src/Views/components/state.js");
+/* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
 /* harmony import */ var _create_create_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../create/create.js */ "./src/Views/components/dashboard/users/create/create.js");
-const listUsers={async init(){_state_js__WEBPACK_IMPORTED_MODULE_5__.state.change("loading",!0),_create_create_js__WEBPACK_IMPORTED_MODULE_6__.createUser.init(),await getUsers()},render(){return _list_html__WEBPACK_IMPORTED_MODULE_1__["default"]}};async function getUsers(){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_4__.api.get(`/api/user${location.search}`).then(a=>{if(0<a.data.length){_state_js__WEBPACK_IMPORTED_MODULE_5__.state.change("users",a.data),_state_js__WEBPACK_IMPORTED_MODULE_5__.state.change("pagination",a.pagination);const b=[];a.pagination.buttons.forEach(a=>{b.push({index:a,url:`${location.pathname}?page=${a}`})}),_state_js__WEBPACK_IMPORTED_MODULE_5__.state.change("paginationButtons",b),_state_js__WEBPACK_IMPORTED_MODULE_5__.state.change("loading",!1)}else _state_js__WEBPACK_IMPORTED_MODULE_5__.state.change("noData",!0)})}
+/* harmony import */ var _layout_pagination_pagination_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../layout/pagination/pagination.js */ "./src/Views/components/layout/pagination/pagination.js");
+const listUsers={title:"list-users",async init(){reactivity_proxy__WEBPACK_IMPORTED_MODULE_5__.state.change("loading",!0),_create_create_js__WEBPACK_IMPORTED_MODULE_6__.createUser.init(),await getUsers()},render(){return _list_html__WEBPACK_IMPORTED_MODULE_1__["default"]}};async function getUsers(){await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_4__.api.get(`/api/user${location.search}`).then(a=>{0<a.data.length?(reactivity_proxy__WEBPACK_IMPORTED_MODULE_5__.state.change("users",a.data),reactivity_proxy__WEBPACK_IMPORTED_MODULE_5__.state.change("pagination",a.pagination),_layout_pagination_pagination_js__WEBPACK_IMPORTED_MODULE_7__.Pagination.setPaginationData(a.pagination),reactivity_proxy__WEBPACK_IMPORTED_MODULE_5__.state.change("loading",!1)):reactivity_proxy__WEBPACK_IMPORTED_MODULE_5__.state.change("noData",!0)})}
 
 /***/ }),
 
@@ -124,6 +125,24 @@ const nav=()=>{};
 
 /***/ }),
 
+/***/ "./src/Views/components/layout/pagination/pagination.js":
+/*!**************************************************************!*\
+  !*** ./src/Views/components/layout/pagination/pagination.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Pagination: () => (/* binding */ Pagination)
+/* harmony export */ });
+/* harmony import */ var _pagination_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pagination.scss */ "./src/Views/components/layout/pagination/pagination.scss");
+/* harmony import */ var _pagination_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pagination.html */ "./src/Views/components/layout/pagination/pagination.html");
+/* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
+const Pagination={title:"pagination-element",init(){reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__.state.handleText(),reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__.state.handleConditional(),reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__.state.handleEach()},render(){return _pagination_html__WEBPACK_IMPORTED_MODULE_1__["default"]},setPaginationData(a){const b=[];a.buttons.forEach(a=>{b.push({index:a,url:`${location.pathname}?page=${a}`})}),reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__.state.change("paginationButtons",b)}};
+
+/***/ }),
+
 /***/ "./src/Views/components/login/login.js":
 /*!*********************************************!*\
   !*** ./src/Views/components/login/login.js ***!
@@ -141,10 +160,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
-/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../state.js */ "./src/Views/components/state.js");
+/* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
 /* harmony import */ var _register_register_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./register/register.js */ "./src/Views/components/login/register/register.js");
 /* harmony import */ var _recover_password_recover_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./recover-password/recover.js */ "./src/Views/components/login/recover-password/recover.js");
-_state_js__WEBPACK_IMPORTED_MODULE_4__.state.set({title:"Login Page",register:!1,recoverPass:!1,goToRegister(){_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Register Page"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!0)},goToRecover(){_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Recover Password"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("recoverPass",!0)},goToLogin(){_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Login Page"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!1),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("recoverPass",!1)}});const login=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#login-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={email:b.get("email"),password:b.get("password")};sendLogin(c)}),(0,_register_register_js__WEBPACK_IMPORTED_MODULE_5__.register)(),(0,_recover_password_recover_js__WEBPACK_IMPORTED_MODULE_6__.recoverPassword)()};async function sendLogin(a){_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!0),await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/auth",a).then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"success",confirmButtonText:"OK"}).then(()=>{_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1),window.location.href="/dashboard"}):(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"}),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1))})}
+reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.set({title:"Login Page",register:!1,recoverPass:!1,goToRegister(){reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Register Page"),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!0)},goToRecover(){reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Recover Password"),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("recoverPass",!0)},goToLogin(){reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Login Page"),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!1),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("recoverPass",!1)}});const login=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#login-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={email:b.get("email"),password:b.get("password")};sendLogin(c)}),(0,_register_register_js__WEBPACK_IMPORTED_MODULE_5__.register)(),(0,_recover_password_recover_js__WEBPACK_IMPORTED_MODULE_6__.recoverPassword)()};async function sendLogin(a){reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!0),await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/auth",a).then(a=>{a.success?sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"success",confirmButtonText:"OK"}).then(()=>{reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1),window.location.href="/dashboard"}):(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"}),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1))})}
 
 /***/ }),
 
@@ -165,8 +184,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
-/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../state.js */ "./src/Views/components/state.js");
-const recoverPassword=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#recover-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={email:b.get("email")};sendRecover(c)})};async function sendRecover(a){_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!0),await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/auth/recover-pass",a).then(b=>{b.success?(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:`Password recovery email has been sent to ${a.email}`,icon:"success",confirmButtonText:"OK"}).then(()=>{_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Login Page"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!1)}),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1)):(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:b.message,icon:"error",confirmButtonText:"OK"}),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1))})}
+/* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
+const recoverPassword=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#recover-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={email:b.get("email")};sendRecover(c)})};async function sendRecover(a){reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!0),await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/auth/recover-pass",a).then(b=>{b.success?(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:`Password recovery email has been sent to ${a.email}`,icon:"success",confirmButtonText:"OK"}).then(()=>{reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Login Page"),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!1)}),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1)):(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:b.message,icon:"error",confirmButtonText:"OK"}),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1))})}
 
 /***/ }),
 
@@ -187,8 +206,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/baseApi.js */ "./src/Views/components/services/baseApi.js");
-/* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../state.js */ "./src/Views/components/state.js");
-const register=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#register-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={name:b.get("name"),email:b.get("email"),password:b.get("password")};sendRegister(c)})};async function sendRegister(a){_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!0),await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/register",a).then(a=>{a.success?(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:"User registered successfully!",icon:"success",confirmButtonText:"OK"}).then(()=>{_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Login Page"),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!1)}),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1)):(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"}),_state_js__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1))})}
+/* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
+const register=()=>{const a=jquery__WEBPACK_IMPORTED_MODULE_1___default()("#register-form");a.on("submit",a=>{a.preventDefault();const b=new FormData(a.target),c={name:b.get("name"),email:b.get("email"),password:b.get("password")};sendRegister(c)})};async function sendRegister(a){reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!0),await _services_baseApi_js__WEBPACK_IMPORTED_MODULE_3__.api.post("/api/register",a).then(a=>{a.success?(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:"User registered successfully!",icon:"success",confirmButtonText:"OK"}).then(()=>{reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("title","Login Page"),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("register",!1)}),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1)):(sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({title:a.message,icon:"error",confirmButtonText:"OK"}),reactivity_proxy__WEBPACK_IMPORTED_MODULE_4__.state.change("loading",!1))})}
 
 /***/ }),
 
@@ -345,7 +364,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<section class=\"users-list\">\n  <div class=\"row mb-3\">\n    <div class=\"col-md-12\">\n      <button class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#createUserModal\">Create new user</button>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <table class=\"table table-hover\">\n        <thead>\n          <tr>\n            <th>ID</th>\n            <th>Name</th>\n            <th>Email</th>\n            <th>Created at</th>\n            <th>Actions</th>\n          </tr>\n        </thead>\n        <tbody data-for=\"user of state.users\" data-if=\"!state.noData\">\n          <tr>\n            <td data-user-id></td>\n            <td data-user-name></td>\n            <td data-user-email></td>\n            <td data-user-createdAt></td>\n            <td><button class=\"btn\">Actions</button></td>\n          </tr>\n        </tbody>\n      </table>\n      <p data-if=\"state.noData\" style=\"display: none;\" class=\"text-center\">No registers found</p>\n    </div>\n  </div>\n  <pagination-element></pagination-element>\n  <!-- <div class=\"row\">\n    <div class=\"col-md-12\">\n      <nav aria-label=\"Page navigation example\">\n        <ul class=\"pagination justify-content-center\" data-for=\"page of state.paginationButtons\">          \n          <li class=\"page-item\">\n            <a class=\"page-link\" href=\"\" data-page-url><span data-page-index></span></a>\n          </li>\n        </ul>\n      </nav>\n    </div>\n  </div> -->\n</section>";
+var code = "<section class=\"users-list\">\n  <div class=\"row mb-3\">\n    <div class=\"col-md-12\">\n      <button class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#createUserModal\">Create new user</button>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <table class=\"table table-hover\">\n        <thead>\n          <tr>\n            <th>ID</th>\n            <th>Name</th>\n            <th>Email</th>\n            <th>Created at</th>\n            <th>Actions</th>\n          </tr>\n        </thead>\n        <tbody data-for=\"user of state.users\" data-if=\"!state.noData\">\n          <tr>\n            <td data-user-id></td>\n            <td data-user-name></td>\n            <td data-user-email></td>\n            <td data-user-createdAt></td>\n            <td><button class=\"btn\">Actions</button></td>\n          </tr>\n        </tbody>\n      </table>\n      <p data-if=\"state.noData\" style=\"display: none;\" class=\"text-center\">No registers found</p>\n    </div>\n  </div>\n  <pagination-element></pagination-element>\n</section>";
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
+
+/***/ }),
+
+/***/ "./src/Views/components/layout/pagination/pagination.html":
+/*!****************************************************************!*\
+  !*** ./src/Views/components/layout/pagination/pagination.html ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// Module
+var code = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <nav aria-label=\"Page navigation example\">\n      <ul class=\"pagination justify-content-center\" data-for=\"page of state.paginationButtons\">          \n        <li class=\"page-item\">\n          <a class=\"page-link\" href=\"\" data-page-url><span data-page-index></span></a>\n        </li>\n      </ul>\n    </nav>\n  </div>\n</div>";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -11156,6 +11193,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/Views/components/layout/pagination/pagination.scss":
+/*!****************************************************************!*\
+  !*** ./src/Views/components/layout/pagination/pagination.scss ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./src/Views/components/login/login.scss":
 /*!***********************************************!*\
   !*** ./src/Views/components/login/login.scss ***!
@@ -12463,7 +12513,8 @@ return page_js;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   ReactivityProxy: () => (/* binding */ ReactivityProxy)
+/* harmony export */   ReactivityProxy: () => (/* binding */ ReactivityProxy),
+/* harmony export */   state: () => (/* binding */ state)
 /* harmony export */ });
 class ReactivityProxy {
 
@@ -12508,8 +12559,7 @@ class ReactivityProxy {
     };
   
     processObject(this.state);
-  }
-  
+  }  
 
   handleClick() {
     document.querySelectorAll('[data-click]').forEach(element => {
@@ -12617,13 +12667,34 @@ class ReactivityProxy {
     return this.state
   }
 
+  registerElements(data) {
+    this.state['elements'] = data
+  }
+
+  handleElements() {
+    if (!this.state['elements']) return
+    this.state['elements'].forEach(element => {
+      const elementName = element[0]
+      const component = element[1]
+      document.querySelectorAll(elementName).forEach(el => {
+        if (el) {
+          el.innerHTML = component.render()
+          component.init()
+        }
+      })
+    })
+  }
+
   resolve() {
     this.handleText()
     this.handleConditional()
     this.handleEach()
+    this.handleElements()
   }
 
 }
+
+const state = new ReactivityProxy()
 
 /***/ }),
 
@@ -17997,13 +18068,15 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _default_theme_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../default/theme.scss */ "./src/Views/default/theme.scss");
 /* harmony import */ var blots__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! blots */ "./node_modules/blots/blots.js");
-/* harmony import */ var _components_layout_nav_nav_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/layout/nav/nav.js */ "./src/Views/components/layout/nav/nav.js");
-/* harmony import */ var _default_doc_doc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../default/doc/doc.js */ "./src/Views/default/doc/doc.js");
-/* harmony import */ var _home_home_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./home/home.js */ "./src/Views/components/home/home.js");
-/* harmony import */ var _login_login_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login/login.js */ "./src/Views/components/login/login.js");
-/* harmony import */ var _dashboard_dashboard_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dashboard/dashboard.js */ "./src/Views/components/dashboard/dashboard.js");
-/* harmony import */ var _dashboard_users_list_list_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./dashboard/users/list/list.js */ "./src/Views/components/dashboard/users/list/list.js");
-blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/",()=>(0,_home_home_js__WEBPACK_IMPORTED_MODULE_4__.home)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/doc",()=>(0,_default_doc_doc_js__WEBPACK_IMPORTED_MODULE_3__.doc)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/login",()=>(0,_login_login_js__WEBPACK_IMPORTED_MODULE_5__.login)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/dashboard",(a,b)=>(0,_dashboard_dashboard_js__WEBPACK_IMPORTED_MODULE_6__.dashboard)({ctx:a,next:b,data:!1})),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/dashboard/users",(a,b)=>(0,_dashboard_dashboard_js__WEBPACK_IMPORTED_MODULE_6__.dashboard)({ctx:a,next:b,data:{component:_dashboard_users_list_list_js__WEBPACK_IMPORTED_MODULE_7__.listUsers,title:"Users List"}})),blots__WEBPACK_IMPORTED_MODULE_1__.blots.start({click:!1});
+/* harmony import */ var reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactivity-proxy */ "./node_modules/reactivity-proxy/lib/ReactivityProxy.js");
+/* harmony import */ var _components_layout_nav_nav_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/layout/nav/nav.js */ "./src/Views/components/layout/nav/nav.js");
+/* harmony import */ var _default_doc_doc_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../default/doc/doc.js */ "./src/Views/default/doc/doc.js");
+/* harmony import */ var _home_home_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./home/home.js */ "./src/Views/components/home/home.js");
+/* harmony import */ var _login_login_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./login/login.js */ "./src/Views/components/login/login.js");
+/* harmony import */ var _dashboard_dashboard_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./dashboard/dashboard.js */ "./src/Views/components/dashboard/dashboard.js");
+/* harmony import */ var _dashboard_users_list_list_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dashboard/users/list/list.js */ "./src/Views/components/dashboard/users/list/list.js");
+/* harmony import */ var _layout_pagination_pagination_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./layout/pagination/pagination.js */ "./src/Views/components/layout/pagination/pagination.js");
+reactivity_proxy__WEBPACK_IMPORTED_MODULE_2__.state.registerElements([["pagination-element",_layout_pagination_pagination_js__WEBPACK_IMPORTED_MODULE_9__.Pagination]]),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/",()=>(0,_home_home_js__WEBPACK_IMPORTED_MODULE_5__.home)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/doc",()=>(0,_default_doc_doc_js__WEBPACK_IMPORTED_MODULE_4__.doc)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/login",()=>(0,_login_login_js__WEBPACK_IMPORTED_MODULE_6__.login)()),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/dashboard",(a,b)=>(0,_dashboard_dashboard_js__WEBPACK_IMPORTED_MODULE_7__.dashboard)({ctx:a,next:b,data:!1})),blots__WEBPACK_IMPORTED_MODULE_1__.blots.route("/dashboard/users",(a,b)=>(0,_dashboard_dashboard_js__WEBPACK_IMPORTED_MODULE_7__.dashboard)({ctx:a,next:b,data:{component:_dashboard_users_list_list_js__WEBPACK_IMPORTED_MODULE_8__.listUsers,title:"Users List"}})),blots__WEBPACK_IMPORTED_MODULE_1__.blots.start({click:!1});
 })();
 
 /******/ })()

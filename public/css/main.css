@@ -102,5 +102,9 @@ body, html {
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/Views/components/dashboard/users/create/create.scss ***!
   \**************************************************************************************************************************************************/
 
+/*!*************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/Views/components/layout/pagination/pagination.scss ***!
+  \*************************************************************************************************************************************************/
+
 
 /*# sourceMappingURL=main.css.map*/

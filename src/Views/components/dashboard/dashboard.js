@@ -2,7 +2,7 @@ import './dashboard.scss'
 import $ from 'jquery'
 import Swal from 'sweetalert2'
 import { api } from '../services/baseApi.js'
-import { state } from '../state.js'
+import { state } from 'reactivity-proxy';
 
 import { sideBarMenu } from './sidebar-menu/menu.js'
 
