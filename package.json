@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/devvime/kiichi-php.git"
   },
-  "author": "",
+  "author": "devvime",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/devvime/kiichi-php/issues"

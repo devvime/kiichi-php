@@ -376,7 +376,7 @@ To receive the data sent to the HTML file use {{ key }} or {{ key.object.name }}
 
 ```html
 <div class="card">
-    <h4>{$name }/h4>
+    <h4>{$name}/h4>
     <p>{$email}</p>
     <hr/>
     <p>{$product.title}</p>
