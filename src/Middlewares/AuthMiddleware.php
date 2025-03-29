@@ -4,6 +4,7 @@ namespace Devvime\Kiichi\Middlewares;
 
 use Devvime\Kiichi\Engine\HttpService;
 use Devvime\Kiichi\Engine\ControllerService;
+use Firebase\JWT\JWT;
 
 class AuthMiddleware
 {
@@ -19,7 +20,25 @@ class AuthMiddleware
 
   public function index($req, $res)
   {
-    $this->httpService->verifyAuthToken();
+    if (isset($_SESSION['token'])) {
+      $token = JWT::decode($_SESSION['token'], SECRET, array('HS256'));
+      if ($token) {
+        return true;
+      } else {
+        $res->json([
+          "status" => 401,
+          "error" => true,
+          "message" => "Token is invalid"
+        ]);
+      }
+    } else {
+      $res->json([
+        "status" => 401,
+        "error" => true,
+        "message" => "You are not logged in!"
+      ]);
+      exit;
+    }
   }
 
   public function verify($req, $res)

@@ -15,8 +15,8 @@ final class Users extends AbstractMigration
       ->addColumn('password', 'string')
       ->addColumn('avatar', 'string', ['null' => true])
       ->addColumn('role', 'integer', ['default' => 0])
-      ->addColumn('createAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
-      ->addColumn('updateAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+      ->addColumn('createdAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+      ->addColumn('updatedAt', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
       ->create();
   }
 }
