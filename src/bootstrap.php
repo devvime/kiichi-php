@@ -14,7 +14,7 @@ $router = new Router();
 HttpService::json();
 HttpService::cors();
 
-require_once('Routes/front.php');
-require_once('Routes/api.php');
+require_once('Routes/client.php');
+require_once('Routes/server.php');
 
 $router->run();

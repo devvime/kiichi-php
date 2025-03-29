@@ -1,12 +1,13 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
-  entry: './src/Views/components/index.js',
+  entry: './client/index.js',
   devtool: "source-map",
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'public/js'),
+    path: path.resolve(__dirname, 'public_html/dist/js'),
   },
   mode: 'development',
   module: {
@@ -49,5 +50,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '../css/main.css'
     })
-  ]
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      `...`,
+      new CssMinimizerPlugin(),
+    ],
+  },
 };

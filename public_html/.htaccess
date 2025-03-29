@@ -1,0 +1,53 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+    RewriteRule ^(\.env|\.htaccess|config\.php|composer\.(json|lock)|package\.json|node_modules|vendor) - [F,L]
+    RewriteRule ^(uploads|storage)/.*\.(php|pl|cgi|asp|aspx|py|sh)$ - [F,L]
+
+    <DirectoryMatch "^(uploads|storage|backup)/">
+        <FilesMatch "\.(php|pl|cgi|sh|py|jsp|asp|aspx)$">
+            Deny from all
+        </FilesMatch>
+    </DirectoryMatch>
+
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+    RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Fa-f]{2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Fa-f]{2})
+    RewriteRule .* - [F]
+
+    Options -Indexes
+
+    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK) [NC]
+    RewriteRule .* - [F]
+
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !%{HTTP_HOST} [NC]
+    RewriteCond %{HTTP_REFERER} !google\. [NC]
+    RewriteCond %{HTTP_REFERER} !bing\. [NC]
+    RewriteCond %{HTTP_REFERER} !yahoo\. [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|svg|webp|mp4|mp3)$ - [F,NC]
+
+    Header always set X-Frame-Options "DENY"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set X-Content-Type-Options "nosniff"
+
+    <IfModule mod_expires.c>
+        ExpiresActive On
+        ExpiresDefault "access plus 1 month"
+        ExpiresByType image/jpg "access plus 1 year"
+        ExpiresByType image/jpeg "access plus 1 year"
+        ExpiresByType image/gif "access plus 1 year"
+        ExpiresByType image/png "access plus 1 year"
+        ExpiresByType text/css "access plus 1 month"
+        ExpiresByType text/javascript "access plus 1 month"
+        ExpiresByType application/javascript "access plus 1 month"
+    </IfModule>
+</IfModule>
+
+<FilesMatch "\.(php|pl|cgi|py|sh|jsp|asp|aspx)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>

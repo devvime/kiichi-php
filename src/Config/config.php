@@ -31,8 +31,8 @@ define('SECRET', $_ENV['SECRET']);
 const UPLOAD_DIR = 'public/uploads';
 #
 #Views Settings
-const VIEWS_DIR = __ROOT__.'/src/Views/';
-const VIEWS_CACHE_DIR = __ROOT__.'/src/Views/default/cache/';
+const VIEWS_DIR = __ROOT__.'/client/';
+const VIEWS_CACHE_DIR = __ROOT__.'/client/default/cache/';
 const HEADER_DATA = [
   "author" => "Authro here...", 
   "description" => "Description here..."

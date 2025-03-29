@@ -1,0 +1,14 @@
+@media(max-width: 1200px){.container{max-width:none !important}}
+.navbar{box-shadow:2px 5px 10px hsla(0,0%,80%,.4)}
+.doc{background-color:#ebebeb}.doc .box-page{padding:2em;background-color:#fff;border-radius:5px}.doc pre{border-radius:5px}
+.home h1{color:#00008b}
+.login h1{color:#00008b}.login .card-login{width:100%;max-width:355px;margin:auto;box-shadow:2px 5px 10px rgba(0,0,0,.2)}
+
+
+body{background-color:#ebebeb !important}.dashboard h1{color:#00008b}.dashboard .page{padding:.5em}.dashboard .content-page{padding:1em;background-color:#fff}
+body,html{height:auto;min-height:100vh}.box-sidebar-menu{background-color:#fff;height:auto;min-height:100vh;padding:1em}.box-sidebar-menu ul{margin:0;padding:0}.box-sidebar-menu ul li{list-style:none;color:#00008b}.box-sidebar-menu ul li a{color:#00008b}
+
+
+
+
+/*# sourceMappingURL=main.css.map*/
