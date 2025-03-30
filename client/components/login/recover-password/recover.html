@@ -6,7 +6,7 @@
   <div class="card-footer">
     <div class="d-flex">
       <div class="col">
-        <button type="button" class="btn btn-outline-primary" data-click="state.goToLogin()">Back</button>
+        <button type="button" class="btn btn-outline-primary" data-click="state.goToLogin">Back</button>
         <button type="submit" class="btn btn-primary">Recover password</button>
       </div>
     </div>

@@ -18,12 +18,12 @@
             <div class="card-footer">
               <div class="d-flex">
                 <div class="col">
-                  <button class="btn" type="button" data-click="state.goToRecover()">Recover password</button>
+                  <button class="btn" type="button" data-click="state.goToRecover">Recover password</button>
                 </div>
                 <div class="col">
                   <button type="submit" class="btn btn-primary">Login</button>
                   <button type="button" class="btn btn-outline-primary"
-                    data-click="state.goToRegister()">Register</button>
+                    data-click="state.goToRegister">Register</button>
                 </div>
               </div>
             </div>
