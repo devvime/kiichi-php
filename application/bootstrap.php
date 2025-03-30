@@ -1,8 +1,8 @@
 <?php
 
 require_once(__DIR__.'/../vendor/autoload.php');
-require_once(__DIR__.'/../src/Config/config.php');
-require_once(__DIR__.'/../src/Config/database.php');
+require_once(__DIR__.'/Config/config.php');
+require_once(__DIR__.'/Config/database.php');
 
 use Devvime\Kiichi\Engine\HttpService;
 use Devvime\Kiichi\Engine\Router;
