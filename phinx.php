@@ -1,14 +1,14 @@
 <?php
 
-require_once('src/Config/config.php');
+require_once('application/Config/config.php');
 
 switch (DBDRIVER) {
   case 'mysql':
     return
       [
         'paths' => [
-          'migrations' => '%%PHINX_CONFIG_DIR%%/src/Database/migrations',
-          'seeds' => '%%PHINX_CONFIG_DIR%%/src/Database/seeds'
+          'migrations' => '%%PHINX_CONFIG_DIR%%/application/Database/migrations',
+          'seeds' => '%%PHINX_CONFIG_DIR%%/application/Database/seeds'
         ],
         'environments' => [
           'default_migration_table' => 'phinxlog',
@@ -48,8 +48,8 @@ switch (DBDRIVER) {
     return
       [
         'paths' => [
-          'migrations' => '%%PHINX_CONFIG_DIR%%/src/Database/migrations',
-          'seeds' => '%%PHINX_CONFIG_DIR%%/src/Database/seeds'
+          'migrations' => '%%PHINX_CONFIG_DIR%%/application/Database/migrations',
+          'seeds' => '%%PHINX_CONFIG_DIR%%/application/Database/seeds'
         ],
         'environments' => [
           'default_migration_table' => 'phinxlog',
