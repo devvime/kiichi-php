@@ -1,4 +1,5 @@
 vendor/
 node_modules/
+client/default/cache/
 db/
 .env

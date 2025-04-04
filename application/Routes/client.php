@@ -16,16 +16,13 @@ $router->get('/doc-data', function ($req, $res) {
 # end documentation
 
 $router->get('/', function ($req, $res) {
-  $res->render('components/home/home', [
-    "version"=>$res->version(),
-    "headerData"=>[
-      "version"=>$res->version()
-    ]
+  $res->render('app/pages/home/home', [
+    "version"=>$res->version()
   ]);
 });
 
 $router->get('/login', function ($req, $res) {
-  $res->render('components/login/login', [
+  $res->render('app/pages/login/login', [
     "version"=>$res->version()
   ]);
 });

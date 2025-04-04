@@ -1,14 +1,15 @@
-import './default/theme.scss'
-import { blots } from 'blots'
-import { state } from 'reactivity-proxy'
+import '@default/theme.scss'
 
-import { nav } from './components/layout/nav/nav.js'
-import { doc } from './default/doc/doc.js';
-import { home } from './components/home/home.js';
-import { login } from './components/login/login.js';
-import { dashboard } from './components/dashboard/dashboard.js';
-import { listUsers } from './components/dashboard/users/list/list.js';
-import { Pagination } from './components/layout/pagination/pagination.js';
+import { blots } from 'blots'
+import { state } from '@services/state.js'
+
+import { doc } from '@default/doc/doc.js';
+import { nav } from '@components/nav/nav.js'
+import { Pagination } from '@components/pagination/pagination.js';
+import { home } from '@pages/home/home.js';
+import { login } from '@pages/login/login.js';
+import { dashboard } from '@pages/dashboard/dashboard.js';
+import { listUsers } from '@pages/dashboard/users/list/list.js';
 
 state.registerElements([
   ['pagination-element', Pagination]
