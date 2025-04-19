@@ -1,0 +1,48 @@
+/*!****************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/default/theme.scss ***!
+  \****************************************************************************************************************************************************************************/@media (max-width:1200px){.container{max-width:none!important}}
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/components/loading/loading.scss ***!
+  \*********************************************************************************************************************************************************************************************/
+
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/components/pagination/pagination.scss ***!
+  \***************************************************************************************************************************************************************************************************/
+
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/components/mult-select/mult-select.scss ***!
+  \*****************************************************************************************************************************************************************************************************/.multi-select{font-family:sans-serif;position:relative;width:100%}.multi-select .select-box{border-radius:4px;cursor:pointer}.multi-select .options{background:rgba(68,68,68,.5);border-radius:10px;border-top:none;display:none;margin-top:10px;max-height:250px;overflow-y:auto;position:absolute;width:100%;z-index:10}.multi-select .options label{align-items:center;cursor:pointer;display:flex;justify-content:space-between;padding-left:2em;padding-right:2em}.multi-select .options label:hover{background:#eee}.multi-select .options label:hover span{color:#333}.multi-select .options label input{width:20px!important}.multi-select .options label span{color:#fff;font-weight:700}.multi-select.open .options{display:block}
+/*!******************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/default/doc/doc.scss ***!
+  \******************************************************************************************************************************************************************************/.doc{background-color:#ebebeb}.doc .box-page{background-color:#fff;padding:2em}.doc .box-page,.doc pre{border-radius:5px}
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/components/nav/nav.scss ***!
+  \*************************************************************************************************************************************************************************************/.navbar{box-shadow:2px 5px 10px hsla(0,0%,80%,.4)}
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/pages/home/home.scss ***!
+  \**********************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/pages/login/login.scss ***!
+  \************************************************************************************************************************************************************************************/.home h1,.login h1{color:#00008b}.login .card-login{box-shadow:2px 5px 10px rgba(0,0,0,.2);margin:auto;max-width:355px;width:100%}
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/pages/login/recover-password/recover.scss ***!
+  \*******************************************************************************************************************************************************************************************************/
+
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/pages/dashboard/dashboard.scss ***!
+  \********************************************************************************************************************************************************************************************/body{background-color:#ebebeb!important}.dashboard h1{color:#00008b}.dashboard .page{padding:.5em}.dashboard .content-page{background-color:#fff;padding:1em}
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/pages/dashboard/sidebar-menu/menu.scss ***!
+  \****************************************************************************************************************************************************************************************************/.box-sidebar-menu,body,html{height:auto;min-height:100vh}.box-sidebar-menu{background-color:#fff;padding:1em}.box-sidebar-menu ul{margin:0;padding:0}.box-sidebar-menu ul li{color:#00008b;list-style:none}.box-sidebar-menu ul li a{color:#00008b}
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/pages/dashboard/users/list/list.scss ***!
+  \**************************************************************************************************************************************************************************************************/
+
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/pages/dashboard/users/create/create.scss ***!
+  \******************************************************************************************************************************************************************************************************/
+
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./client/app/pages/login/register/register.scss ***!
+  \************************************************************************************************************************************************************************************************/
+/*# sourceMappingURL=main.css.map*/

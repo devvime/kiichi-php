@@ -1,5 +1,5 @@
-vendor/
-node_modules/
-client/default/cache/
-db/
+/vendor
+/node_modules
+/db
+/server/cache
 .env

@@ -1,5 +1,4 @@
 import './create.scss'
-import $ from 'jquery'
 import Swal from 'sweetalert2'
 import { api } from '@services/baseApi.js'
 import { state } from 'reactivity-proxy';
@@ -14,16 +13,18 @@ export const createUser = {
 }
 
 function createForm() {
-  const form = $('#create-user-form')
-  form.on('submit', (e) => {
-    e.preventDefault()
-    const formData = new FormData(e.target)
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      password: formData.get('password')
-    }
-    sendCreateUser(data)
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('#create-user-form')
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const formData = new FormData(e.target)
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password')
+      }
+      sendCreateUser(data)
+    })
   })
 }
 
@@ -33,7 +34,7 @@ async function sendCreateUser(data) {
     if (res.success) {
       Swal.fire({
         title: 'User created successfully!',
-        icon:'success',
+        icon: 'success',
         confirmButtonText: 'OK'
       }).then(() => {
         state.change('loading', false)

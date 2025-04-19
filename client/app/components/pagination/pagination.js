@@ -2,7 +2,7 @@ import './pagination.scss'
 import element from './pagination.html'
 import { state } from 'reactivity-proxy'
 
-export const Pagination = {
+export const pagination = {
   title: 'pagination-element',
   init() {},
   render() {

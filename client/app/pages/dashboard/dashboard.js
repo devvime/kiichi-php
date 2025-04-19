@@ -1,5 +1,4 @@
 import './dashboard.scss'
-import $ from 'jquery'
 import Swal from 'sweetalert2'
 import { api } from '@services/baseApi.js'
 import { state } from 'reactivity-proxy';
@@ -14,7 +13,7 @@ export function dashboard(props) {
   if (props.data) {
     const component = props.data.component
     component.init()
-    $('#dashboard-page').html(component.render())
+    document.querySelector('#dashboard-page').innerHTML = component.render()
     state.change('title', props.data.title) 
   }
   sideBarMenu()

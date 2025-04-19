@@ -1,11 +1,7 @@
 import './login.scss'
-import $ from 'jquery'
 import Swal from 'sweetalert2'
 import { api } from '@services/baseApi.js'
 import { state } from 'reactivity-proxy';
-
-import { register } from './register/register.js';
-import { recoverPassword } from './recover-password/recover.js';
 
 state.set({
   title: 'Login Page',
@@ -27,8 +23,8 @@ state.set({
 })
 
 export const login = (ctx, next) => {
-  const form = $('#login-form')
-  form.on('submit', (e) => {
+  const form = document.querySelector('#login-form')
+  form.addEventListener('submit', (e) => {
     e.preventDefault()
     const formData = new FormData(e.target)
     const data = {
@@ -37,8 +33,6 @@ export const login = (ctx, next) => {
     }
     sendLogin(data)
   })
-  register()
-  recoverPassword()
 }
 
 async function sendLogin(data) {

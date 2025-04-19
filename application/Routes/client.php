@@ -30,13 +30,13 @@ $router->get('/login', function ($req, $res) {
 $router->group('/dashboard',  function () use ($router) {
 
   $router->get('', function ($req, $res) {
-    $res->render('components/dashboard/dashboard', [
+    $res->render('app/pages/dashboard/dashboard', [
       "version"=>$res->version()
     ]);
   });
 
   $router->get('/users', function ($req, $res) {
-    $res->render('components/dashboard/dashboard', [
+    $res->render('app/pages/dashboard/dashboard', [
       "version"=>$res->version()
     ]);
   });
