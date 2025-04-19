@@ -10,8 +10,8 @@ $router->get('/doc', function ($req, $res) {
 });
 
 $router->get('/doc-data', function ($req, $res) {
-  $conteudo = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/../README.md');
-  echo $conteudo;
+  $content = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/../README.md');
+  echo $content;
 });
 # end documentation
 
