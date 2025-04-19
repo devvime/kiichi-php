@@ -4,6 +4,7 @@ namespace Devvime\Kiichi\Controllers;
 
 use Devvime\Kiichi\Engine\ControllerService;
 use Devvime\Kiichi\Models\UserModel;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class UserController extends ControllerService
 {
@@ -26,7 +27,7 @@ class UserController extends ControllerService
     $result = UserModel::find($req->params->id, ['id', 'name', 'email']);
     if ($result == null) {
       $res->json(["status" => 404, "error" => "Register Not Found..."]);
-      exit;
+      return;
     }
     $res->json([
       "status" => 200,
@@ -41,19 +42,31 @@ class UserController extends ControllerService
     $this->validate($req->body, 'email', 'required');
     $this->validate($req->body, 'email', 'isEmail');
     $this->validate($req->body, 'password', 'required');
+
     $existData = UserModel::select('id')->where('email', $req->body->email)->first();
-    if ($existData === null) {
-      $req->body->password = $this->jwtEncrypt($req->body->password);
-      $data = $this->bindValues($req->body, self::$userModel);
-      $result = $data->save();
-      if ($result) {
-        $this->index($req, $res);
-      }
-    } else {
+
+    if ($existData !== null) {
       $res->json([
         "status" => 400,
         "error" => true,
         "message" => "This email already registered!",
+      ]);
+      return;
+    }
+
+    try {
+      DB::transaction(function () use ($req) {
+        $req->body->password = $this->jwtEncrypt($req->body->password);
+        $data = $this->bindValues($req->body, self::$userModel);
+        $data->save(); // se falhar aqui, tudo será revertido
+      });
+      $this->index($req, $res);
+    } catch (\Throwable $e) {
+      $res->json([
+        "status" => 500,
+        "error" => true,
+        "message" => "Failed to create user",
+        "data" => $e->getMessage()
       ]);
     }
   }
@@ -61,17 +74,30 @@ class UserController extends ControllerService
   public function update($req, $res)
   {
     $data = UserModel::find($req->params->id);
+
     if ($data == null) {
       $res->json(["status" => 404, "error" => true, "message" => "Register Not Found..."]);
-      exit;
+      return;
     }
+
     if (isset($req->body->password)) {
       $data->password = $this->jwtEncrypt($req->body->password);
     }
-    $data = $this->bindValues($req->body, $data);
-    $result = $data->save();
-    if ($result) {
-      $this->find($req, $res);
+
+    try {
+      DB::transaction(function () use ($req, $res, $data) {
+        $data = $this->bindValues($req->body, $data);
+        $result = $data->save();
+        if ($result) {
+          $this->find($req, $res);
+        }
+      });
+    } catch (\Throwable $e) {
+      $res->json([
+        "status" => 500,
+        "error" => true,
+        "message" => "Failed to update user: " . $e->getMessage()
+      ]);
     }
   }
 
@@ -80,11 +106,22 @@ class UserController extends ControllerService
     $data = UserModel::find($req->params->id);
     if ($data == null) {
       $res->json(["status" => 404, "error" => true, "message" => "Register not found!"]);
-      exit;
+      return;
     }
-    $result = $data->delete();
-    if ($result) {
-      $this->index($req, $res);
+    
+    try {
+      DB::transaction(function () use ($req, $res, $data) {
+        $result = $data->delete();
+        if ($result) {
+          $this->index($req, $res);
+        }
+      });
+    } catch (\Throwable $e) {
+      $res->json([
+        "status" => 500,
+        "error" => true,
+        "message" => "Failed to delete user: " . $e->getMessage()
+      ]);
     }
   }
 }

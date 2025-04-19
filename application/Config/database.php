@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Container\Container;
 
 $capsule = new Capsule();
 
@@ -26,5 +28,6 @@ switch (DBDRIVER) {
     break;
 }
 
+$capsule->setEventDispatcher(new Dispatcher(new Container));
 $capsule->setAsGlobal();
 $capsule->bootEloquent();

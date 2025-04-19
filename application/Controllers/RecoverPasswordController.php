@@ -104,7 +104,7 @@ class RecoverPasswordController extends ControllerService
             "error" => true,
             "message" => "Passwords not Match."
           ]);
-          exit;
+          return;
         }
         $user = UserModel::where('id', $req->body->token->user->id)->first();
         $user->password = $this->jwtEncrypt($req->body->data->confirmNewPassword);
@@ -122,7 +122,7 @@ class RecoverPasswordController extends ControllerService
         "error" => true,
         "message" => "This token is invalid!"
       ]);
-      exit;
+      return;
     }
   }
 }
