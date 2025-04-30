@@ -37,7 +37,7 @@ class AuthMiddleware
         "error" => true,
         "message" => "You are not logged in!"
       ]);
-      exit;
+      return;
     }
   }
 
@@ -48,6 +48,6 @@ class AuthMiddleware
       "status" => 200,
       "result" => $this->controllerService->jwtEncrypt($token)
     ]);
-    exit;
+    return;
   }
 }

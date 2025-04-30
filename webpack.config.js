@@ -1,13 +1,23 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './client/index.js',
   devtool: "source-map",
+  resolve: {
+    alias: {
+      '@default': path.resolve(__dirname, 'client/default/'),
+      '@services': path.resolve(__dirname, 'client/app/core/services/'),
+      '@components': path.resolve(__dirname, 'client/app/components/'),
+      '@pages': path.resolve(__dirname, 'client/app/pages/'),
+      '@core': path.resolve(__dirname, 'client/app/core/')
+    }
+  },
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'public_html/dist/js'),
+    path: path.resolve(__dirname, 'public/dist/js'),
   },
   mode: 'development',
   module: {
@@ -20,29 +30,29 @@ module.exports = {
           options: {
             targets: "defaults",
             presets: [
+              ['@babel/preset-env', { targets: "defaults" }],
               ['minify']
             ]
           }
         }
       },
       {
-        test: /\.(css|sass|scss)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
-        ]
-      },
-      {
         use: ["html-loader"],
         test: /\.html$/i,
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        loader: 'file-loader',
-        options: {
-          outputPath: 'images',
-        },
+        test: /\.(css|sass|scss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true, url: false }
+          },
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: true }
+          }
+        ]
       }
     ]
   },
@@ -54,8 +64,15 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [
-      `...`,
       new CssMinimizerPlugin(),
+      new TerserPlugin({
+        terserOptions: {
+          format: {
+            comments: false,
+          },
+        },
+        extractComments: false,
+      }),
     ],
   },
 };

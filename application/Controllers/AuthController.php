@@ -22,17 +22,7 @@ class AuthController extends ControllerService
       ->where('password', $this->jwtEncrypt($req->body->password))->first();
     if ($user !== null) {
       $token = $this->jwtEncrypt($user);
-
-      session_set_cookie_params([
-        'lifetime' => 0,
-        'secure' => true,
-        'httponly' => true,
-        'samesite' => 'Strict'
-      ]);
-      session_regenerate_id(true);
-
       $_SESSION['token'] = $token;
-
       $res->json([
         "status" => 200,
         "success" => true,

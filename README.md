@@ -387,4 +387,24 @@ To receive the data sent to the HTML file use {{ key }} or {{ key.object.name }}
 
 For more details, see the documentation at [RainTPL 3](https://github.com/feulf/raintpl3)
 
+### Run with Docker
+
+Build with docker-compose
+
+```bash
+docker-compose up --build
+``` 
+
+Run after build
+
+```bash
+docker-compose up
+```
+
+End process
+
+```bash
+docker-compose down
+```
+
 

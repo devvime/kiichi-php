@@ -39,7 +39,7 @@ class EmailServiceController extends ControllerService
         'error' => true,
         'message' => $th->getMessage()
       ]);
-      exit;
+      return;
     }
   }
 }

@@ -1,17 +1,27 @@
-import './default/theme.scss'
+import '@default/theme.scss'
+
 import { blots } from 'blots'
 import { state } from 'reactivity-proxy'
 
-import { nav } from './components/layout/nav/nav.js'
-import { doc } from './default/doc/doc.js';
-import { home } from './components/home/home.js';
-import { login } from './components/login/login.js';
-import { dashboard } from './components/dashboard/dashboard.js';
-import { listUsers } from './components/dashboard/users/list/list.js';
-import { Pagination } from './components/layout/pagination/pagination.js';
+import { loading } from '@components/loading/loading.js';
+import { pagination } from '@components/pagination/pagination.js';
+import { MultiSelect } from '@components/mult-select/mult-select.js';
+
+import { doc } from '@default/doc/doc.js';
+import { nav } from '@components/nav/nav.js'
+import { home } from '@pages/home/home.js';
+import { login } from '@pages/login/login.js';
+import { recoverPassword } from '@pages/login/recover-password/recover';
+import { dashboard } from '@pages/dashboard/dashboard.js';
+import { listUsers } from '@pages/dashboard/users/list/list.js';
+import { register } from '@pages/login/register/register';
 
 state.registerElements([
-  ['pagination-element', Pagination]
+  [loading.title, loading],
+  [pagination.title, pagination],
+  [MultiSelect.title, MultiSelect],
+  [recoverPassword.title, recoverPassword],
+  [register.title, register]
 ])
 
 blots.route('/', () => home())

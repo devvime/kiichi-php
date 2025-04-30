@@ -10,22 +10,19 @@ $router->get('/doc', function ($req, $res) {
 });
 
 $router->get('/doc-data', function ($req, $res) {
-  $conteudo = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/../README.md');
-  echo $conteudo;
+  $content = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/../README.md');
+  echo $content;
 });
 # end documentation
 
 $router->get('/', function ($req, $res) {
-  $res->render('components/home/home', [
-    "version"=>$res->version(),
-    "headerData"=>[
-      "version"=>$res->version()
-    ]
+  $res->render('app/pages/home/home', [
+    "version"=>$res->version()
   ]);
 });
 
 $router->get('/login', function ($req, $res) {
-  $res->render('components/login/login', [
+  $res->render('app/pages/login/login', [
     "version"=>$res->version()
   ]);
 });
@@ -33,13 +30,13 @@ $router->get('/login', function ($req, $res) {
 $router->group('/dashboard',  function () use ($router) {
 
   $router->get('', function ($req, $res) {
-    $res->render('components/dashboard/dashboard', [
+    $res->render('app/pages/dashboard/dashboard', [
       "version"=>$res->version()
     ]);
   });
 
   $router->get('/users', function ($req, $res) {
-    $res->render('components/dashboard/dashboard', [
+    $res->render('app/pages/dashboard/dashboard', [
       "version"=>$res->version()
     ]);
   });

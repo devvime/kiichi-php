@@ -21,6 +21,7 @@
     "rain/raintpl": "3.0.0",
     "vlucas/phpdotenv": "^5.4",
     "illuminate/database": "^9.50",
+    "illuminate/events": "^9.52",
     "devvime/kiichi-php-engine": "^1.7.0",
     "doctrine/dbal": "^4.0"
   },
